@@ -167,23 +167,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Count-Up Animation for Statistics
+    // 7. Count-Up Animation for Statistics (Scroll Triggered)
+    const countUpObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const targetText = el.getAttribute('data-target') || el.textContent;
+                const target = parseInt(targetText.replace(/[^0-9]/g, ''), 10);
+                
+                if (isNaN(target)) return;
+                
+                let current = 0;
+                const duration = 2000; // 2 seconds
+                const startTime = performance.now();
+                
+                const updateCount = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    
+                    // Easing out function
+                    const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                    current = Math.floor(easeOutQuart * target);
+                    
+                    el.textContent = targetText.replace(/\d+/, current);
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        el.textContent = targetText.replace(/\d+/, target);
+                    }
+                };
+                
+                requestAnimationFrame(updateCount);
+                countUpObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+
     const countUpElements = document.querySelectorAll('.val');
     countUpElements.forEach(el => {
-        const target = parseInt(el.textContent.replace(/[^0-9]/g, ''), 10);
-        if (isNaN(target)) return;
-        let current = 0;
-        const increment = Math.ceil(target / 60);
-        const updateCount = () => {
-            current += increment;
-            if (current >= target) {
-                el.textContent = el.textContent.replace(/\d+/, target);
-            } else {
-                el.textContent = el.textContent.replace(/\d+/, current);
-                requestAnimationFrame(updateCount);
-            }
-        };
-        requestAnimationFrame(updateCount);
+        // Store the original target value in a data attribute if not already there
+        if (!el.getAttribute('data-target')) {
+            el.setAttribute('data-target', el.textContent);
+        }
+        // Set initial state to 0 or formatted 0
+        el.textContent = el.textContent.replace(/\d+/, '0');
+        countUpObserver.observe(el);
     });
 
     // 8. Page Load Fade-in
