@@ -15,6 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
+
+        // Update ScrollTrigger or IntersectionObserver on Lenis scroll
+        window.lenisInstance.on('scroll', () => {
+            // Force a small scroll event for native observers if needed
+            window.dispatchEvent(new Event('scroll'));
+        });
     }
 
     // 0.1 Custom Cursor Glow
@@ -113,11 +119,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    const revealElements = document.querySelectorAll('.stats-flex, .domain-card, .section-header, .partner-logo, .about-section, .strategy-detail-section, .intro-section, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow');
+    const revealElements = document.querySelectorAll('.stats-flex, .domain-card, .section-header, .partner-logo, .about-section, .strategy-detail-section, .intro-section, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow, .info-card, .strategy-detail-box, .detail-item, .chart-container, .advantage-section, .philosophy-section, .scope-section');
     revealElements.forEach(el => {
         el.classList.add('reveal-item');
         observer.observe(el);
     });
+
+    // Fallback: If elements are still invisible after 2s, show them
+    setTimeout(() => {
+        revealElements.forEach(el => {
+            if (!el.classList.contains('visible')) {
+                el.classList.add('visible');
+            }
+        });
+    }, 2000);
 
     // 4. Mouse Tracking for Card Glow
     const cards = document.querySelectorAll('.domain-card');
