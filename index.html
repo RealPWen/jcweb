@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>均成资产 | 专业量化对冲资产管理中心</title>
+    <meta name="description" content="均成资产（Parigain）是一家领先的量化对冲资产管理机构，深耕量化对冲，自研智能交易程序，管理规模突破30亿。">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+</head>
+<body class="home-page">
+    <div class="custom-cursor"></div>
+    <!-- Qualified Investor Modal (Compliance) -->
+    <div id="compliance-modal" class="compliance-overlay">
+        <div class="compliance-modal">
+            <div class="compliance-header">
+                <h3>合格投资者认定</h3>
+                <div class="compliance-line"></div>
+            </div>
+            <div class="compliance-body">
+                <p>根据《关于规范金融机构资产管理业务的指导意见》、《私募投资基金监督管理条例》、《私募投资基金监督管理暂行办法》及其他相关法律法规的规定，私募基金管理人不得向非合格投资者募集资金。</p>
+                
+                <p><strong>合格投资者是指：</strong>具备相应风险识别能力和风险承担能力，投资于单只私募基金的金额不低于100万元且符合下列相关标准的单位和个人：</p>
+                
+                <ul>
+                    <li><strong>单位：</strong>净资产不低于1000万元的单位。</li>
+                    <li><strong>个人：</strong>金融资产不低于300万元或者最近三年个人年均收入不低于50万元。
+                        <br><small>（金融资产包括银行存款、股票、债券、基金份额、资产管理计划、银行理财产品、信托计划、保险产品、期货权益等。）</small>
+                    </li>
+                </ul>
+                
+                <p class="warning-text">本网站展示的所有产品信息仅供合格投资者参考，不构成任何投资建议或要约。如果您继续访问本网站并获取相关信息，即视为您保证符合合格投资者标准并同意接受网站法律声明。</p>
+            </div>
+            <div class="compliance-footer">
+                <button id="confirm-investor" class="btn-main">确认，我是合格投资者</button>
+                <button id="leave-site" class="btn-outline">不符合条件，离开</button>
+            </div>
+        </div>
+    </div>
+
+    <header id="site-header">
+        <nav class="container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/logo.png" alt="均成资产" class="nav-logo">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/" class="active">官网首页</a></li>
+                <li><a href="/strategy.html">投资策略</a></li>
+                <li><a href="/about.html">关于均成</a></li>
+                <li><a href="/contact.html" class="btn-primary">联系我们</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Full Page Slider -->
+        <section id="hero-slider" class="hero-slider">
+            <div class="slides-container">
+                <!-- Slide 1 -->
+                <div class="slide active" data-bg="/hero-bg.png">
+                    <div class="container slide-content">
+                        <h2 class="sub-title">量化对冲 · 智领未来</h2>
+                        <h1 class="main-title">策略强大 <span class="accent">业绩稳健</span></h1>
+                        <p class="hero-desc">深耕量化对冲，结合自研智能交易系统与多资产配置方案，管理规模突破30亿人民币。</p>
+                        <div class="hero-btns">
+                            <a href="/strategy.html" class="btn-main">探索策略</a>
+                            <a href="/about.html" class="btn-outline">了解均成</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="slide" data-bg="gradient-1">
+                    <div class="container slide-content">
+                        <h2 class="sub-title">多资产配置 · 全品种覆盖</h2>
+                        <h1 class="main-title">深度覆盖 <span class="accent">股指与商品期货</span></h1>
+                        <p class="hero-desc">业务涉及几乎全品种的商品期货及股指期货，通过杠杆捕捉双向交易机会。</p>
+                        <div class="hero-btns">
+                            <a href="/strategy.html" class="btn-main">查看领域</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="slide" data-bg="gradient-2">
+                    <div class="container slide-content">
+                        <h2 class="sub-title">技术驱动 · 数据护城河</h2>
+                        <h1 class="main-title">自研智能 <span class="accent">自动化交易系统</span></h1>
+                        <p class="hero-desc">拥有自主知识产权的超低延迟交易平台，通过硬核科技构建业绩护城河。</p>
+                        <div class="hero-btns">
+                            <a href="/about.html" class="btn-main">技术核心</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="slide" data-bg="gradient-3">
+                    <div class="container slide-content">
+                        <h2 class="sub-title">精英团队 · 卓越管理</h2>
+                        <h1 class="main-title">北大核心背景 <span class="accent">旗舰产品获誉</span></h1>
+                        <p class="hero-desc">核心团队来自北京大学等顶尖学府，旗舰产品四年累计收益突破400%。</p>
+                        <div class="hero-btns">
+                            <a href="/about.html#honors" class="btn-main">查看荣誉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slider Controls -->
+            <div class="slider-controls">
+                <div class="control-dot active" data-index="0"></div>
+                <div class="control-dot" data-index="1"></div>
+                <div class="control-dot" data-index="2"></div>
+                <div class="control-dot" data-index="3"></div>
+            </div>
+            <div class="slider-arrows">
+                <button class="arrow-btn prev">←</button>
+                <button class="arrow-btn next">→</button>
+            </div>
+            
+            <div class="scroll-down">
+                <span class="mouse"></span>
+                <span>Scroll</span>
+            </div>
+        </section>
+
+        <!-- Management Stats -->
+        <section class="home-stats-bar">
+            <div class="container stats-flex">
+                <div class="stat-item">
+                    <span class="label">管理规模</span>
+                    <span class="val">30亿+</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">团队背景</span>
+                    <span class="val">北京大学</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">核心优势</span>
+                    <span class="val">自研系统</span>
+                </div>
+                <div class="stat-item">
+                    <span class="label">中金50</span>
+                    <span class="val">入选机构</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Domains -->
+        <section class="domains-section container">
+            <div class="section-header center">
+                <span class="accent-line">Scope</span>
+                <h2>全方位投资视野</h2>
+            </div>
+            <div class="domain-cards">
+                <div class="domain-card dark" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                    <div class="icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="8" y2="16"></line>
+                            <line x1="16" y1="10" x2="16" y2="16"></line>
+                        </svg>
+                    </div>
+                    <h3>股票量化</h3>
+                    <p>多因子选股模型，深度融合基本面、价量及事件因子。持有多头股票的同时利用对冲工具控制风险。</p>
+                </div>
+                <div class="domain-card dark highlight" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                    <div class="icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v20"></path>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <h3>量化 CTA</h3>
+                    <p>涉及股指期货及全品种商品期货，捕捉大趋势、日内趋势及跨季跨期等全方位盈利机会。</p>
+                </div>
+                <div class="domain-card dark" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+                    <div class="icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                        </svg>
+                    </div>
+                    <h3>资产配置</h3>
+                    <p>通过低相关性的策略组合，优化多资产配置，力求在不同市场环境下都能实现资产稳健增长。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partner Logos -->
+        <section class="partners-section">
+            <div class="container">
+                <h3 class="partner-title">深度合作伙伴</h3>
+                <div class="partner-grid">
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 200 60" fill="currentColor" opacity="0.6">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2">中金公司</text>
+                        </svg>
+                    </div>
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 200 60" fill="currentColor" opacity="0.6">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2">中信证券</text>
+                        </svg>
+                    </div>
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 200 60" fill="currentColor" opacity="0.6">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2">招商银行</text>
+                        </svg>
+                    </div>
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 200 60" fill="currentColor" opacity="0.6">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2">兴业银行</text>
+                        </svg>
+                    </div>
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 200 60" fill="currentColor" opacity="0.6">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2">华泰证券</text>
+                        </svg>
+                    </div>
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 200 60" fill="currentColor" opacity="0.6">
+                            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2">东方财富</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="site-footer">
+        <div class="container footer-top">
+            <div class="footer-col brand">
+                <div class="logo">
+                    <img src="/logo.png" alt="均成资产" class="footer-logo">
+                </div>
+                <p>专注于量化投资的专业资管机构</p>
+            </div>
+            <div class="footer-col links">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="/strategy.html">投资策略</a></li>
+                    <li><a href="/about.html">关于均成</a></li>
+                    <li><a href="/contact.html">加入我们</a></li>
+                </ul>
+            </div>
+            <div class="footer-col contact">
+                <h4>联系我们</h4>
+                <p>邮箱: contact@parigain.com</p>
+                <div class="locations">
+                    <span>深圳 · 横琴</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="risk-disclosure">
+            <div class="container">
+                <p>风险揭示：私募集基金投资具有较高风险，投资者在签署基金合同前应仔细阅读招募说明书、基金合同等文件，充分了解基金的风险收益特征。均成资产不承诺基金投资收益，本金不受损失，过往业绩不预示其未来表现。投资需谨慎。</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 广东横琴均成私募基金管理有限公司 | 备案编号：P19065270 | <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2020139886号</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="./main.js"></script>
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="back-to-top">↑</div>
+</body>
+</html>
