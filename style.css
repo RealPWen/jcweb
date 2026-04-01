@@ -1118,11 +1118,13 @@ body.loaded {
     background: var(--bg-secondary);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
-    max-width: 680px;
-    width: 100%;
-    padding: 48px;
-    max-height: 90vh;
-    overflow-y: auto;
+    max-width: 600px; /* Reduced from 680px */
+    width: 90%;
+    padding: 0; /* Let body handle padding */
+    max-height: 85vh; /* Reduced from 90vh */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Important for body scroll */
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
     animation: modalAppear 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -1132,24 +1134,31 @@ body.loaded {
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+.compliance-header {
+    padding: 32px 40px 0;
+}
+
 .compliance-header h3 {
-    font-size: 28px;
+    font-size: 24px;
     color: var(--accent);
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     text-align: center;
     letter-spacing: 2px;
 }
 
 .compliance-line {
-    width: 80px;
+    width: 60px;
     height: 2px;
     background: var(--accent);
-    margin: 0 auto 32px;
+    margin: 0 auto 24px;
 }
 
 .compliance-body {
-    font-size: 16px;
-    line-height: 1.8;
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 40px;
+    font-size: 15px;
+    line-height: 1.7;
     color: var(--text-secondary);
 }
 
@@ -1191,37 +1200,40 @@ body.loaded {
 }
 
 .compliance-footer {
-    margin-top: 40px;
+    padding: 24px 40px 32px;
+    background: rgba(10, 10, 11, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 16px;
 }
 
 .compliance-footer button {
-    padding: 16px;
+    padding: 14px;
     font-weight: 600;
 }
 
 /* Modal Scrollbar */
-.compliance-modal::-webkit-scrollbar {
+.compliance-body::-webkit-scrollbar {
     width: 6px;
 }
-.compliance-modal::-webkit-scrollbar-thumb {
-    background: var(--bg-primary);
+.compliance-body::-webkit-scrollbar-thumb {
+    background: rgba(245, 166, 35, 0.3);
     border-radius: 3px;
 }
 
 /* Mobile Modal Fixes */
 @media (max-width: 768px) {
     .compliance-modal {
-        padding: 32px 24px;
+        width: 95%;
+        max-height: 90vh;
     }
-    .compliance-footer {
-        grid-template-columns: 1fr;
-    }
-    .compliance-header h3 {
-        font-size: 22px;
-    }
+    .compliance-header { padding: 24px 20px 0; }
+    .compliance-body { padding: 0 20px; }
+    .compliance-footer { padding: 20px; grid-template-columns: 1fr; gap: 10px; }
+    
+    .compliance-header h3 { font-size: 20px; }
+    .compliance-body { font-size: 14px; }
 }
 
 /* Custom Cursor Glow */

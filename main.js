@@ -3,7 +3,7 @@ export {};
 document.addEventListener('DOMContentLoaded', () => {
     // 0. Global Smooth Scroll (Lenis)
     if (window.Lenis) {
-        const lenis = new window.Lenis({
+        window.lenisInstance = new window.Lenis({
             duration: 1.0,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
             direction: 'vertical',
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             smooth: true
         });
         function raf(time) {
-            lenis.raf(time);
+            window.lenisInstance.raf(time);
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
@@ -197,6 +197,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (complianceModal && !sessionStorage.getItem('complianceConfirmed')) {
         complianceModal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        // Disable Lenis if active
+        if (window.lenisInstance) window.lenisInstance.stop();
+        else if (window.lenis) window.lenis.stop();
     }
 
     if (confirmBtn) {
@@ -204,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
             sessionStorage.setItem('complianceConfirmed', 'true');
             complianceModal.classList.remove('active');
             document.body.style.overflow = 'auto';
+            if (window.lenisInstance) window.lenisInstance.start();
         });
     }
 
