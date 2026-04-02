@@ -55,7 +55,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateSlider = (index) => {
         if (!slides.length) return;
-        slides.forEach(slide => slide.classList.remove('active'));
+        
+        // Initialize backgrounds if not done
+        slides.forEach(slide => {
+            if (!slide.style.backgroundImage) {
+                const bg = slide.getAttribute('data-bg');
+                if (bg && (bg.includes('.') || bg.startsWith('http'))) {
+                    slide.style.backgroundImage = `url(${bg})`;
+                }
+            }
+            slide.classList.remove('active');
+        });
+        
         dots.forEach(dot => dot.classList.remove('active'));
         
         slides[index].classList.add('active');
