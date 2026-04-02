@@ -1413,10 +1413,14 @@ body.loaded {
 .compliance-body {
   flex: 1;
   overflow-y: auto;
+  min-height: 0; /* Critical flexbox fix for scrolling */
   padding: 0 40px;
+  margin: 10px 0;
   font-size: 15px;
   line-height: 1.7;
   color: var(--text-secondary);
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
 }
 
 .compliance-body p {
@@ -1437,6 +1441,27 @@ body.loaded {
 
 .compliance-body li {
   margin-bottom: 16px;
+  padding-left: 8px;
+}
+
+.compliance-section {
+  margin-bottom: 32px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.compliance-section strong {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--accent);
+  line-height: 1.5;
+}
+
+.compliance-body ol {
+  padding-left: 20px;
+  color: var(--text-secondary);
 }
 
 .compliance-body small {
@@ -1445,6 +1470,14 @@ body.loaded {
   font-size: 13px;
   line-height: 1.6;
   color: var(--text-muted);
+}
+
+.copyright-info {
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 20px;
+  margin-top: 40px;
 }
 
 .warning-text {
@@ -1595,10 +1628,94 @@ body.loaded {
 }
 
 .chart-visual {
-  width: 260px;
-  /* Reduced from 300px */
-  height: 260px;
+  width: 480px;
+  height: 480px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.floating-label .p-num {
+  font-size: 38px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  margin-right: -5px;
+}
+
+.floating-label .l-box {
+  background: rgba(255, 255, 255, 0.12); /* Slightly more opaque for contrast */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.floating-label .l-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff; /* Brighter white */
+  margin-bottom: 4px;
+}
+
+.floating-label .l-desc {
+  font-size: 13px;
+  color: #ffffff; /* Changed to pure white for better readability */
+  opacity: 0.9;
+}
+
+/* Position Labels accurately relative to the 480px parent */
+.l-top-left {
+  top: 8%;
+  left: -40px;
+}
+
+.l-top-right {
+  top: 25%; /* Moved down as requested */
+  right: -70px;
+}
+
+.l-bottom-right {
+  bottom: 15%;
+  right: -30px;
+}
+
+.l-bottom-left {
+  bottom: 20%;
+  left: -80px;
+}
+
+/* Adjust colors for each label's percentage to match segments */
+.l-top-left .p-num { color: #FACC15; }
+.l-top-right .p-num { color: #F59E0B; }
+.l-bottom-right .p-num { color: #EA580C; }
+.l-bottom-left .p-num { color: #D97706; }
+
+@media (max-width: 1200px) {
+    .chart-visual {
+        width: 400px;
+        height: 400px;
+    }
+    .floating-label {
+        gap: 8px;
+    }
+    .floating-label .p-num {
+        font-size: 28px;
+    }
 }
 
 .chart-legend {
@@ -1638,9 +1755,32 @@ body.loaded {
   }
 }
 
+@media (max-width: 768px) {
+    .chart-visual {
+        width: 320px;
+        height: 320px;
+        flex-direction: column;
+    }
+    .floating-label {
+        position: static;
+        width: 100%;
+        margin-top: 10px;
+        transform: none !important;
+        justify-content: center;
+    }
+    .chart-container {
+        flex-direction: column;
+        padding-bottom: 40px;
+    }
+}
+
 @media (max-width: 480px) {
   .info-grid {
     grid-template-columns: 1fr;
+  }
+  .chart-visual {
+      width: 280px;
+      height: 280px;
   }
 }
 
@@ -1676,4 +1816,227 @@ body.loaded {
   will-change: transform, opacity;
   margin-top: -300px;
   margin-left: -300px;
+}
+/* --- Digital Rain Background --- */
+#digital-rain-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99; 
+  pointer-events: none;
+  opacity: 0.13; /* Fine-tuned based on user feedback */
+  mix-blend-mode: screen;
+}
+
+/* Specific z-index ensures elements stay above the rain if needed, but mostly they can coexist */
+header { z-index: 1000; }
+.custom-cursor { z-index: 10000; }
+.compliance-overlay { z-index: 10001; }
+#back-to-top { z-index: 1000; }
+
+/* --- Honors Grid Layout --- */
+.honors-section {
+  padding: 120px 0;
+}
+
+.honors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.honor-card {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px;
+  border-radius: 16px;
+  position: relative;
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.honor-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-8px);
+  background: rgba(245, 166, 35, 0.03);
+}
+
+.honor-year {
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.honor-card h3 {
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.honor-org {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.honor-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 80px;
+  font-weight: 800;
+  color: rgba(245, 166, 35, 0.03);
+  pointer-events: none;
+  font-family: 'Outfit', sans-serif;
+}
+
+@media (max-width: 1024px) {
+  .honors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .honors-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Timeline Award Item Styling --- */
+.award {
+  margin-bottom: 24px;
+}
+
+.award:last-child {
+  margin-bottom: 0;
+}
+
+.award h4 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.award p {
+  font-size: 14px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* Ensure timeline layout works with grouped awards */
+.timeline-item .content {
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: var(--transition);
+}
+
+.timeline-item:hover .content {
+  background: rgba(245, 166, 35, 0.05);
+  border-color: rgba(245, 166, 35, 0.2);
+}
+
+/* --- Entry Loader Animation --- */
+.entry-loader {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001; /* Above mobile menu and everything else */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+  overflow: hidden;
+}
+
+.entry-loader.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.loader-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.decode-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(40px, 8vw, 88px);
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 1.2rem;
+  text-transform: uppercase;
+  text-align: center;
+  transition: all 0.6s ease;
+  z-index: 2;
+  text-shadow: 0 0 20px rgba(245, 166, 35, 0.3);
+}
+
+.loader-logo-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  z-index: 1;
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.loader-logo {
+  height: 120px;
+  width: auto;
+  filter: drop-shadow(0 0 30px rgba(245, 166, 35, 0.4));
+}
+
+/* Animation states triggered by JS */
+.entry-loader.show-logo .decode-text {
+  opacity: 0;
+  transform: scale(1.1) blur(10px);
+}
+
+.entry-loader.show-logo .loader-logo-wrapper {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.skip-hint {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text-muted);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  opacity: 0;
+  animation: fadeInOut 2.5s infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.6; }
+}
+
+@media (max-width: 768px) {
+  .decode-text {
+    font-size: 32px;
+    letter-spacing: 0.5rem;
+  }
+  .loader-logo {
+    height: 80px;
+  }
 }

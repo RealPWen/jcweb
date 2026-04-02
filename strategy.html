@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>投资策略 | 均成资产 - 专业量化对冲</title>
     <!-- SEO & Social Sharing -->
-    <meta name="description" content="均成资产（Parigain）深耕量化对冲，业务涉及股指期货、商品期货以及股票量化，通过自主研发交易系统追求稳健收益。">
+    <meta name="description" content="广东横琴均成私募基金管理有限公司成立于2016年，公司具备私募基金管理人资格（备案编号：P1061222），是一家以量化投资为核心的专业资产管理公司。">
     <meta property="og:title" content="投资策略 | 均成资产">
     <meta property="og:description" content="深耕量化，多维捕捉市场Alpha。">
     <meta property="og:image" content="./images/logo.png">
@@ -155,37 +155,50 @@
                 <div class="chart-container">
                     <div class="chart-visual">
                         <svg viewBox="0 0 100 100" width="100%" height="100%">
-                            <!-- 均成资产 50% (Slightly reduced to allow separation) -->
-                            <path d="M 50,50 L 50,2 A 48,48 0 0,1 50,98 Z" fill="#E5B80B"></path>
-                            <!-- 财务因子 30% -->
-                            <path d="M 50,50 L 50,98 A 48,48 0 0,1 11,78 Z" fill="rgba(255,255,255,0.3)"></path>
-                            <!-- 研报因子 20% -->
-                            <path d="M 50,50 L 11,78 A 48,48 0 0,1 50,2 Z" fill="rgba(255,255,255,0.1)"></path>
-                            <!-- Inner Circle -->
+                            <!-- 30% 财务因子 (Top) -->
+                            <path d="M 50,50 L 11.2,21.8 A 48,48 0 0,1 88.8,21.8 Z" fill="#FACC15"></path>
+                            <!-- 20% 研报因子 (Right-top) -->
+                            <path d="M 50,50 L 88.8,21.8 A 48,48 0 0,1 88.8,78.2 Z" fill="#F59E0B"></path>
+                            <!-- 10% 事件因子 (Right-bottom) -->
+                            <path d="M 50,50 L 88.8,78.2 A 48,48 0 0,1 64.8,95.6 Z" fill="#EA580C"></path>
+                            <!-- 40% 价量因子 (Left-bottom) -->
+                            <path d="M 50,50 L 64.8,95.6 A 48,48 0 0,1 11.2,21.8 Z" fill="#D97706"></path>
+                            
+                            <!-- Inner Circle for Donut Effect -->
                             <circle cx="50" cy="50" r="32" fill="#0A0A0B"></circle>
-                            <text x="50" y="54" text-anchor="middle" fill="#fff" font-size="5" font-weight="800">多元因子矩阵</text>
+                            
+                            <!-- Center Logo -->
+                            <image href="./images/logo.png" x="38" y="42" width="24" height="12" />
+                            <text x="50" y="58" text-anchor="middle" fill="#94a3b8" font-size="3" font-weight="600" style="letter-spacing: 0.5px;">PARIGAIN</text>
                         </svg>
-                    </div>
-                    <div class="chart-legend">
-                        <div class="legend-item">
-                            <div class="legend-color" style="background: #E5B80B"></div>
-                            <div>
-                                <strong>50% 均成资产</strong>
-                                <p>完全自主研发量价及统计因子</p>
+
+                        <!-- Floating Labels -->
+                        <div class="floating-label l-top-left">
+                            <span class="p-num">30%</span>
+                            <div class="l-box">
+                                <span class="l-name">财务因子</span>
+                                <span class="l-desc">成长 + 价值结合</span>
                             </div>
                         </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background: rgba(255,255,255,0.3)"></div>
-                            <div>
-                                <strong>30% 财务因子</strong>
-                                <p>深度对齐成长与价值因子的有机结合</p>
+                        <div class="floating-label l-top-right">
+                            <span class="p-num">20%</span>
+                            <div class="l-box">
+                                <span class="l-name">研报因子</span>
+                                <span class="l-desc">基于券商研究所盈利预测</span>
                             </div>
                         </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background: rgba(255,255,255,0.1)"></div>
-                            <div>
-                                <strong>20% 研报因子</strong>
-                                <p>基于券商研究所全市场盈利数据预测</p>
+                        <div class="floating-label l-bottom-right">
+                            <span class="p-num">10%</span>
+                            <div class="l-box">
+                                <span class="l-name">事件因子</span>
+                                <span class="l-desc">基于公司公告</span>
+                            </div>
+                        </div>
+                        <div class="floating-label l-bottom-left">
+                            <span class="p-num">40%</span>
+                            <div class="l-box">
+                                <span class="l-name">价量因子</span>
+                                <span class="l-desc">短线长线结合</span>
                             </div>
                         </div>
                     </div>
@@ -230,7 +243,7 @@
 
         <div class="footer-bottom">
             <div class="container">
-                <p>&copy; 2025 广东横琴均成私募基金管理有限公司 | 备案编号：P19065270 | <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2020139886号</a></p>
+                <p>&copy; 2026 广东横琴均成私募基金管理有限公司 | 备案编号：P1061222 | <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2020139886号</a></p>
             </div>
         </div>
     </footer>
@@ -238,5 +251,8 @@
     <script type="module" src="./js/main.js"></script>
     <!-- Back to Top Button -->
     <div class="back-to-top" id="back-to-top">↑</div>
+
+    <!-- Digital Rain Background Canvas -->
+    <canvas id="digital-rain-canvas"></canvas>
 </body>
 </html>

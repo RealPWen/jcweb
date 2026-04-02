@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    const revealElements = document.querySelectorAll('.stats-flex, .domain-card, .section-header, .partner-logo, .about-section, .strategy-detail-section, .intro-section, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow, .info-card, .strategy-detail-box, .detail-item, .chart-container, .advantage-section, .philosophy-section, .scope-section');
+    const revealElements = document.querySelectorAll('.stats-flex, .domain-card, .section-header, .partner-logo, .about-section, .strategy-detail-section, .intro-section, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow, .info-card, .strategy-detail-box, .detail-item, .chart-container, .advantage-section, .philosophy-section, .scope-section, .honor-card');
     revealElements.forEach(el => {
         el.classList.add('reveal-item');
         observer.observe(el);
@@ -244,25 +244,85 @@ document.addEventListener('DOMContentLoaded', () => {
     // 8. Page Load Fade-in
     document.body.classList.add('loaded');
 
-    // 9. Qualified Investor Modal Logic
+    // 9. Qualified Investor Modal & Entry Animation Logic
     const complianceModal = document.getElementById('compliance-modal');
     const confirmBtn = document.getElementById('confirm-investor');
     const leaveBtn = document.getElementById('leave-site');
+    const entryLoader = document.getElementById('entry-loader');
+    const decodeText = document.getElementById('decode-text');
+
+    const chars = '01$#@!%&*?';
+    let animationSkipped = false;
+
+    const skipIntro = () => {
+        if (animationSkipped || !entryLoader) return;
+        animationSkipped = true;
+        entryLoader.style.opacity = '0';
+        setTimeout(() => {
+            entryLoader.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            if (window.lenisInstance) window.lenisInstance.start();
+        }, 800);
+    };
+
+    const runDecode = (targetText, duration = 1500) => {
+        if (animationSkipped) return;
+        const length = targetText.length;
+        let iteration = 0;
+        const interval = setInterval(() => {
+            if (animationSkipped) {
+                clearInterval(interval);
+                return;
+            }
+            decodeText.innerText = targetText
+                .split("")
+                .map((letter, index) => {
+                    if (index < iteration) {
+                        return targetText[index];
+                    }
+                    return chars[Math.floor(Math.random() * chars.length)];
+                })
+                .join("");
+
+            if (iteration >= length) {
+                clearInterval(interval);
+                // After decoding, show logo
+                setTimeout(() => {
+                    if (!animationSkipped) {
+                        entryLoader.classList.add('show-logo');
+                        setTimeout(skipIntro, 2000); // Wait another 2s then fade out
+                    }
+                }, 500);
+            }
+            iteration += 1 / 3;
+        }, 30);
+    };
 
     if (complianceModal && !sessionStorage.getItem('complianceConfirmed')) {
         complianceModal.classList.add('active');
         document.body.style.overflow = 'hidden';
-        // Disable Lenis if active
         if (window.lenisInstance) window.lenisInstance.stop();
-        else if (window.lenis) window.lenis.stop();
     }
 
     if (confirmBtn) {
         confirmBtn.addEventListener('click', () => {
             sessionStorage.setItem('complianceConfirmed', 'true');
             complianceModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            if (window.lenisInstance) window.lenisInstance.start();
+            
+            // Start Intro Animation (only on homepage where loader exists)
+            if (entryLoader) {
+                entryLoader.classList.add('active');
+                setTimeout(() => runDecode("PARIGAIN"), 500);
+
+                // Skip listeners
+                window.addEventListener('wheel', skipIntro, { once: true });
+                window.addEventListener('touchmove', skipIntro, { once: true });
+                window.addEventListener('keydown', skipIntro, { once: true });
+                entryLoader.addEventListener('click', skipIntro, { once: true });
+            } else {
+                document.body.style.overflow = 'auto';
+                if (window.lenisInstance) window.lenisInstance.start();
+            }
         });
     }
 
@@ -270,6 +330,50 @@ document.addEventListener('DOMContentLoaded', () => {
         leaveBtn.addEventListener('click', () => {
             window.location.href = 'https://www.baidu.com';
         });
+    }
+    // 10. Digital Rain Background Logic
+    const canvas = document.getElementById('digital-rain-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height, columns;
+        const fontHeight = 14;
+        const characters = '01'.split(''); // Quant/Binary style
+        let yPositions;
+
+        const initCanvas = () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            columns = Math.floor(width / fontHeight);
+            yPositions = Array(columns).fill(0);
+        };
+
+        const drawMatrix = () => {
+            // Very thin overlay for the trailing effect
+            ctx.fillStyle = 'rgba(10, 10, 11, 0.08)'; 
+            ctx.fillRect(0, 0, width, height);
+
+            // Softer brand accent color
+            ctx.fillStyle = 'rgba(245, 166, 35, 0.7)'; 
+            ctx.font = `${fontHeight}px monospace`;
+
+            yPositions.forEach((y, index) => {
+                const char = characters[Math.floor(Math.random() * characters.length)];
+                const x = index * fontHeight;
+                ctx.fillText(char, x, y);
+
+                if (y > height + Math.random() * 8000) {
+                    yPositions[index] = 0;
+                } else {
+                    yPositions[index] = y + fontHeight;
+                }
+            });
+        };
+
+        initCanvas();
+        window.addEventListener('resize', initCanvas);
+        
+        // Performance-friendly animation interval
+        const matrixInterval = setInterval(drawMatrix, 50);
     }
 });
 
