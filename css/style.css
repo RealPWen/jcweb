@@ -1636,6 +1636,23 @@ body.loaded {
   justify-content: center;
 }
 
+.mask-circle {
+  transition: stroke-dashoffset 2s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.chart-visual.animate .mask-circle {
+  stroke-dashoffset: 0;
+}
+
+/* Magnetic Button Base Styles */
+.btn-main, .btn-primary, .btn-outline, .nav-links a {
+  --x: 0px;
+  --y: 0px;
+  transform: translate3d(var(--x), var(--y), 0);
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  display: inline-block;
+}
+
 .floating-label {
   position: absolute;
   display: flex;

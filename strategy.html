@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>投资策略 | 均成资产 - 专业量化对冲</title>
+    <title>投资策略 | 均成基金 - 专业量化对冲</title>
     <!-- SEO & Social Sharing -->
     <meta name="description" content="广东横琴均成私募基金管理有限公司成立于2016年，公司具备私募基金管理人资格（备案编号：P1061222），是一家以量化投资为核心的专业资产管理公司。">
-    <meta property="og:title" content="投资策略 | 均成资产">
+    <meta property="og:title" content="投资策略 | 均成基金">
     <meta property="og:description" content="深耕量化，多维捕捉市场Alpha。">
     <meta property="og:image" content="./images/logo.png">
 
@@ -20,26 +20,7 @@
 </head>
 <body class="strategy-page">
     <div class="custom-cursor"></div>
-    <header id="site-header">
-        <nav class="container">
-            <div class="logo">
-                <a href="./index.html">
-                    <img src="./images/logo.png" alt="均成资产LOGO" class="nav-logo">
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="./index.html">官网首页</a></li>
-                <li><a href="./strategy.html" class="active">投资策略</a></li>
-                <li><a href="./about.html">关于均成</a></li>
-                <li><a href="./contact.html" class="btn-primary">联系我们</a></li>
-            </ul>
-        </nav>
-    
-            <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-            </div>
-        </header>
+
 
     <main>
         <!-- Page Header -->
@@ -154,15 +135,23 @@
                 </div>
                 <div class="chart-container">
                     <div class="chart-visual">
-                        <svg viewBox="0 0 100 100" width="100%" height="100%">
-                            <!-- 30% 财务因子 (Top) -->
-                            <path d="M 50,50 L 11.2,21.8 A 48,48 0 0,1 88.8,21.8 Z" fill="#FACC15"></path>
-                            <!-- 20% 研报因子 (Right-top) -->
-                            <path d="M 50,50 L 88.8,21.8 A 48,48 0 0,1 88.8,78.2 Z" fill="#F59E0B"></path>
-                            <!-- 10% 事件因子 (Right-bottom) -->
-                            <path d="M 50,50 L 88.8,78.2 A 48,48 0 0,1 64.8,95.6 Z" fill="#EA580C"></path>
-                            <!-- 40% 价量因子 (Left-bottom) -->
-                            <path d="M 50,50 L 64.8,95.6 A 48,48 0 0,1 11.2,21.8 Z" fill="#D97706"></path>
+                        <svg viewBox="0 0 100 100" width="100%" height="100%" class="donut-svg">
+                            <defs>
+                                <mask id="donut-mask">
+                                    <circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="80" 
+                                            stroke-dasharray="251.32" stroke-dashoffset="251.32" class="mask-circle" />
+                                </mask>
+                            </defs>
+                            <g mask="url(#donut-mask)">
+                                <!-- 30% 财务因子 (Top) -->
+                                <path d="M 50,50 L 11.2,21.8 A 48,48 0 0,1 88.8,21.8 Z" fill="#FACC15"></path>
+                                <!-- 20% 研报因子 (Right-top) -->
+                                <path d="M 50,50 L 88.8,21.8 A 48,48 0 0,1 88.8,78.2 Z" fill="#F59E0B"></path>
+                                <!-- 10% 事件因子 (Right-bottom) -->
+                                <path d="M 50,50 L 88.8,78.2 A 48,48 0 0,1 64.8,95.6 Z" fill="#EA580C"></path>
+                                <!-- 40% 价量因子 (Left-bottom) -->
+                                <path d="M 50,50 L 64.8,95.6 A 48,48 0 0,1 11.2,21.8 Z" fill="#D97706"></path>
+                            </g>
                             
                             <!-- Inner Circle for Donut Effect -->
                             <circle cx="50" cy="50" r="32" fill="#0A0A0B"></circle>
@@ -210,43 +199,7 @@
         </section>
     </main>
 
-    <footer id="site-footer">
-        <!-- Replicated from index.html -->
-        <div class="container footer-top">
-            <div class="footer-col brand">
-                <div class="logo">
-                    <img src="./images/logo.png" alt="均成资产LOGO" class="footer-logo">
-                </div>
-                <p>专注于量化投资的专业资管机构</p>
-            </div>
-            <div class="footer-col links">
-                <h4>快速链接</h4>
-                <ul>
-                    <li><a href="./index.html">官网首页</a></li>
-                    <li><a href="./about.html">关于均成</a></li>
-                    <li><a href="./contact.html">加入我们</a></li>
-                </ul>
-            </div>
-            <div class="footer-col contact">
-                <h4>联系我们</h4>
-                <p>邮箱: contact@parigain.com</p>
-                <div class="locations">
-                    <span>深圳 · 横琴</span>
-                </div>
-            </div>
-        </div>
-        <div class="risk-disclosure">
-            <div class="container">
-                <p>风险揭示：私募集基金投资具有较高风险，投资者在签署基金合同前应仔细阅读招募说明书、基金合同等文件，充分了解基金的风险收益特征。均成资产不承诺基金投资收益，本金不受损失，过往业绩不预示其未来表现。投资需谨慎。</p>
-            </div>
-        </div>
 
-        <div class="footer-bottom">
-            <div class="container">
-                <p>&copy; 2026 广东横琴均成私募基金管理有限公司 | 备案编号：P1061222 | <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2020139886号</a></p>
-            </div>
-        </div>
-    </footer>
 
     <script type="module" src="./js/main.js"></script>
     <!-- Back to Top Button -->
