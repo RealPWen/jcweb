@@ -115,6 +115,43 @@ header.scrolled .nav-logo {
   color: var(--text-secondary);
 }
 
+.lang-toggle-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+}
+
+.lang-toggle-btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.lang-en {
+  /* Potential adjustments for English text */
+  letter-spacing: 0.01em;
+}
+
+.lang-en h1, .lang-en h2 {
+  letter-spacing: 0;
+}
+
+/* Ensure toggle stays visible on mobile links if needed */
+.nav-links.active .lang-switch-li {
+  display: block;
+  margin-top: 20px;
+}
+
 /* --- Company Introduction --- */
 .intro-section {
   padding: 160px 0 300px;
@@ -737,6 +774,12 @@ footer {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    display: flex !important; /* Ensure it's visible if hidden by other means */
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
   }
 
   .nav-links a {
@@ -798,15 +841,23 @@ footer {
     font-size: 32px;
   }
 
-  .stat-item .val {
-    font-size: 32px;
-  }
-
   .stats-flex {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px 20px;
+    grid-template-columns: 1fr;
+    gap: 24px;
     text-align: center;
+    padding: 0 20px;
+  }
+
+  .stat-item {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .stat-item .val {
+    font-size: 36px;
   }
 
   .domain-card {
@@ -1637,11 +1688,21 @@ body.loaded {
 }
 
 .mask-circle {
-  transition: stroke-dashoffset 2s cubic-bezier(0.65, 0, 0.35, 1);
+  transition: stroke-dashoffset 2.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .chart-visual.animate .mask-circle {
   stroke-dashoffset: 0;
+}
+
+/* Add a pulse effect to the center when animated */
+.chart-visual.animate .donut-svg {
+  animation: chartReveal 1.2s ease-out forwards;
+}
+
+@keyframes chartReveal {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 /* Magnetic Button Base Styles */
@@ -1697,23 +1758,23 @@ body.loaded {
 
 /* Position Labels accurately relative to the 480px parent */
 .l-top-left {
-  top: 8%;
-  left: -40px;
+  top: 5%;
+  left: -60px;
 }
 
 .l-top-right {
-  top: 25%; /* Moved down as requested */
-  right: -70px;
+  top: 18%; 
+  right: -80px;
 }
 
 .l-bottom-right {
-  bottom: 15%;
-  right: -30px;
+  bottom: 12%;
+  right: -50px;
 }
 
 .l-bottom-left {
-  bottom: 20%;
-  left: -80px;
+  bottom: 18%;
+  left: -100px;
 }
 
 /* Adjust colors for each label's percentage to match segments */
