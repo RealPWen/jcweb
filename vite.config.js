@@ -9,6 +9,7 @@ export default defineConfig({
         about: './about.html',
         strategy: './strategy.html',
         contact: './contact.html',
+        careers: './careers.html',
       },
     },
   },

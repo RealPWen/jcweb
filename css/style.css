@@ -255,6 +255,12 @@ header.scrolled .nav-logo {
   background: linear-gradient(135deg, #164e63, #083344);
 }
 
+/* Slide Placeholders (Lightweight Gradients) */
+.slide {
+  background-color: var(--bg-secondary);
+  background-image: radial-gradient(circle at 50% 50%, rgba(245, 166, 35, 0.05) 0%, transparent 70%);
+}
+
 .slide-content {
   position: relative;
   z-index: 100;
@@ -554,31 +560,44 @@ header.scrolled .nav-logo {
   text-transform: uppercase;
 }
 
-.partner-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 40px;
+.partners-card-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: visible; /* Changed to visible to let the blur show through */
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 1;
 }
 
-.partner-logo {
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--text-muted);
-  transition: var(--transition);
+.partners-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 20px;
+  position: relative;
+  z-index: 2;
 }
 
-.partner-logo:hover {
-  color: var(--text-primary);
-  border-color: var(--accent);
-  background: rgba(245, 166, 35, 0.05);
-  transform: translateY(-5px);
+/* Gaussian Blur Edge Transition */
+.partners-card-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  background: #ffffff;
+  filter: blur(40px);
+  z-index: -1;
+  opacity: 0.4;
+  border-radius: 20px;
+}
+
+@media (max-width: 1024px) {
+  .partners-card-wrapper {
+    border-radius: 12px;
+  }
 }
 
 /* --- Founder Photo Styles --- */
@@ -2116,5 +2135,132 @@ header { z-index: 1000; }
   }
   .loader-logo {
     height: 80px;
+  }
+}
+
+/* --- Compliance & Loading Performance Fixes --- */
+/* 1. Hide main content if compliance is pending */
+body.compliance-pending main {
+  display: none;
+}
+
+/* 2. Show modal immediately if pending */
+body.compliance-pending .compliance-overlay {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  z-index: 10001;
+}
+
+/* 3. Absolute bypass if confirmed (via inline script) */
+html.compliance-confirmed body.compliance-pending main {
+  display: block;
+}
+
+html.compliance-confirmed .compliance-overlay,
+html.compliance-confirmed .entry-loader {
+  display: none !important;
+}
+
+/* 4. Restore visibility when confirmed by JS */
+body.loaded:not(.compliance-pending) main {
+  display: block;
+}
+
+/* --- Careers Page --- */
+.careers-hero {
+  padding: 160px 0 100px;
+  text-align: center;
+  background: radial-gradient(circle at 50% 0%, rgba(245, 166, 35, 0.1) 0%, transparent 70%);
+}
+
+.careers-hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  margin-bottom: 24px;
+}
+
+.careers-hero p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.job-list-section {
+  padding: 80px 0 140px;
+}
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.job-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 40px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.job-card:hover {
+  border-color: var(--accent-soft);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.job-card .job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.job-card .job-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.job-card .job-salary {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.job-card .job-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.job-card .tag {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.job-card .job-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 991px) {
+  .job-grid {
+    grid-template-columns: 1fr;
   }
 }

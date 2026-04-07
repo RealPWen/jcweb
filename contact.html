@@ -17,8 +17,15 @@
     <link rel="icon" type="image/png" href="./images/favicon.png">
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script>
+        (function() {
+            if (sessionStorage.getItem('complianceConfirmed')) {
+                document.documentElement.classList.add('compliance-confirmed');
+            }
+        })();
+    </script>
 </head>
-<body class="contact-page">
+<body class="contact-page compliance-pending">
     <div class="custom-cursor"></div>
 
     <!-- Back to Top Button -->
@@ -59,7 +66,7 @@
                 <div class="recruit-text">
                     <h2 data-i18n="con_join_title">加入均成，共建量化新坐标</h2>
                     <p data-i18n="con_join_desc">我们长期招募：量化研究员、系统开发工程师、合规风控官。如果您拥抱硬核科技，具备卓越的工程实现能力，欢迎将简历投递至：</p>
-                    <a href="mailto:hr@parigain.com" class="email-link">hr@parigain.com</a>
+                    <a href="mailto:zhaopin@parigain.com" class="email-link">zhaopin@parigain.com</a>
                 </div>
                 <div class="recruit-visual">
                     <div class="cube-animation">Join Our Team</div>
@@ -110,9 +117,55 @@
 
 
 
-    <script type="module" src="./js/main.js"></script>
+    <!-- Compliance Modal (Static) -->
+    <div id="compliance-modal" class="compliance-overlay">
+        <div class="compliance-modal">
+            <div class="compliance-header">
+                <h3 data-i18n="modal_title">合格投资者认定</h3>
+                <div class="compliance-line"></div>
+            </div>
+            <div class="compliance-body" data-lenis-prevent>
+                <p data-i18n="modal_p1">在继续浏览本公司网站前，请您确认您或您所代表的机构是一名“合格投资者”。“合格投资者”指根据任何国家和地区的证券和投资法规所规定的有资格投资于私募证券投资基金的专业投资者。例如根据我国《私募投资基金监督管理暂行办法》的规定，合格投资者的标准如下：</p>
+                <div class="compliance-section">
+                    <strong data-i18n="modal_s1">一、具备相应风险识别能力和风险承担能力，投资于单只私募基金的金额不低于100万元且符合下列相关标准的单位和个人：</strong>
+                    <ol>
+                        <li data-i18n="modal_l1">净资产不低于1000万元的单位；</li>
+                        <li data-i18n="modal_l2">金融资产不低于300万元或者最近三年个人年均收入不低于50万元的个人。<br><small>(前款所称金融资产包括银行存款、股票、债券、基金份额、资产管理计划、银行理财产品、信托计划、保险产品、期货权益等。)</small></li>
+                    </ol>
+                </div>
+                <div class="compliance-section">
+                    <strong data-i18n="modal_s2">二、下列投资者视为合格投资者：</strong>
+                    <ol>
+                        <li data-i18n="modal_l3">社会保障基金、企业年金等养老基金、慈善基金等社会公益基金；</li>
+                        <li data-i18n="modal_l4">依法设立并在基金业协会备案的投资计划；</li>
+                        <li data-i18n="modal_l5">投资于所管理私募基金的私募基金管理人及其从业人员；</li>
+                        <li data-i18n="modal_l6">中国证监会规定的其他投资者。</li>
+                    </ol>
+                </div>
+                <p data-i18n="modal_p2">如果您继续访问或使用本网站及其所载资料，即表明您声明及保证您或您所代表的机构为“合格投资者”，并将遵守对您适用的司法区域的有关法律及法规，同意并接受以下条款及相关约束。如果您不符合“合格投资者”标准或不同意下列条款及相关约束，请勿继续访问或使用本网站及其所载信息及资料。</p>
+                <p class="warning-text" data-i18n="modal_warning">投资涉及风险，投资者应详细审阅产品的发售文件以获取进一步资料，了解有关投资所涉及的风险因素，并寻求适当的专业投资和咨询意见。产品净值及其收益存在涨跌可能，过往的产品业绩数据并不预示产品未来的业绩表现。本网站所提供的资料并非投资建议 or 咨询意见，投资者不应依赖本网站所提供的信息及资料作出投资决策。</p>
+                <p class="copyright-info" data-i18n="modal_copy">与本网站所载信息及资料有关的所有版权、专利权、知识产权及其他产权均为本公司所有。本公司概不向浏览该资料人士发出、转让或以任何方式转移任何种类的权利。</p>
+            </div>
+            <div class="compliance-footer">
+                <button id="confirm-investor" class="btn-main" data-i18n="modal_confirm">确认，我是合格投资者</button>
+                <button id="leave-site" class="btn-outline" data-i18n="modal_leave">不符合条件，离开</button>
+            </div>
+        </div>
+    </div>
 
-    <!-- Digital Rain Background Canvas -->
+    <!-- Entry Loader (Static) -->
+    <div id="entry-loader" class="entry-loader">
+        <div class="loader-content">
+            <div id="decode-text" class="decode-text"></div>
+            <div class="loader-logo-wrapper">
+                <img id="loader-logo" src="./images/logo.png" alt="Parigain Logo" data-i18n="alt_logo" class="loader-logo">
+            </div>
+        </div>
+        <div class="skip-hint" data-i18n="loader_skip">Scroll to skip</div>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+    <div class="back-to-top" id="back-to-top">↑</div>
     <canvas id="digital-rain-canvas"></canvas>
 </body>
 </html>

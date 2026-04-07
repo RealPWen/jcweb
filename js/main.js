@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (TRANSLATIONS[currentLang][key]) {
                 if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
                     el.placeholder = TRANSLATIONS[currentLang][key];
+                } else if (el.tagName === 'IMG') {
+                    el.alt = TRANSLATIONS[currentLang][key];
                 } else {
                     el.innerHTML = TRANSLATIONS[currentLang][key];
                 }
@@ -117,13 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
         <nav class="container">
             <div class="logo">
                 <a href="./index.html">
-                    <img src="./images/logo.png" alt="Parigain" class="nav-logo">
+                    <img src="./images/logo.png" alt="Parigain Logo" data-i18n="alt_logo" class="nav-logo">
                 </a>
             </div>
             <ul class="nav-links">
                 <li><a href="./index.html" data-page="index" data-i18n="nav_home">${TRANSLATIONS[currentLang]['nav_home']}</a></li>
                 <li><a href="./strategy.html" data-page="strategy" data-i18n="nav_strategy">${TRANSLATIONS[currentLang]['nav_strategy']}</a></li>
                 <li><a href="./about.html" data-page="about" data-i18n="nav_about">${TRANSLATIONS[currentLang]['nav_about']}</a></li>
+                <li><a href="./careers.html" data-page="careers" data-i18n="nav_careers">${TRANSLATIONS[currentLang]['nav_careers']}</a></li>
                 <li><a href="./contact.html" data-page="contact" class="btn-primary" data-i18n="nav_contact">${TRANSLATIONS[currentLang]['nav_contact']}</a></li>
                 <li class="lang-switch-li"><button id="lang-toggle" class="lang-toggle-btn" onclick="toggleLanguage()">${currentLang === 'zh' ? 'EN' : '中文'}</button></li>
             </ul>
@@ -139,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="container footer-top">
             <div class="footer-col brand">
                 <div class="logo">
-                    <img src="./images/logo.png" alt="Parigain" class="footer-logo">
+                    <img src="./images/logo.png" alt="Parigain Logo" data-i18n="alt_logo" class="footer-logo">
                 </div>
                 <p data-i18n="footer_desc">${TRANSLATIONS[currentLang]['footer_desc']}</p>
             </div>
@@ -149,7 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <li><a href="./index.html" data-i18n="nav_home">${TRANSLATIONS[currentLang]['nav_home']}</a></li>
                     <li><a href="./strategy.html" data-i18n="nav_strategy">${TRANSLATIONS[currentLang]['nav_strategy']}</a></li>
                     <li><a href="./about.html" data-i18n="nav_about">${TRANSLATIONS[currentLang]['nav_about']}</a></li>
-                    <li><a href="./contact.html" data-i18n="footer_join">${TRANSLATIONS[currentLang]['footer_join']}</a></li>
+                    <li><a href="./careers.html" data-i18n="nav_careers">${TRANSLATIONS[currentLang]['nav_careers']}</a></li>
+                    <li><a href="./contact.html" data-i18n="nav_contact">${TRANSLATIONS[currentLang]['nav_contact']}</a></li>
                 </ul>
             </div>
             <div class="footer-col contact">
@@ -248,6 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const startInterval = () => slides.length && (sliderInterval = setInterval(nextSlide, 6000));
     const resetInterval = () => { clearInterval(sliderInterval); startInterval(); };
+    updateSlider(0);
     startInterval();
 
     // Reveal on Scroll
@@ -260,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-    const revealElements = document.querySelectorAll('.stats-flex, .domain-card, .section-header, .partner-logo, .about-section, .strategy-detail-section, .intro-section, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow, .info-card, .strategy-detail-box, .detail-item, .chart-container, .advantage-section, .philosophy-section, .scope-section, .honor-card');
+    const revealElements = document.querySelectorAll('.stats-flex, .domain-card, .section-header, .partner-logo, .about-section, .strategy-detail-section, .intro-section, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow, .info-card, .strategy-detail-box, .detail-item, .chart-container, .advantage-section, .philosophy-section, .scope-section, .honor-card, .job-card, .careers-hero');
     revealElements.forEach(el => {
         el.classList.add('reveal-item');
         observer.observe(el);
@@ -282,53 +287,8 @@ document.addEventListener('DOMContentLoaded', () => {
         backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
 
-    // Modal & Entry
-    const COMPLIANCE_HTML = `
-    <div id="compliance-modal" class="compliance-overlay">
-        <div class="compliance-modal">
-            <div class="compliance-header">
-                <h3 data-i18n="modal_title">${TRANSLATIONS[currentLang]['modal_title']}</h3>
-                <div class="compliance-line"></div>
-            </div>
-            <div class="compliance-body" data-lenis-prevent>
-                <p data-i18n="modal_p1">${TRANSLATIONS[currentLang]['modal_p1']}</p>
-                <div class="compliance-section">
-                    <strong data-i18n="modal_s1">${TRANSLATIONS[currentLang]['modal_s1']}</strong>
-                    <ol>
-                        <li data-i18n="modal_l1">${TRANSLATIONS[currentLang]['modal_l1']}</li>
-                        <li data-i18n="modal_l2">${TRANSLATIONS[currentLang]['modal_l2']}</li>
-                    </ol>
-                </div>
-                <div class="compliance-section">
-                    <strong data-i18n="modal_s2">${TRANSLATIONS[currentLang]['modal_s2']}</strong>
-                    <ol>
-                        <li data-i18n="modal_l3">${TRANSLATIONS[currentLang]['modal_l3']}</li>
-                        <li data-i18n="modal_l4">${TRANSLATIONS[currentLang]['modal_l4']}</li>
-                        <li data-i18n="modal_l5">${TRANSLATIONS[currentLang]['modal_l5']}</li>
-                        <li data-i18n="modal_l6">${TRANSLATIONS[currentLang]['modal_l6']}</li>
-                    </ol>
-                </div>
-                <p data-i18n="modal_p2">${TRANSLATIONS[currentLang]['modal_p2']}</p>
-                <p class="warning-text" data-i18n="modal_warning">${TRANSLATIONS[currentLang]['modal_warning']}</p>
-                <p class="copyright-info" data-i18n="modal_copy">${TRANSLATIONS[currentLang]['modal_copy']}</p>
-            </div>
-            <div class="compliance-footer">
-                <button id="confirm-investor" class="btn-main" data-i18n="modal_confirm">${TRANSLATIONS[currentLang]['modal_confirm']}</button>
-                <button id="leave-site" class="btn-outline" data-i18n="modal_leave">${TRANSLATIONS[currentLang]['modal_leave']}</button>
-            </div>
-        </div>
-    </div>`;
-
-    const ENTRY_LOADER_HTML = `
-    <div id="entry-loader" class="entry-loader">
-        <div class="loader-content">
-            <div id="decode-text" class="decode-text"></div>
-            <div class="loader-logo-wrapper">
-                <img id="loader-logo" src="./images/logo.png" alt="Parigain" class="loader-logo">
-            </div>
-        </div>
-        <div class="skip-hint" data-i18n="loader_skip">${TRANSLATIONS[currentLang]['loader_skip']}</div>
-    </div>`;
+    const skipHint = document.querySelector('.skip-hint');
+    if (skipHint) skipHint.setAttribute('data-i18n', 'loader_skip');
 
     const runDecode = (targetText) => {
         const decodeEl = document.getElementById('decode-text');
@@ -358,32 +318,35 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const initCompliance = () => {
+        const modal = document.getElementById('compliance-modal');
+        const loader = document.getElementById('entry-loader');
+
         if (sessionStorage.getItem('complianceConfirmed')) {
+            document.body.classList.remove('compliance-pending');
             initDigitalRain();
             return;
         }
-        if (!document.getElementById('compliance-modal')) document.body.insertAdjacentHTML('afterbegin', COMPLIANCE_HTML);
-        if (!document.getElementById('entry-loader')) document.body.insertAdjacentHTML('afterbegin', ENTRY_LOADER_HTML);
 
-        const modal = document.getElementById('compliance-modal');
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        if (window.lenisInstance) window.lenisInstance.stop();
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (window.lenisInstance) window.lenisInstance.stop();
 
-        document.getElementById('confirm-investor').addEventListener('click', () => {
-            sessionStorage.setItem('complianceConfirmed', 'true');
-            modal.classList.remove('active');
-            initDigitalRain();
-            const loader = document.getElementById('entry-loader');
-            if (loader) {
-                loader.classList.add('active');
-                runDecode("PARIGAIN");
-            } else {
-                document.body.style.overflow = 'auto';
-                if (window.lenisInstance) window.lenisInstance.start();
-            }
-        });
-        document.getElementById('leave-site').addEventListener('click', () => window.location.href = 'https://www.baidu.com');
+            document.getElementById('confirm-investor')?.addEventListener('click', () => {
+                sessionStorage.setItem('complianceConfirmed', 'true');
+                modal.classList.remove('active');
+                document.body.classList.remove('compliance-pending');
+                initDigitalRain();
+                if (loader) {
+                    loader.classList.add('active');
+                    runDecode("PARIGAIN");
+                } else {
+                    document.body.style.overflow = 'auto';
+                    if (window.lenisInstance) window.lenisInstance.start();
+                }
+            });
+            document.getElementById('leave-site')?.addEventListener('click', () => window.location.href = 'https://www.baidu.com');
+        }
     };
 
     const initSectorGrowth = () => {
