@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><a href="./index.html" data-page="index" data-i18n="nav_home">${TRANSLATIONS[currentLang]['nav_home']}</a></li>
                 <li><a href="./strategy.html" data-page="strategy" data-i18n="nav_strategy">${TRANSLATIONS[currentLang]['nav_strategy']}</a></li>
                 <li><a href="./about.html" data-page="about" data-i18n="nav_about">${TRANSLATIONS[currentLang]['nav_about']}</a></li>
-                <li><a href="./careers.html" data-page="careers" data-i18n="nav_careers">${TRANSLATIONS[currentLang]['nav_careers']}</a></li>
                 <li><a href="./contact.html" data-page="contact" class="btn-primary" data-i18n="nav_contact">${TRANSLATIONS[currentLang]['nav_contact']}</a></li>
                 <li class="lang-switch-li"><button id="lang-toggle" class="lang-toggle-btn" onclick="toggleLanguage()">${currentLang === 'zh' ? 'EN' : '中文'}</button></li>
             </ul>
@@ -358,6 +357,63 @@ document.addEventListener('DOMContentLoaded', () => {
         obs.observe(visual);
     };
 
+    const initOfficeMaps = () => {
+        if (typeof AMap === 'undefined') return;
+
+        const offices = [
+            {
+                id: 'map-sz',
+                center: [113.9456, 22.5312],
+                name: '均成基金 · 研发与投研中心',
+                addr: '深圳市南山区高新南九道39号湾区创新大厦B座3003房'
+            },
+            {
+                id: 'map-hq',
+                center: [113.541438, 22.138865],
+                name: '均成基金 · 合规与业务中心',
+                addr: '横琴粤澳深度合作区琴朗道91号1911办公区'
+            }
+        ];
+
+        offices.forEach(office => {
+            const container = document.getElementById(office.id);
+            if (!container) return;
+
+            const map = new AMap.Map(office.id, {
+                zoom: 15,
+                center: office.center,
+                mapStyle: 'amap://styles/dark',
+                dragEnable: false,
+                zoomEnable: false,
+                touchZoom: false
+            });
+
+            // Original Emoji Style (Round Pushpin)
+            const markerContent = `
+                <div class="custom-marker">
+                    <div class="marker-emoji">📍</div>
+                    <span class="marker-label">办公地址</span>
+                </div>
+            `;
+
+            const marker = new AMap.Marker({
+                position: office.center,
+                content: markerContent,
+                offset: new AMap.Pixel(-16, -30), // Align emoji pin tip
+                map: map
+            });
+
+            const navigate = () => {
+                const url = `https://uri.amap.com/marker?position=${office.center[0]},${office.center[1]}&name=${encodeURIComponent(office.name)}&src=jcweb&coordinate=gaode&callnative=1`;
+                window.open(url, '_blank');
+            };
+
+            // Click anywhere on the map container to navigate
+            container.addEventListener('click', navigate);
+        });
+    };
+
     initCompliance();
     initSectorGrowth();
+    initOfficeMaps();
 });

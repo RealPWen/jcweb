@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>联系我们 | 均成基金 - 诚邀全球精英加盟</title>
+    <title>联系与招聘 | 均成基金 - 诚邀全球精英加盟</title>
     <!-- SEO & Social Sharing -->
     <meta name="description" content="广东横琴均成私募基金管理有限公司成立于2016年，公司具备私募基金管理人资格（备案编号：P1061222），是一家以量化投资为核心的专业资产管理公司。深圳与横琴办公地址，联系方式及招聘信息。欢迎投资者预约咨询及顶尖量化人才加盟。">
-    <meta property="og:title" content="联系我们 | 均成基金">
+    <meta property="og:title" content="联系与招聘 | 均成基金">
     <meta property="og:description" content="期待与您深度交流，共建量化新坐标。">
     <meta property="og:image" content="./images/logo.png">
 
@@ -35,7 +35,7 @@
         <!-- Contact Hero -->
         <section class="page-hero">
             <div class="container">
-                <h1 class="page-title" data-i18n="con_hero_title">联系我们 <br><span class="accent">Contact Us</span></h1>
+                <h1 class="page-title" data-i18n="con_hero_title">联系与招聘 <br><span class="accent">Contact & Careers</span></h1>
                 <p class="page-subtitle" data-i18n="con_hero_subtitle">无论是投资者咨询还是人才加盟，我们均期待与您深度交流。</p>
             </div>
         </section>
@@ -48,14 +48,14 @@
                     <h3 data-i18n="con_sz_title">研发与投研中心</h3>
                     <p class="address" data-i18n="con_sz_addr">深圳市南山区高新南九道39号湾区创新大厦B座3003房</p>
                     <p class="phone" data-i18n="con_sz_phone">固定电话：0755-86525376</p>
-                    <div class="map-placeholder" data-i18n="con_office_label">办公地址 (Shenzhen Office)</div>
+                    <div id="map-sz" class="map-container"></div>
                 </div>
                 <div class="office-card" data-aos="fade-up" data-delay="100">
                     <div class="city">HENGQIN / 横琴</div>
                     <h3 data-i18n="con_hq_title">合规与业务中心</h3>
                     <p class="address" data-i18n="con_hq_addr">横琴粤澳深度合作区琴朗道91号1911办公区</p>
                     <p class="phone" data-i18n="con_hq_email">联系邮箱：contact@parigain.com</p>
-                    <div class="map-placeholder" data-i18n="con_office_label">办公地址 (Hengqin Office)</div>
+                    <div id="map-hq" class="map-container"></div>
                 </div>
             </div>
         </section>
@@ -69,50 +69,14 @@
                     <a href="mailto:zhaopin@parigain.com" class="email-link">zhaopin@parigain.com</a>
                 </div>
                 <div class="recruit-visual">
-                    <div class="cube-animation">Join Our Team</div>
+                    <a href="./careers.html" class="cube-link">
+                        <div class="cube-animation">Join Our Team</div>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Appointment Form -->
-        <section class="appointment-section container">
-            <div class="form-container">
-                <div class="form-header">
-                    <h2 data-i18n="con_form_title">投资者预约咨询</h2>
-                    <p data-i18n="con_form_subtitle">提交您的联系方式，专业投资专员将在 24 小时内与您联络。</p>
-                </div>
-                <form id="contact-form-final" class="premium-form">
-                    <div class="form-row">
-                        <div class="input-group">
-                            <label data-i18n="con_form_name">您的姓名</label>
-                            <input type="text" data-i18n="con_form_name_ph" placeholder="例：司先生" required>
-                        </div>
-                        <div class="input-group">
-                            <label data-i18n="con_form_phone">联系电话</label>
-                            <input type="tel" data-i18n="con_form_phone_ph" placeholder="138 **** ****" required>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <label data-i18n="con_form_comp">公司/机构名称</label>
-                        <input type="text" data-i18n="con_form_comp_ph" placeholder="可选填">
-                    </div>
-                    <div class="input-group">
-                        <label data-i18n="con_form_intent">咨询意向</label>
-                        <select>
-                            <option data-i18n="con_form_opt1">产品净值查询</option>
-                            <option data-i18n="con_form_opt2">量化 CTA 策略咨询</option>
-                            <option data-i18n="con_form_opt3">股票对冲策略咨询</option>
-                            <option data-i18n="con_form_opt4">其他商务合作</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label data-i18n="con_form_msg">补充留言</label>
-                        <textarea rows="4" data-i18n="con_form_msg_ph" placeholder="请简要描述您的需求..."></textarea>
-                    </div>
-                    <button type="submit" class="btn-main full-width" data-i18n="con_form_submit">立即提交预约</button>
-                </form>
-            </div>
-        </section>
+
     </main>
 
 
@@ -164,6 +128,12 @@
         <div class="skip-hint" data-i18n="loader_skip">Scroll to skip</div>
     </div>
 
+    <script type="text/javascript">
+        window._AMapSecurityConfig = {
+            securityJsCode: 'c4ea0093bdf132a149058d9cbf611081',
+        };
+    </script>
+    <script src="https://webapi.amap.com/maps?v=2.0&key=c3de1f6e226f87ae2375ab66c0259885"></script>
     <script type="module" src="./js/main.js"></script>
     <div class="back-to-top" id="back-to-top">↑</div>
     <canvas id="digital-rain-canvas"></canvas>
