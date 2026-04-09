@@ -1,0 +1,242 @@
+/* =============================================
+   HERO - Full-page Slider, Controls, Stats Bar
+   ============================================= */
+
+.hero-slider {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slides-container {
+  height: 100%;
+  width: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-in-out;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+.slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4) 0%, var(--bg-primary) 90%);
+  z-index: 1;
+}
+
+/* BG Gradients */
+.slide[data-bg="gradient-1"] {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+.slide[data-bg="gradient-2"] {
+  background: linear-gradient(135deg, #1e1b4b, #312e81);
+}
+
+.slide[data-bg="gradient-3"] {
+  background: linear-gradient(135deg, #164e63, #083344);
+}
+
+/* Slide Placeholders (Lightweight Gradients) */
+.slide {
+  background-color: var(--bg-secondary);
+  background-image: radial-gradient(circle at 50% 50%, rgba(245, 166, 35, 0.05) 0%, transparent 70%);
+}
+
+.slide-content {
+  position: relative;
+  z-index: 100;
+  max-width: 800px;
+  transform: translateY(40px);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide.active .slide-content {
+  transform: translateY(0);
+}
+
+.sub-title {
+  color: var(--accent);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-bottom: 24px;
+  display: block;
+}
+
+.main-title {
+  font-size: clamp(48px, 8vw, 88px);
+  margin-bottom: 30px;
+  line-height: 1.1;
+}
+
+.hero-desc {
+  font-size: 20px;
+  color: var(--text-secondary);
+  margin-bottom: 48px;
+  max-width: 650px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 20px;
+}
+
+/* --- Scroll Down Indicator --- */
+.scroll-down {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  z-index: 100;
+  color: var(--text-muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.mouse {
+  width: 24px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  position: relative;
+}
+
+.mouse::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 2px;
+  height: 6px;
+  background: var(--accent);
+  transform: translateX(-50%);
+  border-radius: 1px;
+  animation: scrollDown 2s infinite;
+}
+
+@keyframes scrollDown {
+  0% {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, 20px);
+    opacity: 0;
+  }
+}
+
+/* --- Slider Controls --- */
+.slider-controls {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  z-index: 100;
+}
+
+.control-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.control-dot.active {
+  background: var(--accent);
+  transform: scale(1.4);
+}
+
+.slider-arrows {
+  position: absolute;
+  bottom: 60px;
+  right: 40px;
+  display: flex;
+  gap: 12px;
+  z-index: 100;
+}
+
+.arrow-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.arrow-btn:hover {
+  background: var(--accent);
+  color: #000;
+}
+
+/* --- Stats Bar --- */
+.home-stats-bar {
+  background-color: var(--bg-secondary);
+  padding: 64px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stats-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-item .label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+
+.stat-item .val {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--text-primary);
+}

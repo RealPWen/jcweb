@@ -1,0 +1,289 @@
+/* =============================================
+   COMPLIANCE - Investor Modal & Entry Loader
+   ============================================= */
+
+/* --- Qualified Investor Modal --- */
+.compliance-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: none;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.compliance-overlay.active {
+  display: flex;
+}
+
+.compliance-modal {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  max-width: 600px;
+  width: 90%;
+  padding: 0;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+  animation: modalAppear 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.compliance-header {
+  padding: 32px 40px 0;
+}
+
+.compliance-header h3 {
+  font-size: 24px;
+  color: var(--accent);
+  margin-bottom: 16px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.compliance-line {
+  width: 60px;
+  height: 2px;
+  background: var(--accent);
+  margin: 0 auto 24px;
+}
+
+.compliance-body {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 0 40px;
+  margin: 10px 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) transparent;
+}
+
+.compliance-body p {
+  margin-bottom: 20px;
+}
+
+.compliance-body strong {
+  color: var(--text-primary);
+}
+
+.compliance-body ul {
+  list-style: none;
+  margin: 24px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+}
+
+.compliance-body li {
+  margin-bottom: 16px;
+  padding-left: 8px;
+}
+
+.compliance-section {
+  margin-bottom: 32px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.compliance-section strong {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--accent);
+  line-height: 1.5;
+}
+
+.compliance-body ol {
+  padding-left: 20px;
+  color: var(--text-secondary);
+}
+
+.compliance-body small {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.copyright-info {
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 20px;
+  margin-top: 40px;
+}
+
+.warning-text {
+  background: rgba(229, 184, 11, 0.05);
+  border: 1px solid rgba(229, 184, 11, 0.2);
+  padding: 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.compliance-footer {
+  padding: 24px 40px 32px;
+  background: rgba(10, 10, 11, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+.compliance-footer button {
+  padding: 14px;
+  font-weight: 600;
+}
+
+/* Modal Scrollbar */
+.compliance-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.compliance-body::-webkit-scrollbar-thumb {
+  background: rgba(245, 166, 35, 0.3);
+  border-radius: 3px;
+}
+
+/* --- Compliance & Loading Performance Fixes --- */
+/* 1. Hide main content if compliance is pending */
+body.compliance-pending main {
+  display: none;
+}
+
+/* 2. Show modal immediately if pending */
+body.compliance-pending .compliance-overlay {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+  z-index: 10001;
+}
+
+/* 3. Absolute bypass if confirmed (via inline script) */
+html.compliance-confirmed body.compliance-pending main {
+  display: block;
+}
+
+html.compliance-confirmed .compliance-overlay,
+html.compliance-confirmed .entry-loader {
+  display: none !important;
+}
+
+/* 4. Restore visibility when confirmed by JS */
+body.loaded:not(.compliance-pending) main {
+  display: block;
+}
+
+/* --- Entry Loader Animation --- */
+.entry-loader {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+  overflow: hidden;
+}
+
+.entry-loader.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.loader-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.decode-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(40px, 8vw, 88px);
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 1.2rem;
+  text-transform: uppercase;
+  text-align: center;
+  transition: all 0.6s ease;
+  z-index: 2;
+  text-shadow: 0 0 20px rgba(245, 166, 35, 0.3);
+}
+
+.loader-logo-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  z-index: 1;
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.loader-logo {
+  height: 120px;
+  width: auto;
+  filter: drop-shadow(0 0 30px rgba(245, 166, 35, 0.4));
+}
+
+/* Animation states triggered by JS */
+.entry-loader.show-logo .decode-text {
+  opacity: 0;
+  transform: scale(1.1) blur(10px);
+}
+
+.entry-loader.show-logo .loader-logo-wrapper {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.skip-hint {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text-muted);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  opacity: 0;
+  animation: fadeInOut 2.5s infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.6; }
+}

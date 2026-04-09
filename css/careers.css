@@ -1,0 +1,94 @@
+/* =============================================
+   CAREERS - Hero, Job Cards, Job Grid
+   ============================================= */
+
+.careers-hero {
+  padding: 160px 0 100px;
+  text-align: center;
+  background: radial-gradient(circle at 50% 0%, rgba(245, 166, 35, 0.1) 0%, transparent 70%);
+}
+
+.careers-hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  margin-bottom: 24px;
+}
+
+.careers-hero p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.job-list-section {
+  padding: 80px 0 140px;
+}
+
+.job-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.job-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 40px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.job-card:hover {
+  border-color: var(--accent-soft);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.job-card .job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.job-card .job-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.job-card .job-salary {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.job-card .job-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.job-card .tag {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.job-card .job-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 13px;
+  color: var(--text-muted);
+}

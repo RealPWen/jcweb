@@ -39,13 +39,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const updateLanguageElements = () => {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
-            if (TRANSLATIONS[currentLang][key]) {
-                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = TRANSLATIONS[currentLang][key];
+            const translation = TRANSLATIONS[currentLang][key];
+            if (translation) {
+                if (el.tagName === 'TITLE') {
+                    document.title = translation;
+                } else if (el.tagName === 'META') {
+                    el.setAttribute('content', translation);
+                } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = translation;
                 } else if (el.tagName === 'IMG') {
-                    el.alt = TRANSLATIONS[currentLang][key];
+                    el.alt = translation;
                 } else {
-                    el.innerHTML = TRANSLATIONS[currentLang][key];
+                    el.innerHTML = translation;
                 }
             }
         });
@@ -264,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-    const revealElements = document.querySelectorAll('.stats-flex, .domain-card, .section-header, .partner-logo, .about-section, .strategy-detail-section, .intro-section, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow, .info-card, .strategy-detail-box, .detail-item, .chart-container, .advantage-section, .philosophy-section, .scope-section, .honor-card, .job-card, .careers-hero');
+    const revealElements = document.querySelectorAll('.reveal-item, .stats-flex, .domain-card, .section-header, .partner-logo, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow, .info-card, .strategy-detail-box, .detail-item, .chart-container, .honor-card, .job-card, .careers-hero');
     revealElements.forEach(el => {
         el.classList.add('reveal-item');
         observer.observe(el);

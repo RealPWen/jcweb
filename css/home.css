@@ -1,0 +1,145 @@
+/* =============================================
+   HOME - Domains Section, Partners, Company Intro
+   ============================================= */
+
+/* --- Company Introduction --- */
+.intro-section {
+  padding: 160px 0 300px;
+  position: relative;
+  z-index: 10;
+}
+
+.intro-content .text-block {
+  max-width: 860px;
+  margin: 0 auto;
+  text-align: center;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.intro-content .text-block p:first-child {
+  font-size: 22px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.intro-content .text-block p:last-child {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* --- Domain Cards --- */
+.domains-section {
+  padding: 140px 0;
+}
+
+.domain-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.domain-card {
+  padding: 64px 48px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+.domain-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(245, 166, 35, 0.06), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.domain-card:hover::before {
+  opacity: 1;
+}
+
+.domain-card:hover {
+  border-color: var(--accent-soft);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.domain-card.highlight {
+  border: 1px solid var(--accent-soft);
+}
+
+.domain-card .icon {
+  font-size: 48px;
+  margin-bottom: 32px;
+  color: var(--accent);
+  transform: translateZ(50px);
+}
+
+.domain-card h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  transform: translateZ(30px);
+}
+
+.domain-card p {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+/* --- Partners --- */
+.partners-section {
+  padding: 100px 0;
+  background-color: #0d0d0f;
+}
+
+.partner-title {
+  text-align: center;
+  font-size: 20px;
+  color: var(--text-muted);
+  margin-bottom: 64px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.partners-card-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: visible;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.partners-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Gaussian Blur Edge Transition */
+.partners-card-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  background: #ffffff;
+  filter: blur(40px);
+  z-index: -1;
+  opacity: 0.4;
+  border-radius: 20px;
+}
