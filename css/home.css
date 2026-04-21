@@ -44,12 +44,12 @@
 
 .domain-card {
   padding: 64px 48px;
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--card-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
   border-radius: 20px;
-  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+  transition: border-color 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
   position: relative;
   overflow: hidden;
   transform-style: preserve-3d;
@@ -98,7 +98,7 @@
 /* --- Partners --- */
 .partners-section {
   padding: 100px 0;
-  background-color: #0d0d0f;
+  background-color: var(--bg-secondary);
 }
 
 .partner-title {
@@ -137,9 +137,13 @@
   left: 5px;
   right: 5px;
   bottom: 5px;
-  background: #ffffff;
-  filter: blur(40px);
+  background: var(--accent);
+  filter: blur(60px);
   z-index: -1;
-  opacity: 0.4;
+  opacity: 0.15;
   border-radius: 20px;
+}
+
+[data-theme='light'] .partners-card-wrapper::after {
+  opacity: 0.08;
 }

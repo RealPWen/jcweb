@@ -24,8 +24,8 @@
 }
 
 .compliance-modal {
-  background: var(--bg-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
   border-radius: 24px;
   max-width: 600px;
   width: 90%;
@@ -94,7 +94,7 @@
   list-style: none;
   margin: 24px 0;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--glass-bg);
   border-radius: 12px;
 }
 
@@ -106,9 +106,9 @@
 .compliance-section {
   margin-bottom: 32px;
   padding: 24px;
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--glass-bg);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
 }
 
 .compliance-section strong {
@@ -134,7 +134,7 @@
 .copyright-info {
   font-size: 12px;
   color: var(--text-muted);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--border-color);
   padding-top: 20px;
   margin-top: 40px;
 }
@@ -150,8 +150,8 @@
 
 .compliance-footer {
   padding: 24px 40px 32px;
-  background: rgba(10, 10, 11, 0.5);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 16px;

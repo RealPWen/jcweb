@@ -32,7 +32,7 @@
 
 .job-card {
   background-color: var(--bg-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 40px;
   transition: var(--transition);
@@ -45,9 +45,10 @@
 }
 
 .job-card:hover {
-  border-color: var(--accent-soft);
+  border-color: var(--accent);
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-bg);
 }
 
 .job-card .job-header {
@@ -77,12 +78,12 @@
 }
 
 .job-card .tag {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--glass-bg);
   padding: 6px 14px;
   border-radius: 4px;
   font-size: 13px;
   color: var(--text-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
 }
 
 .job-card .job-footer {

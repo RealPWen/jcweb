@@ -1,6 +1,20 @@
 import { TRANSLATIONS } from './translations.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    const HTML_TRANSLATION_KEYS = new Set([
+        'footer_email',
+        'footer_copy',
+        'modal_l2',
+        'hero_s1_title',
+        'hero_s2_title',
+        'hero_s3_title',
+        'hero_s4_title',
+        'abt_hero_title',
+        'str_hero_title',
+        'con_hero_title',
+        'rec_hero_title'
+    ]);
+
     document.body.classList.add('loaded');
     // 0. Global Smooth Scroll (Lenis)
     if (window.Lenis) {
@@ -49,8 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     el.placeholder = translation;
                 } else if (el.tagName === 'IMG') {
                     el.alt = translation;
-                } else {
+                } else if (HTML_TRANSLATION_KEYS.has(key)) {
                     el.innerHTML = translation;
+                } else {
+                    el.textContent = translation;
                 }
             }
         });
@@ -75,48 +91,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.toggleLanguage = toggleLanguage;
 
-    // 0.2.1 Digital Rain Background
-    const initDigitalRain = () => {
-        const canvas = document.getElementById('digital-rain-canvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-
-        let width, height, columns;
-        const fontSize = 14;
-        const characters = '01'.split('');
-        let drops;
-
-        const setup = () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            columns = Math.floor(width / fontSize);
-            drops = Array(columns).fill(0);
-        };
-
-        const draw = () => {
-            ctx.fillStyle = 'rgba(10, 10, 11, 0.08)';
-            ctx.fillRect(0, 0, width, height);
-
-            ctx.fillStyle = 'rgba(245, 166, 35, 0.7)';
-            ctx.font = `${fontSize}px monospace`;
-
-            drops.forEach((y, i) => {
-                const text = characters[Math.floor(Math.random() * characters.length)];
-                const x = i * fontSize;
-                ctx.fillText(text, x, y);
-
-                if (y > height + Math.random() * 8000) {
-                    drops[i] = 0;
-                } else {
-                    drops[i] = y + fontSize;
-                }
-            });
-        };
-
-        setup();
-        window.addEventListener('resize', setup);
-        setInterval(draw, 50);
+    // 0.2 Theme Management
+    const initTheme = () => {
+        const savedTheme = localStorage.getItem('siteTheme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
     };
+
+    const toggleTheme = () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('siteTheme', newTheme);
+    };
+
+    window.toggleTheme = toggleTheme;
+    initTheme();
 
     // 0.3 Global Components
     const HEADER_HTML = `
@@ -132,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><a href="./strategy.html" data-page="strategy" data-i18n="nav_strategy">${TRANSLATIONS[currentLang]['nav_strategy']}</a></li>
                 <li><a href="./about.html" data-page="about" data-i18n="nav_about">${TRANSLATIONS[currentLang]['nav_about']}</a></li>
                 <li><a href="./contact.html" data-page="contact" class="btn-primary" data-i18n="nav_contact">${TRANSLATIONS[currentLang]['nav_contact']}</a></li>
+                <li class="theme-switch-li"><button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle Theme"><span class="theme-icon"></span></button></li>
                 <li class="lang-switch-li"><button id="lang-toggle" class="lang-toggle-btn" onclick="toggleLanguage()">${currentLang === 'zh' ? 'EN' : '中文'}</button></li>
             </ul>
             <div class="menu-toggle" id="mobile-menu">
@@ -327,7 +317,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (sessionStorage.getItem('complianceConfirmed')) {
             document.body.classList.remove('compliance-pending');
-            initDigitalRain();
             return;
         }
 
@@ -340,7 +329,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessionStorage.setItem('complianceConfirmed', 'true');
                 modal.classList.remove('active');
                 document.body.classList.remove('compliance-pending');
-                initDigitalRain();
                 if (loader) {
                     loader.classList.add('active');
                     runDecode("PARIGAIN");
