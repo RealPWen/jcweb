@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="seo_title_strategy">投资策略 | 均成基金 - 专业量化对冲</title>
     <!-- SEO & Social Sharing -->
-    <meta name="description" data-i18n="seo_desc_strategy" content="广东横琴均成私募基金管理有限公司成立于2016年，公司具备私募基金管理人资格（备案编号：P1061222），是一家以量化投资为核心的专业资产管理公司。">
+    <meta name="description" data-i18n="seo_desc_strategy" content="均成基金投资策略覆盖宏观对冲、量化交易、量化 CTA 与股票量化选股，通过多因子模型和风控体系追求稳健收益。">
+    <link rel="canonical" href="https://realpwen.github.io/jcweb/strategy.html">
     <meta property="og:title" data-i18n="seo_og_title_strategy" content="投资策略 | 均成基金">
     <meta property="og:description" data-i18n="seo_og_desc_strategy" content="深耕量化，多维捕捉市场Alpha。">
-    <meta property="og:image" content="./images/logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://realpwen.github.io/jcweb/images/logo.png">
+    <meta property="og:url" content="https://realpwen.github.io/jcweb/strategy.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://realpwen.github.io/jcweb/images/logo.png">
 
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="./images/favicon.png">
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script>
         (function() {
-            if (sessionStorage.getItem('complianceConfirmed')) {
+            var complianceVersion = '2026-04-21-v2';
+            if (localStorage.getItem('complianceConfirmedVersion') === complianceVersion) {
                 document.documentElement.classList.add('compliance-confirmed');
             }
         })();
@@ -35,7 +40,33 @@
             <div class="container">
                 <span class="accent-line" data-i18n="str_accent_hero" style="margin: 0; margin-bottom: 20px;">Our Methodology</span>
                 <h1 class="page-title" data-i18n="str_hero_title">投资策略 <br><span class="accent" style="position: static; transform: none; display: block; filter: none; opacity: 1; font-size: inherit;">Strategy</span></h1>
-                <p class="page-subtitle" data-i18n="str_hero_subtitle">以科学研究为基石，通过多元化的量化策略构建稳健的投资组合。</p>
+                <p class="page-subtitle">以量化 CTA 为核心，以股票策略和中性策略为补充，构建稳健的多策略产品线。</p>
+            </div>
+        </section>
+
+        <section class="strategy-cards-section section-alt">
+            <div class="container">
+                <div class="section-header center reveal-item">
+                    <span class="accent-line">Strategy Matrix</span>
+                    <h2>核心策略体系</h2>
+                </div>
+                <div class="strategy-card-grid">
+                    <article class="domain-card reveal-item">
+                        <span class="strategy-index">01</span>
+                        <h3>CTA 策略</h3>
+                        <p>通过跨市场、跨品种、跨策略的多维度分散配置，追求长期稳健收益。商品端覆盖 30 余个高流动性品种，以 5-7 天持仓的截面多空策略为主。</p>
+                    </article>
+                    <article class="domain-card reveal-item">
+                        <span class="strategy-index">02</span>
+                        <h3>量化选股策略</h3>
+                        <p>采用多因子选股框架，基于 100 多个因子灵活捕捉市场趋势，并持续维护和检验因子的逻辑性、可解释性与有效性。</p>
+                    </article>
+                    <article class="domain-card reveal-item">
+                        <span class="strategy-index">03</span>
+                        <h3>量化中性策略</h3>
+                        <p>通过量化模型捕捉个股间相对强弱机会，同时采用股指期货对冲市场整体涨跌风险，力争获取与大盘走势无关的稳定超额收益。</p>
+                    </article>
+                </div>
             </div>
         </section>
 
@@ -45,14 +76,14 @@
                 <!-- 01 Macro Hedge -->
                 <div class="split-layout" style="margin-bottom: 160px;">
                     <div class="split-visual reveal-item">
-                        <img src="./images/philosophy_macro.png" alt="Macro Hedge Visual">
+                        <img src="./images/philosophy_macro.png" alt="Macro Hedge Visual" loading="lazy" decoding="async">
                     </div>
                     <div class="split-text reveal-item" data-delay="200">
                         <div style="font-size: 84px; font-weight: 900; color: rgba(255,153,0,0.06); margin-bottom: -45px; margin-left: -5px; user-select: none;">01</div>
                         <h1 data-i18n="str_phil_macro" style="font-size: 42px; margin-bottom: 24px; color: var(--text-primary);">宏观对冲</h1>
                         <p data-i18n="str_phil_macro_1" style="color: var(--text-secondary); line-height: 1.8; font-size: 18px; margin-bottom: 30px;">捕捉全球宏观市场动态，通过对多项资产类别的敏锐观察，灵活配置资产，有效对冲非系统性波动风险。</p>
                         <div data-i18n="str_phil_macro_label" style="border-left: 3px solid var(--accent); padding-left: 20px; color: var(--accent); font-weight: 500; font-size: 16px; letter-spacing: 1px;">
-                            STRATEGIC ALPHA / MACO ANALYSIS
+                            STRATEGIC ALPHA / MACRO ANALYSIS
                         </div>
                     </div>
                 </div>
@@ -68,14 +99,14 @@
                         </div>
                     </div>
                     <div class="split-visual reveal-item" data-delay="200">
-                        <img src="./images/philosophy_quant.png" alt="Quant Trading Visual">
+                        <img src="./images/philosophy_quant.png" alt="Quant Trading Visual" loading="lazy" decoding="async">
                     </div>
                 </div>
 
                 <!-- 03 Diversified Investment -->
                 <div class="split-layout">
                     <div class="split-visual reveal-item">
-                        <img src="./images/philosophy_div.png" alt="Diversified Investment Visual">
+                        <img src="./images/philosophy_div.png" alt="Diversified Investment Visual" loading="lazy" decoding="async">
                     </div>
                     <div class="split-text reveal-item" data-delay="200">
                         <div style="font-size: 84px; font-weight: 900; color: rgba(255,153,0,0.06); margin-bottom: -45px; margin-left: -5px; user-select: none;">03</div>
@@ -94,7 +125,7 @@
             <div class="container">
                 <div class="split-layout">
                     <div class="split-visual reveal-item">
-                        <img src="./images/abstract_strategy.png" alt="Data Visualization">
+                        <img src="./images/abstract_strategy.png" alt="Data Visualization" loading="lazy" decoding="async">
                     </div>
                     <div class="split-text reveal-item" data-delay="200">
                         <div class="section-header" style="text-align: left;">
@@ -242,55 +273,6 @@
             </div>
         </section>
     </main>
-
-
-
-    <!-- Compliance Modal (Static) -->
-    <div id="compliance-modal" class="compliance-overlay">
-        <div class="compliance-modal">
-            <div class="compliance-header">
-                <h3 data-i18n="modal_title">合格投资者认定</h3>
-                <div class="compliance-line"></div>
-            </div>
-            <div class="compliance-body" data-lenis-prevent>
-                <p data-i18n="modal_p1">在继续浏览本公司网站前，请您确认您或您所代表的机构是一名“合格投资者”。“合格投资者”指根据任何国家和地区的证券和投资法规所规定的有资格投资于私募证券投资基金的专业投资者。例如根据我国《私募投资基金监督管理暂行办法》的规定，合格投资者的标准如下：</p>
-                <div class="compliance-section">
-                    <strong data-i18n="modal_s1">一、具备相应风险识别能力和风险承担能力，投资于单只私募基金的金额不低于100万元且符合下列相关标准的单位和个人：</strong>
-                    <ol>
-                        <li data-i18n="modal_l1">净资产不低于1000万元的单位；</li>
-                        <li data-i18n="modal_l2">金融资产不低于300万元或者最近三年个人年均收入不低于50万元的个人。<br><small>(前款所称金融资产包括银行存款、股票、债券、基金份额、资产管理计划、银行理财产品、信托计划、保险产品、期货权益等。)</small></li>
-                    </ol>
-                </div>
-                <div class="compliance-section">
-                    <strong data-i18n="modal_s2">二、下列投资者视为合格投资者：</strong>
-                    <ol>
-                        <li data-i18n="modal_l3">社会保障基金、企业年金等养老基金、慈善基金等社会公益基金；</li>
-                        <li data-i18n="modal_l4">依法设立并在基金业协会备案的投资计划；</li>
-                        <li data-i18n="modal_l5">投资于所管理私募基金的私募基金管理人及其从业人员；</li>
-                        <li data-i18n="modal_l6">中国证监会规定的其他投资者。</li>
-                    </ol>
-                </div>
-                <p data-i18n="modal_p2">如果您继续访问或使用本网站及其所载资料，即表明您声明及保证您或您所代表的机构为“合格投资者”，并将遵守对您适用的司法区域的有关法律及法规，同意并接受以下条款及相关约束。如果您不符合“合格投资者”标准或不同意下列条款及相关约束，请勿继续访问或使用本网站及其所载信息及资料。</p>
-                <p class="warning-text" data-i18n="modal_warning">投资涉及风险，投资者应详细审阅产品的发售文件以获取进一步资料，了解有关投资所涉及的风险因素，并寻求适当的专业投资和咨询意见。产品净值及其收益存在涨跌可能，过往的产品业绩数据并不预示产品未来的业绩表现。本网站所提供的资料并非投资建议 or 咨询意见，投资者不应依赖本网站所提供的信息及资料作出投资决策。</p>
-                <p class="copyright-info" data-i18n="modal_copy">与本网站所载信息及资料有关的所有版权、专利权、知识产权及其他产权均为本公司所有。本公司概不向浏览该资料人士发出、转让或以任何方式转移任何种类的权利。</p>
-            </div>
-            <div class="compliance-footer">
-                <button id="confirm-investor" class="btn-main" data-i18n="modal_confirm">确认，我是合格投资者</button>
-                <button id="leave-site" class="btn-outline" data-i18n="modal_leave">不符合条件，离开</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Entry Loader (Static) -->
-    <div id="entry-loader" class="entry-loader">
-        <div class="loader-content">
-            <div id="decode-text" class="decode-text"></div>
-            <div class="loader-logo-wrapper">
-                <img id="loader-logo" src="./images/logo.png" alt="Parigain Logo" data-i18n="alt_logo" class="loader-logo">
-            </div>
-        </div>
-        <div class="skip-hint" data-i18n="loader_skip">Scroll to skip</div>
-    </div>
 
     <script type="module" src="./js/main.js"></script>
     <div class="back-to-top" id="back-to-top">↑</div>

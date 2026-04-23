@@ -9,9 +9,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   display: none;
   z-index: 9999;
   align-items: center;
@@ -26,11 +26,11 @@
 .compliance-modal {
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: 24px;
-  max-width: 600px;
+  border-radius: 12px;
+  max-width: 720px;
   width: 90%;
   padding: 0;
-  max-height: 85vh;
+  max-height: 88vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -51,30 +51,57 @@
 }
 
 .compliance-header {
-  padding: 32px 40px 0;
+  padding: 30px 40px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.compliance-kicker {
+  display: block;
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 12px;
 }
 
 .compliance-header h3 {
-  font-size: 24px;
-  color: var(--accent);
-  margin-bottom: 16px;
+  font-size: 28px;
+  color: var(--text-primary);
+  margin-bottom: 12px;
   text-align: center;
-  letter-spacing: 2px;
 }
 
-.compliance-line {
-  width: 60px;
-  height: 2px;
-  background: var(--accent);
-  margin: 0 auto 24px;
+.compliance-summary {
+  max-width: 560px;
+  margin: 0 auto 18px;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.7;
+}
+
+.compliance-quick-facts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.compliance-quick-facts span {
+  padding: 7px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1;
 }
 
 .compliance-body {
   flex: 1;
   overflow-y: auto;
   min-height: 0;
-  padding: 0 40px;
-  margin: 10px 0;
+  padding: 22px 40px 0;
+  margin: 0;
   font-size: 15px;
   line-height: 1.7;
   color: var(--text-secondary);
@@ -83,7 +110,7 @@
 }
 
 .compliance-body p {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .compliance-body strong {
@@ -104,16 +131,65 @@
 }
 
 .compliance-section {
-  margin-bottom: 32px;
-  padding: 24px;
+  margin-bottom: 12px;
+  padding: 0;
   background: var(--glass-bg);
-  border-radius: 12px;
+  border-radius: 8px;
   border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.compliance-section summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 18px 20px;
+  color: var(--text-primary);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.compliance-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.compliance-section summary::after {
+  content: '+';
+  color: var(--accent);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.compliance-section[open] summary {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.compliance-section[open] summary::after {
+  content: '-';
+}
+
+.compliance-section > p,
+.compliance-section > strong,
+.compliance-section > ol {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.compliance-section > p:first-of-type,
+.compliance-section > strong:first-of-type,
+.compliance-section > ol:first-of-type {
+  margin-top: 18px;
+}
+
+.compliance-section > p:last-child,
+.compliance-section > ol:last-child {
+  margin-bottom: 20px;
 }
 
 .compliance-section strong {
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   color: var(--accent);
   line-height: 1.5;
 }
@@ -134,22 +210,26 @@
 .copyright-info {
   font-size: 12px;
   color: var(--text-muted);
-  border-top: 1px solid var(--border-color);
-  padding-top: 20px;
-  margin-top: 40px;
+  padding-top: 0;
+  margin-top: 18px;
 }
 
 .warning-text {
-  background: rgba(229, 184, 11, 0.05);
-  border: 1px solid rgba(229, 184, 11, 0.2);
-  padding: 20px;
-  border-radius: 12px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
   font-size: 14px;
   color: var(--text-secondary);
 }
 
+.warning-section {
+  border-color: rgba(229, 184, 11, 0.28);
+  background: rgba(229, 184, 11, 0.045);
+}
+
 .compliance-footer {
-  padding: 24px 40px 32px;
+  padding: 22px 40px 28px;
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-color);
   display: grid;
@@ -173,9 +253,12 @@
 }
 
 /* --- Compliance & Loading Performance Fixes --- */
-/* 1. Hide main content if compliance is pending */
+/* 1. Keep the page visible behind the access modal */
 body.compliance-pending main {
-  display: none;
+  filter: blur(2px);
+  opacity: 0.7;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* 2. Show modal immediately if pending */
@@ -188,7 +271,10 @@ body.compliance-pending .compliance-overlay {
 
 /* 3. Absolute bypass if confirmed (via inline script) */
 html.compliance-confirmed body.compliance-pending main {
-  display: block;
+  filter: none;
+  opacity: 1;
+  pointer-events: auto;
+  user-select: auto;
 }
 
 html.compliance-confirmed .compliance-overlay,
@@ -198,7 +284,10 @@ html.compliance-confirmed .entry-loader {
 
 /* 4. Restore visibility when confirmed by JS */
 body.loaded:not(.compliance-pending) main {
-  display: block;
+  filter: none;
+  opacity: 1;
+  pointer-events: auto;
+  user-select: auto;
 }
 
 /* --- Entry Loader Animation --- */
@@ -286,4 +375,46 @@ body.loaded:not(.compliance-pending) main {
 @keyframes fadeInOut {
   0%, 100% { opacity: 0.1; }
   50% { opacity: 0.6; }
+}
+
+@media (max-width: 640px) {
+  .compliance-overlay {
+    align-items: flex-end;
+    padding: 12px;
+  }
+
+  .compliance-modal {
+    width: 100%;
+    max-height: 92vh;
+    border-radius: 12px;
+  }
+
+  .compliance-header {
+    padding: 24px 20px 18px;
+  }
+
+  .compliance-header h3 {
+    font-size: 24px;
+  }
+
+  .compliance-body {
+    padding: 18px 20px 0;
+    font-size: 14px;
+  }
+
+  .compliance-section summary {
+    padding: 16px;
+  }
+
+  .compliance-section > p,
+  .compliance-section > strong,
+  .compliance-section > ol {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .compliance-footer {
+    grid-template-columns: 1fr;
+    padding: 18px 20px 22px;
+  }
 }

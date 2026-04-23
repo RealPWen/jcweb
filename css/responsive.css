@@ -76,6 +76,27 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .strategy-card-grid,
+  .advantage-card-grid,
+  .career-value-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-honors-grid,
+  .team-profile {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-info-card:nth-child(1),
+  .contact-info-card:nth-child(2),
+  .contact-info-card:nth-child(n + 3) {
+    grid-column: span 1;
+  }
+
   .partner-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -147,6 +168,29 @@
     flex-direction: column;
     gap: 30px;
   }
+
+  .hero-proof-grid,
+  .partner-categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .image-copy-content {
+    padding: 42px;
+  }
+
+  .office-life-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .office-life-strip img,
+  .office-life-strip img:first-child {
+    height: 280px;
+  }
+
+  .recruit-system-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* ---- Contact & Feature Grid (max-width: 992px) ---- */
@@ -177,7 +221,9 @@
   }
 
   .hero-slider {
-    height: 85vh;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
   }
 
   .sub-title {
@@ -193,6 +239,79 @@
   .hero-btns {
     flex-direction: column;
     gap: 12px;
+  }
+
+  .institutional-hero {
+    padding-top: 110px;
+    padding-bottom: 120px;
+  }
+
+  .hero-proof-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .slogan-hero {
+    padding-top: 110px;
+    padding-bottom: 120px;
+  }
+
+  .home-brand-hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .home-brand-hero::before {
+    background:
+      radial-gradient(circle at 50% 48%, rgba(24, 16, 20, 0.5) 0%, rgba(24, 16, 20, 0.2) 48%, rgba(24, 16, 20, 0) 78%),
+      linear-gradient(180deg, rgba(24, 16, 20, 0.18) 0%, rgba(24, 16, 20, 0) 50%);
+  }
+
+  .home-hero-statement {
+    width: min(560px, calc(100% - 40px));
+  }
+
+  .brand-slogan {
+    font-size: clamp(38px, 11vw, 58px);
+  }
+
+  .brand-slogan-en {
+    font-size: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  .company-profile-section,
+  .strategy-cards-section,
+  .home-honors-section,
+  .about-profile-section,
+  .about-advantages-section,
+  .development-section,
+  .career-values-section,
+  .office-life-section,
+  .recruit-system-section,
+  .contact-info-section {
+    padding: 80px 0;
+  }
+
+  .image-copy-panel {
+    min-height: 560px;
+  }
+
+  .image-copy-content {
+    padding: 30px;
+  }
+
+  .home-honors-list li {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .contact-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .milestone-rail {
+    grid-template-columns: 1fr;
+    overflow: visible;
   }
 
   .btn-main,
@@ -264,7 +383,7 @@
     grid-template-columns: 1fr;
     gap: 24px;
     text-align: center;
-    padding: 0 20px;
+    padding: 24px 20px;
   }
 
   .stat-item {
@@ -280,6 +399,24 @@
 
   .domain-card {
     padding: 40px 24px;
+  }
+
+  .hero-proof-grid,
+  .partner-categories {
+    grid-template-columns: 1fr;
+  }
+
+  .image-copy-content h2,
+  .home-honors-list h2,
+  .recruit-system-panel h2 {
+    font-size: 30px;
+  }
+
+  .career-value-card,
+  .advantage-card,
+  .contact-info-card,
+  .recruit-system-panel {
+    padding: 26px;
   }
 
   .section-header h2 {

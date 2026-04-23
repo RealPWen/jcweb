@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="seo_title_about">关于均成 | 均成基金 - 量化投资的硬核力量</title>
     <!-- SEO & Social Sharing -->
-    <meta name="description" data-i18n="seo_desc_about" content="广东横琴均成私募基金管理有限公司成立于2016年，公司具备私募基金管理人资格（备案编号：P1061222），是一家以量化投资为核心的专业资产管理公司。">
+    <meta name="description" data-i18n="seo_desc_about" content="了解均成基金的发展背景、核心团队、量化交易系统、风控流程与历史荣誉。公司成立于2016年，备案编号 P1061222。">
+    <link rel="canonical" href="https://realpwen.github.io/jcweb/about.html">
     <meta property="og:title" data-i18n="seo_og_title_about" content="关于均成 | 均成基金">
     <meta property="og:description" data-i18n="seo_og_desc_about" content="深耕量化对冲，以科学方法解构金融市场。">
-    <meta property="og:image" content="./images/ceo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://realpwen.github.io/jcweb/images/ceo-1200.webp">
+    <meta property="og:url" content="https://realpwen.github.io/jcweb/about.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://realpwen.github.io/jcweb/images/ceo-1200.webp">
 
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="./images/favicon.png">
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script>
         (function() {
-            if (sessionStorage.getItem('complianceConfirmed')) {
+            var complianceVersion = '2026-04-21-v2';
+            if (localStorage.getItem('complianceConfirmedVersion') === complianceVersion) {
                 document.documentElement.classList.add('compliance-confirmed');
             }
         })();
@@ -30,262 +35,108 @@
 
 
     <main>
-        <!-- About Hero - Left Aligned & Typographic -->
-        <section class="page-hero" style="text-align: left; padding: 200px 0 100px;">
+        <section class="page-hero about-hero">
             <div class="container">
-                <span class="accent-line" data-i18n="abt_accent_hero" style="margin: 0; margin-bottom: 20px;">About Parigain</span>
-                <h1 class="page-title" data-i18n="abt_hero_title">关于均成 <br><span class="accent" style="position: static; transform: none; display: block; filter: none; opacity: 1; font-size: inherit;">Parigain</span></h1>
-                <p class="page-subtitle" data-i18n="abt_hero_subtitle">以科学方法解构金融市场，以硬核技术创造超额收益。</p>
+                <span class="accent-line">About Parigain</span>
+                <h1 class="page-title">关于均成 <br><span class="accent">共同成长</span></h1>
+                <p class="page-subtitle">以 CTA 为核心，构建跨股票、股指、商品期货的多市场、多策略、全自动交易体系。</p>
             </div>
         </section>
 
-        <!-- Company Introduction - Asymmetric Split -->
-        <section class="intro-section section-dark">
-            <div class="container">
-                <div class="split-layout">
-                    <div class="split-text reveal-item">
-                        <div class="section-header" style="text-align: left;">
-                            <span class="accent-line" data-i18n="abt_accent_intro" style="margin: 0;">Who We Are</span>
-                            <h2 data-i18n="abt_intro_title" style="font-size: 42px; margin-bottom: 30px;">量化核心 · 硬核力量</h2>
-                        </div>
-                        <p data-i18n="abt_intro_p1" style="font-size: 20px; color: #fff; margin-bottom: 24px;">均成投资是一予以量化投资为核心的专门资产管理公司，主要管理团队均来自北京大学等国内外知名高校。</p>
-                        <p data-i18n="abt_intro_p2" style="color: var(--text-secondary); margin-bottom: 20px;">公司股权由创始人兼核心基金经理司维先生 100% 控股。我们致力于研发多样化的量化策略，自主设计了全自动交易系统，建立了完备的风险控制流程。</p>
-                        <p data-i18n="abt_intro_p3" style="color: var(--text-secondary);">我们坚守长期主义，始终将投资者的合法权益放在首位，在复杂市场中追求稳健、持久的超额收益。</p>
-                    </div>
-                    <div class="split-visual reveal-item" data-delay="200">
-                        <img src="./images/office_hq.png" alt="Office Atmosphere" data-i18n="alt_office">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Advantage Section - Minimalist Gridless List -->
-        <section class="advantage-section section-alt" style="padding: 120px 0;">
-            <div class="container split-layout reverse">
+        <section class="about-profile-section section-dark">
+            <div class="container split-layout">
                 <div class="split-text reveal-item">
-                    <div class="section-header" style="text-align: left;">
-                        <span class="accent-line" data-i18n="abt_accent_edge" style="margin: 0;">Our Edge</span>
-                        <h2 data-i18n="abt_adv_title">均成优势</h2>
-                    </div>
-                    <div class="gridless-list">
-                        <div class="gridless-item">
-                            <div class="gridless-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline></svg>
-                            </div>
-                            <div class="gridless-content">
-                                <h3 data-i18n="abt_adv_perf">业绩突出</h3>
-                                <p data-i18n="abt_adv_perf_1" style="color: var(--text-secondary); font-size: 15px;">全产品线中长期业绩排名行业前列，入选中金公司核心池。</p>
-                            </div>
-                        </div>
-                        <div class="gridless-item">
-                            <div class="gridless-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect></svg>
-                            </div>
-                            <div class="gridless-content">
-                                <h3 data-i18n="abt_adv_strat">策略强大</h3>
-                                <p data-i18n="abt_adv_strat_1" style="color: var(--text-secondary); font-size: 15px;">自研全自动化交易引擎，CTA 与股票策略多维互补，动态配置深度深。</p>
-                            </div>
-                        </div>
-                        <div class="gridless-item">
-                            <div class="gridless-icon">
-                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                            </div>
-                            <div class="gridless-content">
-                                <h3 data-i18n="abt_adv_risk">严控风险</h3>
-                                <p data-i18n="abt_adv_risk_1" style="color: var(--text-secondary); font-size: 15px;">追求资产科学配比，多重风险防火墙，严格控制策略容载量。</p>
-                            </div>
-                        </div>
-                    </div>
+                    <span class="accent-line">Who We Are</span>
+                    <h2>国内量化 CTA 策略先行者</h2>
+                    <p class="lead-text">广东横琴均成私募基金管理有限公司成立于 2016 年，是国内量化 CTA 策略的先行者，资产管理规模超 50 亿元，曾揽获金牛奖、英华奖、金排奖等多项行业内权威奖项。</p>
+                    <p>创始人、投资总监司维先生毕业于北京大学，拥有超 10 年量化投资实战经验。公司坚持“投资者收益优先”的经营理念，构建了跨股票、股指、商品期货的多市场、多策略、全自动交易体系。</p>
+                    <p>目前已形成以量化 CTA 为核心，以股票策略和中性策略为补充的产品线，目标是为投资者创造稳健的投资回报，与投资者、员工共同成长，均有所成。</p>
                 </div>
-                <div class="split-visual reveal-item" data-delay="150" style="flex: 0.8;">
-                    <span data-i18n="abt_accent_phil" style="display: block; font-family: 'Outfit'; font-size: 11px; letter-spacing: 2px; color: var(--accent); margin-bottom: 5px; text-transform: uppercase;">Management Philosophy</span>
-                    <h3 data-i18n="abt_phil_title" style="font-size: 32px; margin-bottom: 25px;">经营理念</h3>
-                    <div style="background: var(--accent); width: 4px; height: 100px; margin-bottom: 40px; opacity: 0.6;"></div>
-                    <div data-i18n="abt_phil_quote" style="font-size: 24px; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.85);">
-                        "我们在发展中充分考虑市场复杂性，追求长期稳定发展，而不是短视的规模扩张。"
-                    </div>
+                <div class="split-visual reveal-item" data-delay="200">
+                    <img src="./images/office_hq.png" alt="均成办公环境" loading="lazy" decoding="async">
                 </div>
             </div>
         </section>
 
-        <!-- Core Team - Immersive Image-Text Split -->
-        <section class="team-section section-dark" style="position: relative; padding: 180px 0; overflow: hidden;">
+        <section class="about-advantages-section section-alt">
             <div class="container">
-                <div class="split-layout">
-                    <div class="split-visual reveal-item" style="flex: 1;">
-                        <img src="./images/ceo.png" alt="Si Wei - Founder" style="max-width: 100%; filter: grayscale(20%); box-shadow: 0 40px 100px rgba(0,0,0,0.8);">
-                    </div>
-                    <div class="split-text reveal-item" data-delay="200" style="flex: 1;">
-                        <div class="founder-info" style="position: relative; z-index: 2;">
-                            <span class="accent-line" data-i18n="abt_accent_team" style="margin: 0; margin-bottom: 20px;">The Visionary</span>
-                            <h2 style="font-size: 64px; margin-bottom: 10px;" data-i18n="abt_team_siwei">司维</h2>
-                            <p style="color: var(--accent); font-weight: 600; font-size: 18px; margin-bottom: 40px;" data-i18n="abt_team_founder">创始人 · 投资总监 / 北京大学物理学硕士</p>
-                            <div style="font-size: 18px; line-height: 1.8; color: var(--text-secondary);">
-                                <p data-i18n="abt_team_bio" style="margin-bottom: 24px;">曾就职于微软亚洲研究院（MSRA）及全球光刻机巨头 ASML，专注于超大规模并行数据处理及系统架构设计。</p>
-                                <p data-i18n="abt_team_bio_2" style="color: rgba(255,255,255,0.6); font-size: 16px;">司维先生主导研发了均成投资全套超高可靠性、全自动化的量化交易体系，将硬核技术与金融洞察深度融合。</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="section-header center reveal-item">
+                    <span class="accent-line">Our Edge</span>
+                    <h2>均成基金的优势</h2>
+                </div>
+                <div class="advantage-card-grid">
+                    <article class="advantage-card reveal-item">
+                        <span>01</span>
+                        <h3>客户利益优先的长期主义战略</h3>
+                        <p>始终坚持“投资者收益优先”的经营理念，不盲目追求管理规模扩张。主动控制募集节奏，优先保障现有投资者的长期利益。</p>
+                    </article>
+                    <article class="advantage-card reveal-item">
+                        <span>02</span>
+                        <h3>高度稳定的专业投研团队</h3>
+                        <p>核心投研团队成员均具备扎实的理工科背景和丰富的量化投资经验，团队结构稳定，形成简单纯粹、专注专业的工作氛围。</p>
+                    </article>
+                    <article class="advantage-card reveal-item">
+                        <span>03</span>
+                        <h3>以 CTA 为核心的自主研发量化体系</h3>
+                        <p>构建覆盖数据处理、因子挖掘、策略回测、交易执行、风险控制全流程的量化投资系统，力求在不同市场环境下实现稳健表现。</p>
+                    </article>
                 </div>
             </div>
-            <!-- Large background text -->
-            <div data-i18n="abt_bg_founder" style="position: absolute; right: -5%; bottom: -5%; font-size: 25vw; font-weight: 900; color: rgba(255,255,255,0.02); pointer-events: none; white-space: nowrap; line-height: 0.8; z-index: 1;">FOUNDER</div>
         </section>
 
-        <!-- Honors Timeline -->
+        <section class="development-section section-dark">
+            <div class="container">
+                <div class="section-header center reveal-item">
+                    <span class="accent-line">Milestones</span>
+                    <h2>发展历程</h2>
+                </div>
+                <div class="milestone-rail reveal-item">
+                    <div class="milestone"><strong>2016</strong><span>公司成立</span></div>
+                    <div class="milestone"><strong>2017</strong><span>发行第一只产品：均成 CTA1 号</span></div>
+                    <div class="milestone"><strong>2020</strong><span>CTA + 量化选股产品上线，管理规模破 10 亿</span></div>
+                    <div class="milestone"><strong>2021</strong><span>管理规模破 40 亿，开始控制规模、保护投资人利益</span></div>
+                    <div class="milestone"><strong>2022</strong><span>CTA + 股票中性产品上线，荣获年度金牛奖、金长江奖</span></div>
+                    <div class="milestone"><strong>2023</strong><span>再获金牛奖</span></div>
+                    <div class="milestone"><strong>2025</strong><span>管理规模破 50 亿</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section section-alt">
+            <div class="container team-profile">
+                <div class="team-photo reveal-item">
+                    <picture>
+                        <source type="image/avif" srcset="./images/ceo-480.avif 480w, ./images/ceo-800.avif 800w, ./images/ceo-1200.avif 1200w" sizes="(max-width: 768px) 92vw, 40vw">
+                        <source type="image/webp" srcset="./images/ceo-480.webp 480w, ./images/ceo-800.webp 800w, ./images/ceo-1200.webp 1200w" sizes="(max-width: 768px) 92vw, 40vw">
+                        <img src="./images/ceo.png" alt="创始人司维" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="team-copy reveal-item" data-delay="200">
+                    <span class="accent-line">Core Research Team</span>
+                    <h2>司维</h2>
+                    <p class="founder-title">创始人，投资总监 / 北京大学物理学硕士</p>
+                    <p>曾在微软亚洲研究院和全球最大半导体设备商 ASML 从事大数据研究分析工作。之后历任深圳市多和美投资顾问有限公司研究员，深圳嘉理资产管理有限公司投资经理，深圳前海厚诚敏基金管理有限公司基金经理，广东横琴均成私募基金管理有限公司执行董事。</p>
+                    <p>司维先生将理工科训练、系统工程能力和量化投资实践结合，主导搭建均成全自动量化交易体系。</p>
+                </div>
+            </div>
+        </section>
+
         <section id="honors" class="honors-section container">
             <div class="section-header center reveal-item">
-                <span class="accent-line" data-i18n="abt_accent_honor">Awards & Honors</span>
-                <h2 data-i18n="abt_honor_title">荣耀历程</h2>
-                <div class="title-line"></div>
+                <span class="accent-line">Awards & Honors</span>
+                <h2>荣誉历程</h2>
             </div>
-            
-            <div class="honors-timeline">
-                <!-- 2024 -->
-                <div class="timeline-item reveal-item" data-aos="fade-up">
-                    <div class="year">2024</div>
-                    <div class="content">
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_bull">私募金牛奖</h4>
-                            <p data-i18n="abt_honor_org">中国证券报</p>
-                        </div>
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_rank">私募金排奖 · 稳健卓越私募管理基金管理人</h4>
-                            <p data-i18n="abt_honor_rank_org">私募排排网</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2023 -->
-                <div class="timeline-item reveal-item" data-aos="fade-up">
-                    <div class="year">2023</div>
-                    <div class="content">
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_wind">年度最强私募 (百亿以内)</h4>
-                            <p data-i18n="abt_honor_wind_org">Wind 万得</p>
-                        </div>
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_evergreen">常青树基金经理奖</h4>
-                            <p data-i18n="abt_honor_rank_org">私募排排网</p>
-                        </div>
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_fortune">新财富最佳私募投资经理</h4>
-                            <p data-i18n="abt_honor_fortune_org">新财富</p>
-                        </div>
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_cta5">管理期货策略私募基金奖 (五年期)</h4>
-                            <p data-i18n="abt_honor_cta5_org">中国基金风云榜</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2022 -->
-                <div class="timeline-item reveal-item" data-aos="fade-up">
-                    <div class="year">2022</div>
-                    <div class="content">
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_bull">私募金牛奖</h4>
-                            <p data-i18n="abt_honor_org">中国证券报</p>
-                        </div>
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_all">私募大会综合实力奖 (5年以上)</h4>
-                            <p data-i18n="abt_honor_all_org">金斧子</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2020 -->
-                <div class="timeline-item reveal-item" data-aos="fade-up">
-                    <div class="year">2020</div>
-                    <div class="content">
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_cta10">1-6月管理期货策略基金前十</h4>
-                            <p data-i18n="abt_honor_cta_rank_org">2020年度中国私募基金风云榜</p>
-                        </div>
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_rank_hot">2020年半年度排排网热搜产品榜前十</h4>
-                            <p data-i18n="abt_honor_rank_org">私募排排网</p>
-                        </div>
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_cta_peak">CTA趋势-量化CTA组五强</h4>
-                            <p data-i18n="abt_honor_cta_rank_org">2020年度中国私募基金风云榜</p>
-                        </div>
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_cta_pop">最受欢迎管理期货类理财产品（一年期）十强</h4>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2018 -->
-                <div class="timeline-item reveal-item" data-aos="fade-up">
-                    <div class="year">2018</div>
-                    <div class="content">
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_east_pop">最受欢迎期货私募基金产品</h4>
-                            <p data-i18n="abt_honor_east_org">东方财富风云榜</p>
-                        </div>
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_pioneer">管理期货收益前十名</h4>
-                            <p data-i18n="abt_honor_pioneer_org">私募先锋榜</p>
-                        </div>
-                        <div class="award">
-                            <h4 data-i18n="abt_honor_mgr">十佳基金经理</h4>
-                            <p data-i18n="abt_honor_pioneer_org">私募先锋榜</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="honors-timeline full-awards">
+                <div class="timeline-item reveal-item"><div class="year">2024</div><div class="content"><div class="award"><h4>Wind 万得 - 2024 年度管理期货最强私募、2024 年度多策略最强私募</h4></div><div class="award"><h4>中国证券报 - 第十五届私募金牛奖，三年期金牛私募管理公司（管理期货策略）</h4></div><div class="award"><h4>私募排排网 - 第十八届私募金排奖（稳健卓越私募管理基金管理人）</h4></div><div class="award"><h4>东方财富风云榜 - 2024 年度价值发掘私募基金经理</h4></div></div></div>
+                <div class="timeline-item reveal-item"><div class="year">2023</div><div class="content"><div class="award"><h4>Wind 万得 - 2023 年度最强私募（百亿以内），一年期、三年期、五年期管理期货最强私募</h4></div><div class="award"><h4>中国证券报 - 2022 年第十四届私募金牛奖（年度金牛私募管理公司 - 管理期货策略）</h4></div><div class="award"><h4>私募排排网 - 2023 年私募排排网常青树基金经理奖</h4></div><div class="award"><h4>新财富 - 新财富最佳私募投资经理</h4></div><div class="award"><h4>中国基金风云榜 - 管理期货策略私募基金奖（五年期）</h4></div></div></div>
+                <div class="timeline-item reveal-item"><div class="year">2022</div><div class="content"><div class="award"><h4>东方证券 - 华曜奖（卓越私募基金管理人）</h4></div><div class="award"><h4>金长江奖 - 年度新锐私募基金经理</h4></div><div class="award"><h4>格上财富金樟奖 - 最佳程序化期货策略私募管理人（三年期）</h4></div><div class="award"><h4>金斧子私募大会 - 综合实力奖（5 年以上）</h4></div><div class="award"><h4>好买财富 - 对冲十大好基金</h4></div><div class="award"><h4>朝阳永续 - 最受欢迎管理期货类产品（一年期）冠军</h4></div><div class="award"><h4>Wind 最强私募 - 一年期最强私募基金公司（管理期货策略、量化股票策略）</h4></div></div></div>
+                <div class="timeline-item reveal-item"><div class="year">2021</div><div class="content"><div class="award"><h4>中国基金报英华奖 - 最佳私募基金产品奖（三年期管理期货策略）</h4></div><div class="award"><h4>朝阳永续中国私募基金风云榜 - 管理期货策略私募基金奖（三年期）</h4></div></div></div>
+                <div class="timeline-item reveal-item"><div class="year">2020</div><div class="content"><div class="award"><h4>金斧子第四届私募大会 - 至尊新锐奖</h4></div><div class="award"><h4>华安证券私募实盘大赛 - 年度最佳私募基金经理</h4></div><div class="award"><h4>朝阳永续中国私募基金风云榜 - 1-6 月管理期货策略基金前十</h4></div></div></div>
+                <div class="timeline-item reveal-item"><div class="year">2019</div><div class="content"><div class="award"><h4>朝阳永续中国私募基金风云榜 - 年度管理期货策略基金一季度表现优异投顾</h4></div></div></div>
+                <div class="timeline-item reveal-item"><div class="year">2018</div><div class="content"><div class="award"><h4>私募先锋榜（广东）- 年度管理期货收益前十名</h4></div><div class="award"><h4>东方财富风云榜 - 最受欢迎期货私募基金产品</h4></div><div class="award"><h4>私募先锋榜 - 十佳基金经理</h4></div></div></div>
             </div>
         </section>
     </main>
-
-
-
-    <!-- Compliance Modal (Static) -->
-    <div id="compliance-modal" class="compliance-overlay">
-        <div class="compliance-modal">
-            <div class="compliance-header">
-                <h3 data-i18n="modal_title">合格投资者认定</h3>
-                <div class="compliance-line"></div>
-            </div>
-            <div class="compliance-body" data-lenis-prevent>
-                <p data-i18n="modal_p1">在继续浏览本公司网站前，请您确认您或您所代表的机构是一名“合格投资者”。“合格投资者”指根据任何国家和地区的证券和投资法规所规定的有资格投资于私募证券投资基金的专业投资者。例如根据我国《私募投资基金监督管理暂行办法》的规定，合格投资者的标准如下：</p>
-                <div class="compliance-section">
-                    <strong data-i18n="modal_s1">一、具备相应风险识别能力和风险承担能力，投资于单只私募基金的金额不低于100万元且符合下列相关标准的单位和个人：</strong>
-                    <ol>
-                        <li data-i18n="modal_l1">净资产不低于1000万元的单位；</li>
-                        <li data-i18n="modal_l2">金融资产不低于300万元或者最近三年个人年均收入不低于50万元的个人。<br><small>(前款所称金融资产包括银行存款、股票、债券、基金份额、资产管理计划、银行理财产品、信托计划、保险产品、期货权益等。)</small></li>
-                    </ol>
-                </div>
-                <div class="compliance-section">
-                    <strong data-i18n="modal_s2">二、下列投资者视为合格投资者：</strong>
-                    <ol>
-                        <li data-i18n="modal_l3">社会保障基金、企业年金等养老基金、慈善基金等社会公益基金；</li>
-                        <li data-i18n="modal_l4">依法设立并在基金业协会备案的投资计划；</li>
-                        <li data-i18n="modal_l5">投资于所管理私募基金的私募基金管理人及其从业人员；</li>
-                        <li data-i18n="modal_l6">中国证监会规定的其他投资者。</li>
-                    </ol>
-                </div>
-                <p data-i18n="modal_p2">如果您继续访问或使用本网站及其所载资料，即表明您声明及保证您或您所代表的机构为“合格投资者”，并将遵守对您适用的司法区域的有关法律及法规，同意并接受以下条款及相关约束。如果您不符合“合格投资者”标准或不同意下列条款及相关约束，请勿继续访问或使用本网站及其所载信息及资料。</p>
-                <p class="warning-text" data-i18n="modal_warning">投资涉及风险，投资者应详细审阅产品的发售文件以获取进一步资料，了解有关投资所涉及的风险因素，并寻求适当的专业投资和咨询意见。产品净值及其收益存在涨跌可能，过往的产品业绩数据并不预示产品未来的业绩表现。本网站所提供的资料并非投资建议 or 咨询意见，投资者不应依赖本网站所提供的信息及资料作出投资决策。</p>
-                <p class="copyright-info" data-i18n="modal_copy">与本网站所载信息及资料有关的所有版权、专利权、知识产权及其他产权均为本公司所有。本公司概不向浏览该资料人士发出、转让或以任何方式转移任何种类的权利。</p>
-            </div>
-            <div class="compliance-footer">
-                <button id="confirm-investor" class="btn-main" data-i18n="modal_confirm">确认，我是合格投资者</button>
-                <button id="leave-site" class="btn-outline" data-i18n="modal_leave">不符合条件，离开</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Entry Loader (Static) -->
-    <div id="entry-loader" class="entry-loader">
-        <div class="loader-content">
-            <div id="decode-text" class="decode-text"></div>
-            <div class="loader-logo-wrapper">
-                <img id="loader-logo" src="./images/logo.png" alt="Parigain Logo" data-i18n="alt_logo" class="loader-logo">
-            </div>
-        </div>
-        <div class="skip-hint" data-i18n="loader_skip">Scroll to skip</div>
-    </div>
 
     <script type="module" src="./js/main.js"></script>
     <div class="back-to-top" id="back-to-top">↑</div>

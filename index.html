@@ -6,25 +6,56 @@
     <title data-i18n="seo_title_index">均成基金 | 专业量化对冲资产管理中心</title>
     <!-- SEO & Social Sharing -->
     <meta name="description" data-i18n="seo_desc_index" content="广东横琴均成私募基金管理有限公司成立于2016年，公司具备私募基金管理人资格（备案编号：P1061222），是一家以量化投资为核心的专业资产管理公司。">
+    <link rel="canonical" href="https://realpwen.github.io/jcweb/">
     <meta property="og:title" data-i18n="seo_og_title" content="均成基金 | 专业量化对冲资产管理中心">
     <meta property="og:description" data-i18n="seo_og_desc" content="深耕量化对冲，自研智能交易程序，具备私募基金管理人资格（备案编号：P1061222）。">
-    <meta property="og:image" content="./images/logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://realpwen.github.io/jcweb/images/logo.png">
     <meta property="og:url" content="https://realpwen.github.io/jcweb/">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://realpwen.github.io/jcweb/images/logo.png">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "广东横琴均成私募基金管理有限公司",
+            "alternateName": "Parigain",
+            "url": "https://realpwen.github.io/jcweb/",
+            "logo": "https://realpwen.github.io/jcweb/images/logo.png",
+            "email": "contact@parigain.com",
+            "telephone": "+86-755-86525376",
+            "foundingDate": "2016",
+            "identifier": "P1061222",
+            "address": [
+                {
+                    "@type": "PostalAddress",
+                    "addressLocality": "深圳市南山区",
+                    "streetAddress": "高新南九道39号湾区创新大厦B座3003房",
+                    "addressCountry": "CN"
+                },
+                {
+                    "@type": "PostalAddress",
+                    "addressLocality": "横琴粤澳深度合作区",
+                    "streetAddress": "琴朗道91号1911办公区",
+                    "addressCountry": "CN"
+                }
+            ]
+        }
+    </script>
 
     <!-- Preload Hero Image -->
-    <link rel="preload" as="image" href="./images/hero-bg.png" fetchpriority="high">
+    <link rel="preload" as="image" href="./images/home-hero-city.png" fetchpriority="high">
 
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="./images/favicon.png">
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script>
         (function() {
-            if (sessionStorage.getItem('complianceConfirmed')) {
+            var complianceVersion = '2026-04-21-v2';
+            if (localStorage.getItem('complianceConfirmedVersion') === complianceVersion) {
                 document.documentElement.classList.add('compliance-confirmed');
             }
         })();
@@ -32,6 +63,9 @@
 </head>
 <body class="home-page compliance-pending">
     <div class="custom-cursor"></div>
+    <div class="home-scroll-bg" aria-hidden="true">
+        <img src="./images/home-hero-city.png" alt="" decoding="async">
+    </div>
     
     
 
@@ -39,191 +73,125 @@
 
 
     <main>
-        <!-- Full Page Slider -->
-        <section id="hero-slider" class="hero-slider">
-            <div class="slides-container">
-                <!-- Slide 1 -->
-                <div class="slide active" data-bg="./images/hero-bg.png" style="background-image: url('./images/hero-bg.png')">
-                    <div class="container slide-content">
-                        <h2 class="sub-title" data-i18n="hero_s1_sub">量化对冲 · 智领未来</h2>
-                        <h1 class="main-title" data-i18n="hero_s1_title">严控风险 <br><span class="accent">追求稳健</span></h1>
-                        <p class="hero-desc" data-i18n="hero_s1_desc">在严格约束下行风险的前提下追求收益，为投资者把握长期投资机会。深耕量化对冲，管理规模突破50+亿人民币。</p>
-                        <div class="hero-btns">
-                            <a href="./strategy.html" class="btn-main" data-i18n="hero_btn_explore">探索策略</a>
-                            <a href="./about.html" class="btn-outline" data-i18n="hero_btn_about">了解均成</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="slide" data-bg="gradient-1">
-                    <div class="container slide-content">
-                        <h2 class="sub-title" data-i18n="hero_s2_sub">深度覆盖 · 全品种交易</h2>
-                        <h1 class="main-title" data-i18n="hero_s2_title">量化交易 <br><span class="accent">替代主观</span></h1>
-                        <p class="hero-desc" data-i18n="hero_s2_desc">研发先进量化策略，自设高性能交易引擎，替代主观盲目操作。实现股指与商品期货全品种覆盖。</p>
-                        <div class="hero-btns">
-                            <a href="./strategy.html" class="btn-main" data-i18n="hero_btn_field">查看领域</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="slide" data-bg="gradient-2">
-                    <div class="container slide-content">
-                        <h2 class="sub-title" data-i18n="hero_s3_sub">多维配置 · 分散投资</h2>
-                        <h1 class="main-title" data-i18n="hero_s3_title">宏观对冲 <br><span class="accent">分散风险</span></h1>
-                        <p class="hero-desc" data-i18n="hero_s3_desc">多层次选取各类资产，优化风险收益对比，在不同市场环境中实现资产的保值增值。</p>
-                        <div class="hero-btns">
-                            <a href="./about.html" class="btn-main" data-i18n="hero_btn_core">技术核心</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Slide 4 -->
-                <div class="slide" data-bg="gradient-3">
-                    <div class="container slide-content">
-                        <h2 class="sub-title" data-i18n="hero_s4_sub">精英团队 · 卓越管理</h2>
-                        <h1 class="main-title" data-i18n="hero_s4_title">北大核心背景 <br><span class="accent">旗舰产品获誉</span></h1>
-                        <p class="hero-desc" data-i18n="hero_s4_desc">核心团队来自北京大学等顶尖学府，深耕量化对冲领域，追求长久稳健的投资回报。</p>
-                        <div class="hero-btns">
-                            <a href="./about.html#honors" class="btn-main" data-i18n="hero_btn_honor">查看荣誉</a>
-                        </div>
-                    </div>
-                </div>
+        <!-- Hero -->
+        <section id="hero-slider" class="hero-slider single-hero home-brand-hero">
+            <picture class="hero-bg-media" aria-hidden="true">
+                <img src="./images/home-hero-city.png" alt="" fetchpriority="high" decoding="async">
+            </picture>
+            <div class="home-hero-statement" aria-label="均成基金品牌标语">
+                <h1 class="brand-slogan">均见价值，成就长远</h1>
+                <p class="brand-slogan-en">Recognizing Value, Achieving Enduring Growth</p>
             </div>
-            
-            <!-- Slider Controls -->
-            <div class="slider-controls">
-                <div class="control-dot active" data-index="0"></div>
-                <div class="control-dot" data-index="1"></div>
-                <div class="control-dot" data-index="2"></div>
-                <div class="control-dot" data-index="3"></div>
-            </div>
-            <div class="slider-arrows">
-                <button class="arrow-btn prev">←</button>
-                <button class="arrow-btn next">→</button>
-            </div>
-            
             <div class="scroll-down">
                 <span class="mouse"></span>
             </div>
         </section>
 
-        <!-- Management Stats Bar - Modern Floating Dashboard -->
-        <section class="home-stats-bar" style="margin-top: -60px; position: relative; z-index: 100;">
+        <!-- Management Stats Bar -->
+        <section class="home-stats-bar">
             <div class="container">
-                <div class="stats-flex" style="background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 40px; display: flex; justify-content: space-around;">
-                    <div class="stat-item" style="text-align: center;">
-                        <span class="label" data-i18n="stat_scale" style="display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">AUM / 管理规模</span>
-                        <span class="val" data-i18n="stat_50b" style="display: block; font-size: 32px; font-weight: 800; color: var(--accent);">50亿+</span>
+                <div class="stats-flex">
+                    <div class="stat-item">
+                        <span class="label" data-i18n="stat_since">成立时间</span>
+                        <span class="val" data-i18n="stat_2016">2016</span>
                     </div>
-                    <div class="stat-item" style="text-align: center;">
-                        <span class="label" data-i18n="stat_team" style="display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">Academic / 团队背景</span>
-                        <span class="val" data-i18n="stat_pku" style="display: block; font-size: 32px; font-weight: 800; color: #fff;">北京大学</span>
+                    <div class="stat-item">
+                        <span class="label" data-i18n="stat_license">备案编号</span>
+                        <span class="val" data-i18n="stat_p1061222">P1061222</span>
                     </div>
-                    <div class="stat-item" style="text-align: center;">
-                        <span class="label" data-i18n="stat_advantage" style="display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">Technology / 核心优势</span>
-                        <span class="val" data-i18n="stat_self" style="display: block; font-size: 32px; font-weight: 800; color: #fff;">自研引擎</span>
+                    <div class="stat-item">
+                        <span class="label" data-i18n="stat_china50">行业入选</span>
+                        <span class="val" data-i18n="stat_selected">中金 50 入选</span>
                     </div>
-                    <div class="stat-item" style="text-align: center;">
-                        <span class="label" data-i18n="stat_china50" style="display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">Recognition / 行业入选</span>
-                        <span class="val" data-i18n="stat_selected" style="display: block; font-size: 32px; font-weight: 800; color: #fff;">中金 50</span>
+                    <div class="stat-item">
+                        <span class="label" data-i18n="stat_scale">管理规模</span>
+                        <span class="val" data-i18n="stat_50b">50亿+</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Business Domains - Asymmetric Narrative Layout -->
-        <section class="domains-section section-dark" style="padding: 160px 0;">
+        <!-- Company Profile -->
+        <section id="company-profile" class="company-profile-section section-dark">
             <div class="container">
-                <div class="split-layout">
-                    <div class="split-text reveal-item">
-                        <div class="section-header" style="text-align: left;">
-                            <span class="accent-line" data-i18n="index_scope_accent" style="margin: 0;">Global Investment Scope</span>
-                            <h2 data-i18n="scope_title" style="font-size: 48px; margin-bottom: 40px;">全方位投资视野</h2>
-                        </div>
-                        <p data-i18n="scope_desc" style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 60px; font-size: 18px; max-width: 500px;">
-                            我们深耕量化对冲领域，通过精密算法与多因子系统，在全球化视角下捕捉资产波动中的 Alpha。
-                        </p>
-                        
-                        <div class="gridless-list">
-                            <div class="gridless-item">
-                                <div class="gridless-content">
-                                    <h3 data-i18n="domain_stock" style="font-size: 20px;">股票量化 (Equities)</h3>
-                                    <p data-i18n="domain_stock_desc" style="color: var(--text-secondary); font-size: 14px;">多因子模型深度融合，剥离市场波动，提取纯粹超额收益。</p>
-                                </div>
-                            </div>
-                            <div class="gridless-item">
-                                <div class="gridless-content">
-                                    <h3 data-i18n="domain_cta" style="font-size: 20px;">量化 CTA (Commodities)</h3>
-                                    <p data-i18n="domain_cta_desc" style="color: var(--text-secondary); font-size: 14px;">涉及股指及全品种商品期货，全天候捕捉市场趋势机会。</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="split-visual reveal-item" data-delay="300">
-                        <img src="./images/global_connections.png" alt="Global Financial Hubs" data-i18n="alt_global">
+                <div class="image-copy-panel reveal-item">
+                    <img src="./images/office_hq.png" alt="均成办公环境" loading="lazy" decoding="async">
+                    <div class="image-copy-overlay"></div>
+                    <div class="image-copy-content">
+                        <span class="accent-line">Company Profile</span>
+                        <h2>共同成长，均有所成</h2>
+                        <p>广东横琴均成私募基金管理有限公司成立于 2016 年，是国内量化 CTA 策略的先行者，资产管理规模超 50 亿元，曾揽获金牛奖、英华奖、金排奖等多项行业内权威奖项。</p>
+                        <p>公司坚持“投资者收益优先”的经营理念，构建了跨股票、股指、商品期货的多市场、多策略、全自动交易体系，目标是为投资者创造稳健的投资回报，与投资者、员工共同成长。</p>
+                        <a href="./about.html" class="btn-main">查看更多</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Partner Logos -->
-        <section class="partners-section">
+        <!-- Strategy Cards -->
+        <section class="strategy-cards-section section-alt">
             <div class="container">
-                <h3 class="partner-title" data-i18n="partners_title">深度合作伙伴</h3>
-                <div class="partners-card-wrapper">
-                    <img src="./images/company.png" alt="Partners" data-i18n="alt_partners" class="partners-img">
+                <div class="section-header center reveal-item">
+                    <span class="accent-line">Strategy Matrix</span>
+                    <h2>多策略量化体系</h2>
                 </div>
+                <div class="strategy-card-grid">
+                    <article class="domain-card reveal-item">
+                        <span class="strategy-index">01</span>
+                        <h3>CTA 策略</h3>
+                        <p>通过跨市场、跨品种、跨策略的多维度分散配置，追求长期稳健收益。商品端覆盖 30 余个高流动性品种，以 5-7 天持仓的截面多空策略为主，融合技术与基本面因子。</p>
+                    </article>
+                    <article class="domain-card reveal-item">
+                        <span class="strategy-index">02</span>
+                        <h3>量化选股策略</h3>
+                        <p>采用多因子选股框架，基于 100 多个因子灵活捕捉市场趋势。我们看重因子的质量、逻辑性和可解释性，并持续维护和检验因子有效性。</p>
+                    </article>
+                    <article class="domain-card reveal-item">
+                        <span class="strategy-index">03</span>
+                        <h3>量化中性策略</h3>
+                        <p>通过量化模型捕捉个股间相对强弱机会，同时采用股指期货对冲市场整体涨跌风险，力争获取与大盘走势无关的稳定超额收益。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Honors Preview -->
+        <section class="home-honors-section section-dark">
+            <div class="container home-honors-grid">
+                <div class="home-honors-media reveal-item">
+                    <img src="./images/company.png" alt="均成基金合作与荣誉展示" loading="lazy" decoding="async">
+                </div>
+                <div class="home-honors-list reveal-item">
+                    <span class="accent-line">Awards & Honors</span>
+                    <h2>荣耀见证长期主义</h2>
+                    <ul>
+                        <li><strong>2024</strong><span>Wind 万得 - 2024 年度管理期货最强私募、2024 年度多策略最强私募</span></li>
+                        <li><strong>2024</strong><span>中国证券报 - 第十五届私募金牛奖，三年期金牛私募管理公司</span></li>
+                        <li><strong>2024</strong><span>私募排排网 - 第十八届私募金排奖，稳健卓越私募管理基金管理人</span></li>
+                        <li><strong>2023</strong><span>Wind 万得 - 年度最强私募（百亿以内）</span></li>
+                        <li><strong>2022</strong><span>金长江奖 - 年度新锐私募基金经理</span></li>
+                    </ul>
+                    <a href="./about.html#honors" class="btn-outline">查看完整荣誉</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join / Contact Banners -->
+        <section class="audience-entry-section section-alt">
+            <div class="container audience-entry-grid">
+                <a class="audience-entry-card join-card reveal-item" href="./careers.html">
+                    <span>Join Us</span>
+                    <strong>来均成，加入专业量化团队，做更好的自己</strong>
+                    <p>面向量化人才，提供扁平沟通、完整投研流程参与和长期成长空间。</p>
+                </a>
+                <a class="audience-entry-card contact-card reveal-item" href="./contact.html">
+                    <span>Contact</span>
+                    <strong>我们期待与您同行，同舟共济，均有所成</strong>
+                    <p>查看深圳与横琴办公地址、联系电话和投资者咨询邮箱。</p>
+                </a>
             </div>
         </section>
     </main>
-
-
-
-    <!-- Compliance Modal (Static) -->
-    <div id="compliance-modal" class="compliance-overlay">
-        <div class="compliance-modal">
-            <div class="compliance-header">
-                <h3 data-i18n="modal_title">合格投资者认定</h3>
-                <div class="compliance-line"></div>
-            </div>
-            <div class="compliance-body" data-lenis-prevent>
-                <p data-i18n="modal_p1">在继续浏览本公司网站前，请您确认您或您所代表的机构是一名“合格投资者”。“合格投资者”指根据任何国家和地区的证券和投资法规所规定的有资格投资于私募证券投资基金的专业投资者。例如根据我国《私募投资基金监督管理暂行办法》的规定，合格投资者的标准如下：</p>
-                <div class="compliance-section">
-                    <strong data-i18n="modal_s1">一、具备相应风险识别能力和风险承担能力，投资于单只私募基金的金额不低于100万元且符合下列相关标准的单位和个人：</strong>
-                    <ol>
-                        <li data-i18n="modal_l1">净资产不低于1000万元的单位；</li>
-                        <li data-i18n="modal_l2">金融资产不低于300万元或者最近三年个人年均收入不低于50万元的个人。<br><small>(前款所称金融资产包括银行存款、股票、债券、基金份额、资产管理计划、银行理财产品、信托计划、保险产品、期货权益等。)</small></li>
-                    </ol>
-                </div>
-                <div class="compliance-section">
-                    <strong data-i18n="modal_s2">二、下列投资者视为合格投资者：</strong>
-                    <ol>
-                        <li data-i18n="modal_l3">社会保障基金、企业年金等养老基金、慈善基金等社会公益基金；</li>
-                        <li data-i18n="modal_l4">依法设立并在基金业协会备案的投资计划；</li>
-                        <li data-i18n="modal_l5">投资于所管理私募基金的私募基金管理人及其从业人员；</li>
-                        <li data-i18n="modal_l6">中国证监会规定的其他投资者。</li>
-                    </ol>
-                </div>
-                <p data-i18n="modal_p2">如果您继续访问或使用本网站及其所载资料，即表明您声明及保证您或您所代表的机构为“合格投资者”，并将遵守对您适用的司法区域的有关法律及法规，同意并接受以下条款及相关约束。如果您不符合“合格投资者”标准或不同意下列条款及相关约束，请勿继续访问或使用本网站及其所载信息及资料。</p>
-                <p class="warning-text" data-i18n="modal_warning">投资涉及风险，投资者应详细审阅产品的发售文件以获取进一步资料，了解有关投资所涉及的风险因素，并寻求适当的专业投资和咨询意见。产品净值及其收益存在涨跌可能，过往的产品业绩数据并不预示产品未来的业绩表现。本网站所提供的资料并非投资建议 or 咨询意见，投资者不应依赖本网站所提供的信息及资料作出投资决策。</p>
-                <p class="copyright-info" data-i18n="modal_copy">与本网站所载信息及资料有关的所有版权、专利权、知识产权及其他产权均为本公司所有。本公司概不向浏览该资料人士发出、转让或以任何方式转移任何种类的权利。</p>
-            </div>
-            <div class="compliance-footer">
-                <button id="confirm-investor" class="btn-main" data-i18n="modal_confirm">确认，我是合格投资者</button>
-                <button id="leave-site" class="btn-outline" data-i18n="modal_leave">不符合条件，离开</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Entry Loader (Static) -->
-    <div id="entry-loader" class="entry-loader">
-        <div class="loader-content">
-            <div id="decode-text" class="decode-text"></div>
-            <div class="loader-logo-wrapper">
-                <img id="loader-logo" src="./images/logo.png" alt="Parigain Logo" data-i18n="alt_logo" class="loader-logo">
-            </div>
-        </div>
-        <div class="skip-hint" data-i18n="loader_skip">Scroll to skip</div>
-    </div>
 
     <script type="module" src="./js/main.js"></script>
     <div class="back-to-top" id="back-to-top">↑</div>

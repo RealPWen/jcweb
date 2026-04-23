@@ -3,23 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="seo_title_contact">联系与招聘 | 均成基金 - 诚邀全球精英加盟</title>
+    <title data-i18n="seo_title_contact">联系我们 | 均成基金</title>
     <!-- SEO & Social Sharing -->
-    <meta name="description" data-i18n="seo_desc_contact" content="广东横琴均成私募基金管理有限公司成立于2016年，公司具备私募基金管理人资格（备案编号：P1061222），是一家以量化投资为核心的专业资产管理公司。深圳与横琴办公地址，联系方式及招聘信息。欢迎投资者预约咨询及顶尖量化人才加盟。">
-    <meta property="og:title" data-i18n="seo_og_title_contact" content="联系与招聘 | 均成基金">
-    <meta property="og:description" data-i18n="seo_og_desc_contact" content="期待与您深度交流，共建量化新坐标。">
-    <meta property="og:image" content="./images/logo.png">
+    <meta name="description" data-i18n="seo_desc_contact" content="联系均成基金。查看深圳研发与投研中心、横琴合规与业务中心办公地址、联系电话和投资者咨询邮箱。">
+    <link rel="canonical" href="https://realpwen.github.io/jcweb/contact.html">
+    <meta property="og:title" data-i18n="seo_og_title_contact" content="联系我们 | 均成基金">
+    <meta property="og:description" data-i18n="seo_og_desc_contact" content="查看均成基金深圳与横琴办公地址、联系电话和投资者咨询邮箱。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://realpwen.github.io/jcweb/images/logo.png">
+    <meta property="og:url" content="https://realpwen.github.io/jcweb/contact.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://realpwen.github.io/jcweb/images/logo.png">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "mainEntity": {
+                "@type": "Organization",
+                "name": "广东横琴均成私募基金管理有限公司",
+                "url": "https://realpwen.github.io/jcweb/",
+                "email": "contact@parigain.com",
+                "telephone": "+86-755-86525376",
+                "identifier": "P1061222",
+                "address": [
+                    {
+                        "@type": "PostalAddress",
+                        "addressLocality": "深圳市南山区",
+                        "streetAddress": "高新南九道39号湾区创新大厦B座3003房",
+                        "addressCountry": "CN"
+                    },
+                    {
+                        "@type": "PostalAddress",
+                        "addressLocality": "横琴粤澳深度合作区",
+                        "streetAddress": "琴朗道91号1911办公区",
+                        "addressCountry": "CN"
+                    }
+                ]
+            }
+        }
+    </script>
 
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="./images/favicon.png">
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script>
         (function() {
-            if (sessionStorage.getItem('complianceConfirmed')) {
+            var complianceVersion = '2026-04-21-v2';
+            if (localStorage.getItem('complianceConfirmedVersion') === complianceVersion) {
                 document.documentElement.classList.add('compliance-confirmed');
             }
         })();
@@ -32,109 +65,86 @@
     <div class="back-to-top" id="back-to-top">↑</div>
 
     <main>
-        <!-- Contact Hero -->
-        <section class="page-hero">
+        <section class="page-hero contact-hero">
             <div class="container">
-                <h1 class="page-title" data-i18n="con_hero_title">联系与招聘 <br><span class="accent">Contact & Careers</span></h1>
-                <p class="page-subtitle" data-i18n="con_hero_subtitle">无论是投资者咨询还是人才加盟，我们均期待与您深度交流。</p>
+                <span class="accent-line">Contact Parigain</span>
+                <h1 class="page-title">联系我们 <br><span class="accent">均有所成</span></h1>
+                <p class="page-subtitle">我们期待与您同行，同舟共济，均有所成。</p>
             </div>
         </section>
 
-        <!-- Office Boards -->
+        <section class="contact-info-section section-dark">
+            <div class="container">
+                <div class="contact-card-grid">
+                    <article class="contact-info-card reveal-item">
+                        <span>SHENZHEN / 深圳</span>
+                        <h3>研发与投研中心</h3>
+                        <p>深圳市南山区高新南九道 39 号湾区创新大厦 B 座 3003 房</p>
+                    </article>
+                    <article class="contact-info-card reveal-item">
+                        <span>HENGQIN / 横琴</span>
+                        <h3>合规与业务中心</h3>
+                        <p>珠海市横琴粤澳深度合作区琴朗道 91 号 1911 办公区</p>
+                    </article>
+                    <article class="contact-info-card reveal-item">
+                        <span>PHONE</span>
+                        <h3>联系电话</h3>
+                        <p><a href="tel:075586525376">0755-86525376</a></p>
+                    </article>
+                    <article class="contact-info-card reveal-item">
+                        <span>EMAIL</span>
+                        <h3>联系邮箱</h3>
+                        <p><a href="mailto:contact@parigain.com">contact@parigain.com</a></p>
+                    </article>
+                    <article class="contact-info-card reveal-item">
+                        <span>RECRUIT</span>
+                        <h3>招募邮箱</h3>
+                        <p><a href="mailto:zhaopin@parigain.com">zhaopin@parigain.com</a></p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <section class="office-section container">
+            <div class="section-header center reveal-item">
+                <span class="accent-line">Map</span>
+                <h2>办公地址</h2>
+            </div>
             <div class="office-grid">
-                <div class="office-card" data-aos="fade-up">
-                    <div class="city" data-i18n="con_city_sz">SHENZHEN / 深圳</div>
-                    <h3 data-i18n="con_sz_title">研发与投研中心</h3>
-                    <p class="address" data-i18n="con_sz_addr">深圳市南山区高新南九道39号湾区创新大厦B座3003房</p>
-                    <p class="phone" data-i18n="con_sz_phone">固定电话：0755-86525376</p>
+                <div class="office-card reveal-item">
+                    <div class="city">SHENZHEN / 深圳</div>
+                    <h3>研发与投研中心</h3>
+                    <p class="address">深圳市南山区高新南九道39号湾区创新大厦B座3003房</p>
                     <div id="map-sz" class="map-container"></div>
                 </div>
-                <div class="office-card" data-aos="fade-up" data-delay="100">
-                    <div class="city" data-i18n="con_city_hq">HENGQIN / 横琴</div>
-                    <h3 data-i18n="con_hq_title">合规与业务中心</h3>
-                    <p class="address" data-i18n="con_hq_addr">横琴粤澳深度合作区琴朗道91号1911办公区</p>
-                    <p class="phone" data-i18n="con_hq_email">联系邮箱：contact@parigain.com</p>
+                <div class="office-card reveal-item" data-delay="100">
+                    <div class="city">HENGQIN / 横琴</div>
+                    <h3>合规与业务中心</h3>
+                    <p class="address">横琴粤澳深度合作区琴朗道91号1911办公区</p>
                     <div id="map-hq" class="map-container"></div>
                 </div>
             </div>
         </section>
 
-        <!-- Recruitment Section -->
-        <section class="recruitment-section dark-bg">
+        <section class="recruitment-section section-alt">
             <div class="container recruitment-flex">
-                <div class="recruit-text">
-                    <h2 data-i18n="con_join_title">加入均成，共建量化新坐标</h2>
-                    <p data-i18n="con_join_desc">我们长期招募：量化研究员、系统开发工程师、合规风控官。如果您拥抱硬核科技，具备卓越的工程实现能力，欢迎将简历投递至：</p>
-                    <a href="mailto:zhaopin@parigain.com" class="email-link">zhaopin@parigain.com</a>
+                <div class="recruit-text reveal-item">
+                    <span class="accent-line">Careers</span>
+                    <h2>想加入均成？</h2>
+                    <p>人才招聘页面已单独整理，候选人可查看岗位方向、团队福利与简历投递方式。</p>
                 </div>
-                <div class="recruit-visual">
-                    <a href="./careers.html" class="cube-link">
-                        <div class="cube-animation" data-i18n="con_cube_join">Join Our Team</div>
-                    </a>
-                </div>
+                <a href="./careers.html" class="btn-main reveal-item">查看招聘详情</a>
             </div>
         </section>
-
-
     </main>
 
-
-
-    <!-- Compliance Modal (Static) -->
-    <div id="compliance-modal" class="compliance-overlay">
-        <div class="compliance-modal">
-            <div class="compliance-header">
-                <h3 data-i18n="modal_title">合格投资者认定</h3>
-                <div class="compliance-line"></div>
-            </div>
-            <div class="compliance-body" data-lenis-prevent>
-                <p data-i18n="modal_p1">在继续浏览本公司网站前，请您确认您或您所代表的机构是一名“合格投资者”。“合格投资者”指根据任何国家和地区的证券和投资法规所规定的有资格投资于私募证券投资基金的专业投资者。例如根据我国《私募投资基金监督管理暂行办法》的规定，合格投资者的标准如下：</p>
-                <div class="compliance-section">
-                    <strong data-i18n="modal_s1">一、具备相应风险识别能力和风险承担能力，投资于单只私募基金的金额不低于100万元且符合下列相关标准的单位和个人：</strong>
-                    <ol>
-                        <li data-i18n="modal_l1">净资产不低于1000万元的单位；</li>
-                        <li data-i18n="modal_l2">金融资产不低于300万元或者最近三年个人年均收入不低于50万元的个人。<br><small>(前款所称金融资产包括银行存款、股票、债券、基金份额、资产管理计划、银行理财产品、信托计划、保险产品、期货权益等。)</small></li>
-                    </ol>
-                </div>
-                <div class="compliance-section">
-                    <strong data-i18n="modal_s2">二、下列投资者视为合格投资者：</strong>
-                    <ol>
-                        <li data-i18n="modal_l3">社会保障基金、企业年金等养老基金、慈善基金等社会公益基金；</li>
-                        <li data-i18n="modal_l4">依法设立并在基金业协会备案的投资计划；</li>
-                        <li data-i18n="modal_l5">投资于所管理私募基金的私募基金管理人及其从业人员；</li>
-                        <li data-i18n="modal_l6">中国证监会规定的其他投资者。</li>
-                    </ol>
-                </div>
-                <p data-i18n="modal_p2">如果您继续访问或使用本网站及其所载资料，即表明您声明及保证您或您所代表的机构为“合格投资者”，并将遵守对您适用的司法区域的有关法律及法规，同意并接受以下条款及相关约束。如果您不符合“合格投资者”标准或不同意下列条款及相关约束，请勿继续访问或使用本网站及其所载信息及资料。</p>
-                <p class="warning-text" data-i18n="modal_warning">投资涉及风险，投资者应详细审阅产品的发售文件以获取进一步资料，了解有关投资所涉及的风险因素，并寻求适当的专业投资和咨询意见。产品净值及其收益存在涨跌可能，过往的产品业绩数据并不预示产品未来的业绩表现。本网站所提供的资料并非投资建议 or 咨询意见，投资者不应依赖本网站所提供的信息及资料作出投资决策。</p>
-                <p class="copyright-info" data-i18n="modal_copy">与本网站所载信息及资料有关的所有版权、专利权、知识产权及其他产权均为本公司所有。本公司概不向浏览该资料人士发出、转让或以任何方式转移任何种类的权利。</p>
-            </div>
-            <div class="compliance-footer">
-                <button id="confirm-investor" class="btn-main" data-i18n="modal_confirm">确认，我是合格投资者</button>
-                <button id="leave-site" class="btn-outline" data-i18n="modal_leave">不符合条件，离开</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Entry Loader (Static) -->
-    <div id="entry-loader" class="entry-loader">
-        <div class="loader-content">
-            <div id="decode-text" class="decode-text"></div>
-            <div class="loader-logo-wrapper">
-                <img id="loader-logo" src="./images/logo.png" alt="Parigain Logo" data-i18n="alt_logo" class="loader-logo">
-            </div>
-        </div>
-        <div class="skip-hint" data-i18n="loader_skip">Scroll to skip</div>
-    </div>
-
     <script type="text/javascript">
+        // Restrict this browser key in the AMap console by allowed domain, Referer, and usage quota.
         window._AMapSecurityConfig = {
             securityJsCode: 'c4ea0093bdf132a149058d9cbf611081',
         };
     </script>
     <script src="https://webapi.amap.com/maps?v=2.0&key=c3de1f6e226f87ae2375ab66c0259885"></script>
     <script type="module" src="./js/main.js"></script>
-    <div class="back-to-top" id="back-to-top">↑</div>
 </body>
 </html>

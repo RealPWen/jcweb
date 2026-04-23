@@ -6,6 +6,70 @@
   padding: 80px 0;
 }
 
+.contact-hero {
+  text-align: left;
+  padding: 200px 0 100px;
+}
+
+.contact-hero .page-title .accent {
+  position: static;
+  transform: none;
+  display: block;
+  font-size: inherit;
+  opacity: 1;
+  mix-blend-mode: normal;
+  letter-spacing: 0;
+}
+
+.contact-info-section {
+  padding: 110px 0;
+}
+
+.contact-card-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.contact-info-card {
+  min-height: 220px;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-info-card:nth-child(1),
+.contact-info-card:nth-child(2) {
+  grid-column: span 3;
+}
+
+.contact-info-card:nth-child(n + 3) {
+  grid-column: span 2;
+}
+
+.contact-info-card span {
+  color: var(--accent);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.contact-info-card h3 {
+  font-size: 24px;
+  margin: 36px 0 14px;
+}
+
+.contact-info-card p,
+.contact-info-card a {
+  color: var(--text-secondary);
+  line-height: 1.75;
+  word-break: break-word;
+}
+
 .office-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -15,7 +79,7 @@
 .office-card {
   background: var(--bg-secondary);
   padding: 40px;
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid var(--border-color);
   transition: var(--transition);
 }
@@ -49,7 +113,7 @@
   height: 280px;
   background: var(--bg-primary);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: 8px;
   margin-top: 24px;
   position: relative;
   overflow: hidden;
@@ -103,6 +167,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 60px;
+}
+
+.recruitment-flex .btn-main {
+  flex: 0 0 auto;
 }
 
 .recruit-text h2 {
