@@ -301,7 +301,10 @@ body.loaded:not(.compliance-pending) main {
   z-index: 10001;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0.8s,
+    background-color 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
@@ -357,6 +360,34 @@ body.loaded:not(.compliance-pending) main {
 .entry-loader.show-logo .loader-logo-wrapper {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
+}
+
+.entry-loader.logo-flight {
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.entry-loader.logo-flight .loader-logo-wrapper {
+  opacity: 1;
+  transform:
+    translate(
+      calc(-50% + var(--loader-logo-dx, 0px)),
+      calc(-50% + var(--loader-logo-dy, 0px))
+    )
+    scale(var(--loader-logo-scale, 1));
+  transition:
+    transform 0.95s cubic-bezier(0.18, 0.9, 0.2, 1),
+    opacity 0.35s ease;
+}
+
+.entry-loader.logo-flight .skip-hint {
+  opacity: 0;
+  animation: none;
+  transition: opacity 0.2s ease;
+}
+
+.nav-logo.is-logo-target-hidden {
+  opacity: 0;
 }
 
 .skip-hint {

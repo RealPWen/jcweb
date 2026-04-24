@@ -189,6 +189,43 @@ body.home-page .home-brand-hero .hero-bg-media {
   color: rgba(255, 255, 255, 0.9);
 }
 
+body.home-page .home-brand-hero .scroll-down {
+  bottom: 34px;
+  color: rgba(255, 255, 255, 0.86);
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.36));
+}
+
+body.home-page .home-brand-hero .mouse {
+  width: 28px;
+  height: 46px;
+  border: 2px solid rgba(255, 255, 255, 0.92);
+  background: rgba(12, 18, 28, 0.16);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.16),
+    0 0 28px rgba(255, 255, 255, 0.24),
+    inset 0 0 16px rgba(255, 255, 255, 0.08);
+  animation: scrollCueFloat 2.4s ease-in-out infinite;
+}
+
+body.home-page .home-brand-hero .mouse::before {
+  top: 9px;
+  width: 4px;
+  height: 8px;
+  background: #ff7a2a;
+  border-radius: 4px;
+  box-shadow: 0 0 14px rgba(255, 122, 42, 0.9);
+}
+
+@keyframes scrollCueFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(7px);
+  }
+}
+
 .slogan-hero {
   max-width: 980px;
 }
@@ -278,9 +315,9 @@ body.home-page .section-alt {
 
 .home-honors-grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 56px;
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: 64px;
+  align-items: stretch;
 }
 
 .home-honors-media {
@@ -288,11 +325,17 @@ body.home-page .section-alt {
   border-radius: 8px;
   border: 1px solid var(--border-color);
   background: var(--bg-secondary);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
 }
 
 .home-honors-media img {
   width: 100%;
   display: block;
+}
+
+.home-honors-list {
+  width: min(980px, 100%);
+  margin: 0 auto;
 }
 
 .home-honors-list ul {

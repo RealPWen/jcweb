@@ -311,7 +311,40 @@
 
   .milestone-rail {
     grid-template-columns: 1fr;
+    gap: 0;
     overflow: visible;
+    padding: 8px 0 0 28px;
+  }
+
+  .milestone-rail::before {
+    top: 8px;
+    bottom: 0;
+    left: 8px;
+    right: auto;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(180deg, rgba(243, 123, 45, 0.18), rgba(243, 123, 45, 0.86), rgba(243, 123, 45, 0.18));
+  }
+
+  .milestone {
+    min-height: 0;
+    padding: 0 0 34px 22px;
+    grid-template-rows: auto;
+    gap: 10px;
+  }
+
+  .milestone::before {
+    top: 4px;
+    left: -28px;
+  }
+
+  .milestone::after {
+    display: none;
+  }
+
+  .milestone span {
+    max-width: none;
+    padding-top: 0;
   }
 
   .btn-main,

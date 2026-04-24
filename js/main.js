@@ -34,8 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         requestAnimationFrame(raf);
 
+        let isDispatchingLenisScroll = false;
         window.lenisInstance.on('scroll', () => {
+            if (isDispatchingLenisScroll) return;
+            isDispatchingLenisScroll = true;
             window.dispatchEvent(new Event('scroll'));
+            isDispatchingLenisScroll = false;
         });
     }
 
@@ -358,6 +362,67 @@ document.addEventListener('DOMContentLoaded', () => {
     const skipHint = document.querySelector('.skip-hint');
     if (skipHint) skipHint.setAttribute('data-i18n', 'loader_skip');
 
+    const finishEntryLoader = (loader, navLogo) => {
+        if (!loader) return;
+
+        navLogo?.classList.remove('is-logo-target-hidden');
+        loader.style.opacity = '0';
+        setTimeout(() => {
+            loader.classList.remove('active', 'show-logo', 'logo-flight');
+            loader.style.opacity = '';
+            document.body.style.overflow = 'auto';
+            if (window.lenisInstance) window.lenisInstance.start();
+        }, 420);
+    };
+
+    const animateLoaderLogoToNav = (loader) => {
+        const logoWrapper = document.querySelector('.loader-logo-wrapper');
+        const loaderLogo = document.getElementById('loader-logo');
+        const navLogo = document.querySelector('.nav-logo');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!loader || !logoWrapper || !loaderLogo || !navLogo || reduceMotion) {
+            finishEntryLoader(loader, navLogo);
+            return;
+        }
+
+        const sourceRect = loaderLogo.getBoundingClientRect();
+        const targetRect = navLogo.getBoundingClientRect();
+        if (!sourceRect.width || !sourceRect.height || !targetRect.width || !targetRect.height) {
+            finishEntryLoader(loader, navLogo);
+            return;
+        }
+
+        const sourceCenterX = sourceRect.left + sourceRect.width / 2;
+        const sourceCenterY = sourceRect.top + sourceRect.height / 2;
+        const targetCenterX = targetRect.left + targetRect.width / 2;
+        const targetCenterY = targetRect.top + targetRect.height / 2;
+        const targetScale = targetRect.height / sourceRect.height;
+
+        logoWrapper.style.setProperty('--loader-logo-dx', `${targetCenterX - sourceCenterX}px`);
+        logoWrapper.style.setProperty('--loader-logo-dy', `${targetCenterY - sourceCenterY}px`);
+        logoWrapper.style.setProperty('--loader-logo-scale', targetScale.toFixed(4));
+        navLogo.classList.add('is-logo-target-hidden');
+
+        requestAnimationFrame(() => {
+            loader.classList.add('logo-flight');
+        });
+
+        let isDone = false;
+        const complete = () => {
+            if (isDone) return;
+            isDone = true;
+            logoWrapper.removeEventListener('transitionend', handleTransitionEnd);
+            finishEntryLoader(loader, navLogo);
+        };
+        const handleTransitionEnd = (event) => {
+            if (event.propertyName === 'transform') complete();
+        };
+
+        logoWrapper.addEventListener('transitionend', handleTransitionEnd);
+        setTimeout(complete, 1150);
+    };
+
     const runDecode = (targetText) => {
         const decodeEl = document.getElementById('decode-text');
         if (!decodeEl) return;
@@ -371,12 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     setTimeout(() => {
                         const loader = document.getElementById('entry-loader');
                         if (loader) {
-                            loader.style.opacity = '0';
-                            setTimeout(() => {
-                                loader.classList.remove('active');
-                                document.body.style.overflow = 'auto';
-                                if (window.lenisInstance) window.lenisInstance.start();
-                            }, 800);
+                            animateLoaderLogoToNav(loader);
                         }
                     }, 2000);
                 }, 500);
