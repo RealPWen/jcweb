@@ -62,6 +62,14 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .strategy-hover-grid {
+    gap: 14px;
+  }
+
+  .strategy-hover-card {
+    min-height: 500px;
+  }
+
   .strategy-card-grid,
   .advantage-card-grid,
   .career-value-grid {
@@ -120,6 +128,25 @@
 
   .split-text, .split-visual {
     width: 100%;
+  }
+
+  .strategy-philosophy-section {
+    padding: 82px 0;
+  }
+
+  .strategy-hover-grid {
+    flex-direction: column;
+  }
+
+  .strategy-hover-card {
+    flex: 1 1 auto;
+    min-height: 420px;
+  }
+
+  .strategy-hover-card:hover,
+  .strategy-hover-card:focus,
+  .strategy-hover-card:focus-within {
+    flex: 1 1 auto;
   }
 
   .gridless-item {
@@ -287,60 +314,52 @@
   }
 
   .milestone-rail {
-    grid-template-columns: 1fr;
-    gap: 0;
-    overflow: visible;
-    min-height: 0;
-    padding: 8px 0 0 28px;
-    background: none;
+    --milestone-card-width: min(78vw, 340px);
+    --milestone-gap: 18px;
   }
 
-  .milestone-trend-line {
+  .milestone-axis {
+    margin-bottom: 24px;
+    overflow-x: auto;
+    grid-template-columns: repeat(7, 72px);
+    justify-content: start;
+    padding: 24px 4px 8px;
+    scrollbar-width: none;
+  }
+
+  .milestone-axis::-webkit-scrollbar {
     display: none;
   }
 
-  .milestone-rail::before {
-    display: block;
-    top: 8px;
-    bottom: 0;
-    left: 8px;
-    right: auto;
-    width: 2px;
-    height: auto;
-    background: linear-gradient(180deg, rgba(243, 123, 45, 0.18), rgba(243, 123, 45, 0.86), rgba(243, 123, 45, 0.18));
+  .milestone-axis::before,
+  .milestone-axis::after {
+    left: 36px;
+    right: 36px;
+    top: 33px;
   }
 
-  .milestone {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: auto;
-    min-height: 0;
-    padding: 0 0 34px 22px;
-    grid-template-rows: auto;
+  .milestone-axis button {
+    font-size: 13px;
     gap: 10px;
-    transform: none;
   }
 
-  .milestone::before {
-    content: '';
-    top: 4px;
-    left: -28px;
-    transform: none;
+  .milestone-stage {
+    padding-bottom: 34px;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
   }
 
-  .milestone::after {
-    display: none;
+  .milestone-slide {
+    min-height: 220px;
+    padding: 34px 28px;
   }
 
-  .milestone span {
-    position: static;
-    max-width: none;
-    padding-top: 0;
+  .milestone-slide strong {
+    font-size: 50px;
   }
 
-  .milestone strong {
-    position: static;
+  .milestone-slide span {
+    font-size: 18px;
   }
 
   .btn-main,

@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li><a href="./index.html" data-page="index">官网首页</a></li>
                 <li><a href="./strategy.html" data-page="strategy">投资策略</a></li>
                 <li><a href="./about.html" data-page="about">关于均成</a></li>
-                <li><a href="./careers.html" data-page="careers">人才招聘</a></li>
+                <li><a href="./careers.html" data-page="careers">加入我们</a></li>
                 <li><a href="./contact.html" data-page="contact" class="btn-primary">联系我们</a></li>
             </ul>
             <div class="menu-toggle" id="mobile-menu">
@@ -74,6 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="./images/logo.png" alt="均成基金 LOGO" class="footer-logo">
                 </div>
                 <p>坚持投资者优先的国内量化 CTA 策略先行者</p>
+                <div class="footer-qr">
+                    <img src="./images/connect-code.png" alt="均成基金二维码" loading="lazy" decoding="async">
+                    <span>关注均成基金</span>
+                </div>
             </div>
             <div class="footer-col links">
                 <h4>快速链接</h4>
@@ -385,6 +389,101 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initOfficeCarousel();
 
+    const initMilestoneCarousel = () => {
+        document.querySelectorAll('[data-milestone-carousel]').forEach((carousel) => {
+            const slides = Array.from(carousel.querySelectorAll('.milestone-slide'));
+            const dots = Array.from(carousel.querySelectorAll('[data-milestone-dot]'));
+            const stage = carousel.querySelector('.milestone-stage');
+            const track = carousel.querySelector('.milestone-track');
+            if (!slides.length) return;
+
+            let index = 0;
+            let timerId;
+            let dragStartX = 0;
+            let dragStartIndex = 0;
+            let isDragging = false;
+
+            const getStepWidth = () => {
+                const slideWidth = slides[0]?.getBoundingClientRect().width || 0;
+                const gap = Number.parseFloat(window.getComputedStyle(track).columnGap) || 0;
+                return slideWidth + gap;
+            };
+
+            const goTo = (nextIndex) => {
+                index = (nextIndex + slides.length) % slides.length;
+                carousel.style.setProperty('--milestone-index', index);
+                carousel.style.setProperty('--milestone-drag-x', '0px');
+                slides.forEach((slide, slideIndex) => {
+                    slide.classList.toggle('is-active', slideIndex === index);
+                });
+                dots.forEach((dot, dotIndex) => {
+                    dot.classList.toggle('is-active', dotIndex === index);
+                    dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
+                });
+                dots[index]?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+            };
+
+            const start = () => {
+                window.clearInterval(timerId);
+                timerId = window.setInterval(() => goTo(index + 1), 2200);
+            };
+
+            dots.forEach((dot, dotIndex) => {
+                dot.addEventListener('click', () => {
+                    goTo(dotIndex);
+                    start();
+                });
+            });
+
+            carousel.addEventListener('mouseenter', () => window.clearInterval(timerId));
+            carousel.addEventListener('mouseleave', start);
+
+            stage?.addEventListener('pointerdown', (event) => {
+                if (event.button !== undefined && event.button !== 0) return;
+                isDragging = true;
+                dragStartX = event.clientX;
+                dragStartIndex = index;
+                window.clearInterval(timerId);
+                carousel.classList.add('is-dragging');
+                stage.setPointerCapture?.(event.pointerId);
+            });
+
+            stage?.addEventListener('pointermove', (event) => {
+                if (!isDragging) return;
+                carousel.style.setProperty('--milestone-drag-x', `${event.clientX - dragStartX}px`);
+            });
+
+            const finishDrag = (event) => {
+                if (!isDragging) return;
+                const dragDistance = event.clientX - dragStartX;
+                const nextIndex = Math.min(
+                    slides.length - 1,
+                    Math.max(0, dragStartIndex - Math.round(dragDistance / getStepWidth()))
+                );
+                isDragging = false;
+                carousel.classList.remove('is-dragging');
+                stage?.releasePointerCapture?.(event.pointerId);
+                goTo(nextIndex);
+                start();
+            };
+
+            stage?.addEventListener('pointerup', finishDrag);
+            stage?.addEventListener('pointercancel', finishDrag);
+            stage?.addEventListener('lostpointercapture', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                carousel.classList.remove('is-dragging');
+                carousel.style.setProperty('--milestone-drag-x', '0px');
+                start();
+            });
+
+            goTo(0);
+            start();
+        });
+    };
+
+    initMilestoneCarousel();
+
     // Reveal on Scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -395,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-    const revealElements = document.querySelectorAll('.reveal-item, .stats-flex, .domain-card, .section-header, .partner-category-card, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow, .info-card, .honor-card, .job-card, .careers-hero, .image-copy-panel, .home-honors-media, .home-honors-list, .advantage-card, .milestone, .team-photo, .team-copy, .career-value-card, .office-carousel, .recruit-system-panel, .contact-info-card');
+    const revealElements = document.querySelectorAll('.reveal-item, .stats-flex, .domain-card, .section-header, .partner-category-card, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow, .info-card, .honor-card, .job-card, .careers-hero, .image-copy-panel, .home-honors-media, .home-honors-list, .advantage-card, .milestone-slide, .team-photo, .team-copy, .career-value-card, .office-carousel, .recruit-system-panel, .contact-info-card');
     revealElements.forEach(el => {
         el.classList.add('reveal-item');
         observer.observe(el);

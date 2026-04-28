@@ -160,8 +160,7 @@ body.home-page .home-brand-hero .hero-bg-media {
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 48%, rgba(24, 16, 20, 0.38) 0%, rgba(24, 16, 20, 0.18) 34%, rgba(24, 16, 20, 0) 64%),
-    linear-gradient(180deg, rgba(25, 18, 22, 0.18) 0%, rgba(25, 18, 22, 0) 46%);
+    radial-gradient(circle at 50% 48%, rgba(24, 16, 20, 0.18) 0%, rgba(24, 16, 20, 0.08) 34%, rgba(24, 16, 20, 0) 64%);
 }
 
 .home-brand-hero .hero-bg-media img {
@@ -310,6 +309,35 @@ body.home-page .section-alt {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+}
+
+.strategy-card {
+  min-height: 360px;
+  padding-top: 178px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.strategy-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.18) 38%, rgba(255, 255, 255, 0.94) 62%, rgba(255, 255, 255, 0.98) 100%),
+    var(--strategy-card-bg) center top / 100% auto no-repeat;
+  opacity: 0.96;
+}
+
+.strategy-card-cta {
+  --strategy-card-bg: url('../images/strategy-card-cta.png');
+}
+
+.strategy-card-stock {
+  --strategy-card-bg: url('../images/strategy-card-neutral.png');
+}
+
+.strategy-card-neutral {
+  --strategy-card-bg: url('../images/strategy-card-stock.png');
 }
 
 .strategy-index {

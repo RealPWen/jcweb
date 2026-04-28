@@ -78,6 +78,29 @@ footer::before {
   white-space: nowrap;
 }
 
+.footer-qr {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.footer-qr img {
+  width: 112px;
+  height: 112px;
+  display: block;
+  border-radius: 8px;
+  background: #fff;
+  padding: 8px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.1);
+}
+
+.footer-qr span {
+  color: var(--text-secondary);
+  font-size: 14px;
+  letter-spacing: 0.8px;
+}
+
 .footer-bottom {
   padding: 24px 0;
   border-top: 1px solid var(--border-color);
