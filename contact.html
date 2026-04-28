@@ -61,7 +61,11 @@
 <body class="contact-page compliance-pending">
     <div class="custom-cursor"></div>
     <div class="contact-scroll-bg" aria-hidden="true">
-        <img src="./images/contact-hero-wall.jpg" alt="">
+        <picture>
+            <source type="image/avif" srcset="./images/contact-hero-wall-800.avif 800w, ./images/contact-hero-wall-1200.avif 1200w, ./images/contact-hero-wall-1600.avif 1600w" sizes="100vw">
+            <source type="image/webp" srcset="./images/contact-hero-wall-800.webp 800w, ./images/contact-hero-wall-1200.webp 1200w, ./images/contact-hero-wall-1600.webp 1600w" sizes="100vw">
+            <img src="./images/contact-hero-wall-1600.webp" alt="" decoding="async">
+        </picture>
     </div>
 
     <!-- Back to Top Button -->

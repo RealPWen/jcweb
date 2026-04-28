@@ -125,11 +125,15 @@
   margin: 0;
 }
 
+.office-carousel-slide picture,
 .office-carousel-slide img {
   width: 100%;
+  display: block;
+}
+
+.office-carousel-slide img {
   height: clamp(360px, 58vw, 680px);
   object-fit: cover;
-  display: block;
 }
 
 .office-carousel-btn {
@@ -202,7 +206,10 @@
   border: 1px solid var(--border-color);
   background:
     linear-gradient(90deg, rgba(10, 10, 11, 0.88), rgba(10, 10, 11, 0.62)),
-    url('../images/global_connections.png') center/cover;
+    image-set(
+      url('../images/global_connections-1200.avif') type('image/avif'),
+      url('../images/global_connections-1200.webp') type('image/webp')
+    ) center/cover;
 }
 
 .recruit-system-panel h2 {

@@ -113,9 +113,17 @@
   transition: filter 0.18s linear;
 }
 
+.home-scroll-bg picture,
 .home-scroll-bg img {
   width: 100%;
   height: 100%;
+}
+
+.home-scroll-bg picture {
+  display: block;
+}
+
+.home-scroll-bg img {
   object-fit: cover;
   object-position: center center;
   transform: scale(calc(1.12 - (var(--home-bg-progress) * 0.1)));
@@ -277,10 +285,14 @@ body.home-page .section-alt {
   overflow: hidden;
 }
 
+.image-copy-media picture,
 .image-copy-media img {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.image-copy-media img {
   object-fit: cover;
 }
 
@@ -496,13 +508,19 @@ body.home-page .section-alt {
 .audience-entry-card.join-card {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.72)),
-    url('../images/global_connections.png') center/cover;
+    image-set(
+      url('../images/global_connections-1200.avif') type('image/avif'),
+      url('../images/global_connections-1200.webp') type('image/webp')
+    ) center/cover;
 }
 
 .audience-entry-card.contact-card {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.72)),
-    url('../images/office_hq.png') center/cover;
+    image-set(
+      url('../images/office_hq-1200.avif') type('image/avif'),
+      url('../images/office_hq-1200.webp') type('image/webp')
+    ) center/cover;
 }
 
 .audience-entry-card.join-card span,
