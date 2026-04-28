@@ -300,6 +300,7 @@
   }
 
   .milestone-rail::before {
+    display: block;
     top: 8px;
     bottom: 0;
     left: 8px;
@@ -322,6 +323,7 @@
   }
 
   .milestone::before {
+    content: '';
     top: 4px;
     left: -28px;
     transform: none;

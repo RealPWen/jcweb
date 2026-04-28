@@ -128,14 +128,30 @@
 
 /* --- Timeline Styles --- */
 .honors-timeline {
+  --honors-line-x: 28px;
+  --honors-item-offset: 84px;
   display: flex;
   flex-direction: column;
   gap: 32px;
   position: relative;
   max-width: 800px;
   margin: 0 auto;
-  padding-left: 40px;
-  border-left: 2px dashed rgba(255, 139, 61, 0.4);
+  padding-left: var(--honors-item-offset);
+}
+
+.honors-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--honors-line-x);
+  width: 2px;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255, 139, 61, 0.48) 0 8px,
+    transparent 8px 14px
+  );
+  transform: translateX(-50%);
 }
 
 .timeline-item {
@@ -149,7 +165,7 @@
 }
 
 .timeline-item:hover {
-  transform: translateX(10px);
+  transform: translateY(-2px);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
   border-color: rgba(255, 139, 61, 0.42);
 }
@@ -157,13 +173,14 @@
 .timeline-item::before {
   content: '';
   position: absolute;
-  left: -47px;
+  left: calc(var(--honors-line-x) - var(--honors-item-offset));
   top: 40px;
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #fff;
-  border: 2px solid #ff8b3d;
+  border: 3px solid #ff8b3d;
+  transform: translate(-50%, -50%);
   transition: 0.3s ease;
 }
 
@@ -278,13 +295,13 @@
 .about-hero {
   position: relative;
   isolation: isolate;
-  overflow: visible;
+  overflow: hidden;
   min-height: 680px;
   display: flex;
   align-items: center;
   text-align: left;
   padding: 190px 0 135px;
-  background: #fff;
+  background: var(--section-dark-bg);
 }
 
 .about-hero::before,
@@ -295,6 +312,7 @@
   right: 0;
   pointer-events: none;
   background-image:
+    linear-gradient(180deg, rgba(248, 250, 252, 0) 72%, rgba(248, 250, 252, 1) 100%),
     linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.9) 35%, rgba(255, 255, 255, 0.5) 54%, rgba(255, 255, 255, 0.06) 100%),
     url('../images/about-hero-building.png');
   background-size: max(1440px, 100vw) auto;
@@ -308,6 +326,7 @@
 }
 
 .about-hero::after {
+  display: none;
   top: 66%;
   height: 440px;
   z-index: -1;
@@ -329,7 +348,7 @@
 }
 
 body.about-page .about-profile-section {
-  background: rgba(248, 250, 252, 0.86);
+  background: var(--section-dark-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
@@ -445,7 +464,7 @@ body.about-page .about-profile-section {
   right: 0;
   bottom: 72px;
   height: 1px;
-  background: rgba(148, 163, 184, 0.16);
+  display: none;
 }
 
 .milestone-trend-line {
@@ -465,6 +484,14 @@ body.about-page .about-profile-section {
   vector-effect: non-scaling-stroke;
 }
 
+.milestone-trend-dots circle {
+  fill: var(--accent);
+  stroke: rgba(243, 123, 45, 0.13);
+  stroke-width: 14;
+  filter: drop-shadow(0 8px 14px rgba(243, 123, 45, 0.2));
+  vector-effect: non-scaling-stroke;
+}
+
 .milestone {
   position: absolute;
   left: var(--point-x);
@@ -476,7 +503,7 @@ body.about-page .about-profile-section {
 }
 
 .milestone::before {
-  content: '';
+  content: none;
   position: absolute;
   top: 0;
   left: 0;
@@ -600,7 +627,7 @@ body.about-page .about-profile-section {
 
   .about-hero::before {
     background-image:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.68) 42%, rgba(255, 255, 255, 0.18) 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.68) 42%, rgba(248, 250, 252, 0.96) 100%),
       linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.2)),
       url('../images/about-hero-building.png');
   }
