@@ -195,6 +195,14 @@ body.home-page .home-brand-hero .hero-bg-media {
   letter-spacing: 0;
 }
 
+.brand-slogan span {
+  white-space: nowrap;
+}
+
+.brand-slogan span + span::before {
+  content: '，';
+}
+
 .brand-slogan-en {
   margin-top: 20px;
   font-size: clamp(15px, 1.35vw, 22px);

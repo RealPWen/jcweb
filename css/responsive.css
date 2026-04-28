@@ -283,7 +283,14 @@
   }
 
   .brand-slogan {
-    font-size: clamp(38px, 11vw, 58px);
+    display: grid;
+    gap: 6px;
+    font-size: clamp(38px, 11vw, 54px);
+    line-height: 1.04;
+  }
+
+  .brand-slogan span + span::before {
+    content: none;
   }
 
   .brand-slogan-en {
