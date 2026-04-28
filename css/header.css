@@ -24,7 +24,8 @@ header.scrolled {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-body.home-page header:not(.scrolled) {
+body.home-page header:not(.scrolled),
+body.contact-page header:not(.scrolled) {
   background-color: transparent;
   border-bottom-color: transparent;
   box-shadow: none;
@@ -32,27 +33,35 @@ body.home-page header:not(.scrolled) {
   -webkit-backdrop-filter: none;
 }
 
-body.home-page header:not(.scrolled) .nav-logo {
-  filter: drop-shadow(0 8px 18px rgba(35, 18, 12, 0.24));
+body.home-page header:not(.scrolled) .nav-logo,
+body.contact-page header:not(.scrolled) .nav-logo {
+  filter: drop-shadow(0 8px 18px rgba(35, 18, 12, 0.36));
 }
 
-body.home-page header:not(.scrolled) .nav-links a:not(.btn-primary) {
-  color: rgba(255, 255, 255, 0.86);
+body.home-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary),
+body.contact-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary) {
+  color: rgba(255, 255, 255, 0.92);
   font-weight: 700;
-  text-shadow: 0 2px 10px rgba(35, 18, 12, 0.34);
+  text-shadow: 0 2px 12px rgba(35, 18, 12, 0.48);
 }
 
-body.home-page header:not(.scrolled) .nav-links a:not(.btn-primary):hover,
-body.home-page header:not(.scrolled) .nav-links a:not(.btn-primary).active {
+body.home-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary):hover,
+body.home-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary).active,
+body.contact-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary):hover,
+body.contact-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary).active {
   background: rgba(255, 255, 255, 0.16);
   color: #fff;
 }
 
-body.home-page header:not(.scrolled) .lang-toggle-btn {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.34);
-  color: #fff;
-  box-shadow: 0 8px 20px rgba(35, 18, 12, 0.16);
+body.contact-page header:not(.scrolled) .nav-links:not(.active) .btn-primary {
+  background: rgba(243, 123, 45, 0.92);
+  color: #111827 !important;
+  box-shadow: 0 14px 32px rgba(20, 12, 8, 0.22);
+}
+
+body.home-page header:not(.scrolled) .menu-toggle:not(.active) span,
+body.contact-page header:not(.scrolled) .menu-toggle:not(.active) span {
+  background: #fff;
 }
 
 nav {
@@ -108,35 +117,6 @@ header.scrolled .nav-logo {
   background-color: #ff8738;
   color: #111827 !important;
   box-shadow: 0 14px 30px rgba(243, 123, 45, 0.32);
-}
-
-/* --- Language Toggle --- */
-.lang-toggle-btn {
-  background: #fff;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  color: #475569;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-family: inherit;
-  cursor: pointer;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 60px;
-}
-
-.lang-toggle-btn:hover {
-  background: rgba(243, 123, 45, 0.1);
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* Ensure toggle stays visible on mobile links if needed */
-.nav-links.active .lang-switch-li {
-  display: block;
-  margin-top: 20px;
 }
 
 /* --- Mobile Menu --- */

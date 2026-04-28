@@ -2,20 +2,6 @@
    RESPONSIVE - All Media Queries
    ============================================= */
 
-/* ---- Tablet (max-width: 1200px) ---- */
-@media (max-width: 1200px) {
-  .chart-visual {
-    width: 400px;
-    height: 400px;
-  }
-  .floating-label {
-    gap: 8px;
-  }
-  .floating-label .p-num {
-    font-size: 28px;
-  }
-}
-
 /* ---- Tablet (max-width: 1024px) ---- */
 @media (max-width: 1024px) {
   /* Header & Nav */
@@ -110,24 +96,6 @@
     gap: 40px;
   }
 
-  /* Strategy */
-  .info-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .detail-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .chart-container {
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .strategy-detail-box {
-    padding: 30px;
-  }
-
   /* About */
   .honors-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -178,13 +146,22 @@
     padding: 42px;
   }
 
-  .office-life-strip {
-    grid-template-columns: 1fr;
+  .office-carousel-slide img {
+    height: 320px;
   }
 
-  .office-life-strip img,
-  .office-life-strip img:first-child {
-    height: 280px;
+  .office-carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+  }
+
+  .office-carousel-btn-prev {
+    left: 14px;
+  }
+
+  .office-carousel-btn-next {
+    right: 14px;
   }
 
   .recruit-system-panel {
@@ -313,7 +290,13 @@
     grid-template-columns: 1fr;
     gap: 0;
     overflow: visible;
+    min-height: 0;
     padding: 8px 0 0 28px;
+    background: none;
+  }
+
+  .milestone-trend-line {
+    display: none;
   }
 
   .milestone-rail::before {
@@ -327,15 +310,21 @@
   }
 
   .milestone {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
     min-height: 0;
     padding: 0 0 34px 22px;
     grid-template-rows: auto;
     gap: 10px;
+    transform: none;
   }
 
   .milestone::before {
     top: 4px;
     left: -28px;
+    transform: none;
   }
 
   .milestone::after {
@@ -343,8 +332,13 @@
   }
 
   .milestone span {
+    position: static;
     max-width: none;
     padding-top: 0;
+  }
+
+  .milestone strong {
+    position: static;
   }
 
   .btn-main,
@@ -368,24 +362,6 @@
 
   .page-subtitle {
     font-size: 16px;
-  }
-
-  /* Chart */
-  .chart-visual {
-    width: 320px;
-    height: 320px;
-    flex-direction: column;
-  }
-  .floating-label {
-    position: static;
-    width: 100%;
-    margin-top: 10px;
-    transform: none !important;
-    justify-content: center;
-  }
-  .chart-container {
-    flex-direction: column;
-    padding-bottom: 40px;
   }
 
   /* Entry Loader */
@@ -452,6 +428,10 @@
     padding: 26px;
   }
 
+  .career-value-card.career-value-card-media {
+    padding: 0;
+  }
+
   .section-header h2 {
     font-size: 32px;
   }
@@ -465,12 +445,8 @@
     font-size: 60px;
   }
 
-  /* Info & Chart */
+  /* Info */
   .info-grid {
     grid-template-columns: 1fr;
-  }
-  .chart-visual {
-    width: 280px;
-    height: 280px;
   }
 }

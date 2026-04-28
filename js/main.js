@@ -1,22 +1,8 @@
-import { TRANSLATIONS } from './translations.js';
+import { AWARDS_BY_YEAR } from './awards.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const COMPLIANCE_VERSION = '2026-04-21-v2';
     const COMPLIANCE_STORAGE_KEY = 'complianceConfirmedVersion';
-
-    const HTML_TRANSLATION_KEYS = new Set([
-        'footer_email',
-        'footer_copy',
-        'modal_l2',
-        'hero_s1_title',
-        'hero_s2_title',
-        'hero_s3_title',
-        'hero_s4_title',
-        'abt_hero_title',
-        'str_hero_title',
-        'con_hero_title',
-        'rec_hero_title'
-    ]);
 
     document.body.classList.add('loaded');
     // 0. Global Smooth Scroll (Lenis)
@@ -55,52 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    let currentLang = localStorage.getItem('siteLanguage') || 'zh';
-
     const isComplianceConfirmed = () => localStorage.getItem(COMPLIANCE_STORAGE_KEY) === COMPLIANCE_VERSION;
-
-    const updateLanguageElements = () => {
-        document.documentElement.lang = currentLang === 'en' ? 'en' : 'zh-CN';
-
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            const translation = TRANSLATIONS[currentLang][key];
-            if (translation) {
-                if (el.tagName === 'TITLE') {
-                    document.title = translation;
-                } else if (el.tagName === 'META') {
-                    el.setAttribute('content', translation);
-                } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = translation;
-                } else if (el.tagName === 'IMG') {
-                    el.alt = translation;
-                } else if (HTML_TRANSLATION_KEYS.has(key)) {
-                    el.innerHTML = translation;
-                } else {
-                    el.textContent = translation;
-                }
-            }
-        });
-        
-        const langToggle = document.getElementById('lang-toggle');
-        if (langToggle) {
-            langToggle.textContent = currentLang === 'zh' ? 'EN' : '中文';
-        }
-
-        if (currentLang === 'en') {
-            document.body.classList.add('lang-en');
-        } else {
-            document.body.classList.remove('lang-en');
-        }
-    };
-
-    const toggleLanguage = () => {
-        currentLang = currentLang === 'zh' ? 'en' : 'zh';
-        localStorage.setItem('siteLanguage', currentLang);
-        location.reload();
-    };
-
-    window.toggleLanguage = toggleLanguage;
 
     // 0.2 Global Components
     const HEADER_HTML = `
@@ -108,16 +49,15 @@ document.addEventListener('DOMContentLoaded', () => {
         <nav class="container">
             <div class="logo">
                 <a href="./index.html">
-                    <img src="./images/logo.png" alt="Parigain Logo" data-i18n="alt_logo" class="nav-logo">
+                    <img src="./images/logo.png" alt="均成基金 LOGO" class="nav-logo">
                 </a>
             </div>
             <ul class="nav-links">
-                <li><a href="./index.html" data-page="index" data-i18n="nav_home">${TRANSLATIONS[currentLang]['nav_home']}</a></li>
-                <li><a href="./strategy.html" data-page="strategy" data-i18n="nav_strategy">${TRANSLATIONS[currentLang]['nav_strategy']}</a></li>
-                <li><a href="./about.html" data-page="about" data-i18n="nav_about">${TRANSLATIONS[currentLang]['nav_about']}</a></li>
-                <li><a href="./careers.html" data-page="careers" data-i18n="nav_careers">${TRANSLATIONS[currentLang]['nav_careers']}</a></li>
-                <li><a href="./contact.html" data-page="contact" class="btn-primary" data-i18n="nav_contact">${TRANSLATIONS[currentLang]['nav_contact']}</a></li>
-                <li class="lang-switch-li"><button id="lang-toggle" class="lang-toggle-btn" onclick="toggleLanguage()">${currentLang === 'zh' ? 'EN' : '中文'}</button></li>
+                <li><a href="./index.html" data-page="index">官网首页</a></li>
+                <li><a href="./strategy.html" data-page="strategy">投资策略</a></li>
+                <li><a href="./about.html" data-page="about">关于均成</a></li>
+                <li><a href="./careers.html" data-page="careers">人才招聘</a></li>
+                <li><a href="./contact.html" data-page="contact" class="btn-primary">联系我们</a></li>
             </ul>
             <div class="menu-toggle" id="mobile-menu">
                 <span></span>
@@ -131,36 +71,36 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="container footer-top">
             <div class="footer-col brand">
                 <div class="logo">
-                    <img src="./images/logo.png" alt="Parigain Logo" data-i18n="alt_logo" class="footer-logo">
+                    <img src="./images/logo.png" alt="均成基金 LOGO" class="footer-logo">
                 </div>
-                <p data-i18n="footer_desc">${TRANSLATIONS[currentLang]['footer_desc']}</p>
+                <p>坚持投资者优先的国内量化 CTA 策略先行者</p>
             </div>
             <div class="footer-col links">
-                <h4 data-i18n="footer_links">${TRANSLATIONS[currentLang]['footer_links']}</h4>
+                <h4>快速链接</h4>
                 <ul>
-                    <li><a href="./index.html" data-i18n="nav_home">${TRANSLATIONS[currentLang]['nav_home']}</a></li>
-                    <li><a href="./strategy.html" data-i18n="nav_strategy">${TRANSLATIONS[currentLang]['nav_strategy']}</a></li>
-                    <li><a href="./about.html" data-i18n="nav_about">${TRANSLATIONS[currentLang]['nav_about']}</a></li>
-                    <li><a href="./careers.html" data-i18n="nav_careers">${TRANSLATIONS[currentLang]['nav_careers']}</a></li>
-                    <li><a href="./contact.html" data-i18n="nav_contact">${TRANSLATIONS[currentLang]['nav_contact']}</a></li>
+                    <li><a href="./index.html">官网首页</a></li>
+                    <li><a href="./strategy.html">投资策略</a></li>
+                    <li><a href="./about.html">关于均成</a></li>
+                    <li><a href="./careers.html">人才招聘</a></li>
+                    <li><a href="./contact.html">联系我们</a></li>
                 </ul>
             </div>
             <div class="footer-col contact">
-                <h4 data-i18n="footer_contact">${TRANSLATIONS[currentLang]['footer_contact']}</h4>
-                <p data-i18n="footer_email">${TRANSLATIONS[currentLang]['footer_email']}</p>
+                <h4>联系我们</h4>
+                <p>邮箱: contact@parigain.com<br>招聘: zhaopin@parigain.com<br>电话: 0755-86525376</p>
                 <div class="locations">
-                    <span data-i18n="footer_location">${TRANSLATIONS[currentLang]['footer_location']}</span>
+                    <span>深圳 · 横琴</span>
                 </div>
             </div>
         </div>
         <div class="risk-disclosure" id="risk-disclosure">
             <div class="container">
-                <p data-i18n="footer_risk">${TRANSLATIONS[currentLang]['footer_risk']}</p>
+                <p>风险揭示：私募基金投资具有较高风险，投资者在签署基金合同前应仔细阅读招募说明书、基金合同等文件，充分了解基金的风险收益特征。均成基金不承诺基金投资收益，本金不受损失，过往业绩不预示其未来表现。投资需谨慎。</p>
             </div>
         </div>
         <div class="footer-bottom">
             <div class="container">
-                <p data-i18n="footer_copy">${TRANSLATIONS[currentLang]['footer_copy']}</p>
+                <p>&copy; 2026 广东横琴均成私募基金管理有限公司 | 备案编号：P1061222 | <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2020139886号</a></p>
             </div>
         </div>
     </footer>`;
@@ -169,51 +109,51 @@ document.addEventListener('DOMContentLoaded', () => {
     <div id="compliance-modal" class="compliance-overlay" role="dialog" aria-modal="true" aria-labelledby="compliance-title">
         <div class="compliance-modal">
             <div class="compliance-header">
-                <span class="compliance-kicker" data-i18n="modal_kicker">Investor Access</span>
-                <h3 id="compliance-title" data-i18n="modal_title">合格投资者认定</h3>
-                <p class="compliance-summary" data-i18n="modal_summary">本网站仅面向合格投资者。请确认您符合相关认定标准，并已了解私募基金投资风险。</p>
+                <span class="compliance-kicker">Investor Access</span>
+                <h3 id="compliance-title">合格投资者认定</h3>
+                <p class="compliance-summary">本网站仅面向合格投资者。请确认您符合相关认定标准，并已了解私募基金投资风险。</p>
                 <div class="compliance-quick-facts">
-                    <span data-i18n="modal_fact_private">私募基金</span>
-                    <span data-i18n="modal_fact_qualified">合格投资者准入</span>
-                    <span data-i18n="modal_fact_risk">投资有风险</span>
+                    <span>私募基金</span>
+                    <span>合格投资者准入</span>
+                    <span>投资有风险</span>
                 </div>
             </div>
             <div class="compliance-body" data-lenis-prevent>
                 <details class="compliance-section" open>
-                    <summary data-i18n="modal_detail_qualification">合格投资者标准</summary>
-                    <p data-i18n="modal_p1">在继续浏览本公司网站前，请您确认您或您所代表的机构是一名“合格投资者”。“合格投资者”指根据任何国家和地区的证券和投资法规所规定的有资格投资于私募证券投资基金的专业投资者。例如根据我国《私募投资基金监督管理暂行办法》的规定，合格投资者的标准如下：</p>
-                    <strong data-i18n="modal_s1">一、具备相应风险识别能力和风险承担能力，投资于单只私募基金的金额不低于100万元且符合下列相关标准的单位和个人：</strong>
+                    <summary>合格投资者标准</summary>
+                    <p>在继续浏览本公司网站前，请您确认您或您所代表的机构是一名“合格投资者”。“合格投资者”指根据任何国家和地区的证券和投资法规所规定的有资格投资于私募证券投资基金的专业投资者。例如根据我国《私募投资基金监督管理暂行办法》的规定，合格投资者的标准如下：</p>
+                    <strong>一、具备相应风险识别能力和风险承担能力，投资于单只私募基金的金额不低于100万元且符合下列相关标准的单位和个人：</strong>
                     <ol>
-                        <li data-i18n="modal_l1">净资产不低于1000万元的单位；</li>
-                        <li data-i18n="modal_l2">金融资产不低于300万元或者最近三年个人年均收入不低于50万元的个人。<br><small>(前款所称金融资产包括银行存款、股票、债券、基金份额、资产管理计划、银行理财产品、信托计划、保险产品、期货权益等。)</small></li>
+                        <li>净资产不低于1000万元的单位；</li>
+                        <li>金融资产不低于300万元或者最近三年个人年均收入不低于50万元的个人。<br><small>(前款所称金融资产包括银行存款、股票、债券、基金份额、资产管理计划、银行理财产品、信托计划、保险产品、期货权益等。)</small></li>
                     </ol>
                 </details>
                 <details class="compliance-section">
-                    <summary data-i18n="modal_detail_deemed">视为合格投资者的情形</summary>
-                    <strong data-i18n="modal_s2">二、下列投资者视为合格投资者：</strong>
+                    <summary>视为合格投资者的情形</summary>
+                    <strong>二、下列投资者视为合格投资者：</strong>
                     <ol>
-                        <li data-i18n="modal_l3">社会保障基金、企业年金等养老基金、慈善基金等社会公益基金；</li>
-                        <li data-i18n="modal_l4">依法设立并在基金业协会备案的投资计划；</li>
-                        <li data-i18n="modal_l5">投资于所管理私募基金的私募基金管理人及其从业人员；</li>
-                        <li data-i18n="modal_l6">中国证监会规定的其他投资者。</li>
+                        <li>社会保障基金、企业年金等养老基金、慈善基金等社会公益基金；</li>
+                        <li>依法设立并在基金业协会备案的投资计划；</li>
+                        <li>投资于所管理私募基金的私募基金管理人及其从业人员；</li>
+                        <li>中国证监会规定的其他投资者。</li>
                     </ol>
                 </details>
                 <details class="compliance-section">
-                    <summary data-i18n="modal_detail_terms">访问声明</summary>
-                    <p data-i18n="modal_p2">如果您继续访问或使用本网站及其所载资料，即表明您声明及保证您或您所代表的机构为“合格投资者”，并将遵守对您适用的司法区域的有关法律及法规，同意并接受以下条款及相关约束。如果您不符合“合格投资者”标准或不同意下列条款及相关约束，请勿继续访问或使用本网站及其所载信息及资料。</p>
+                    <summary>访问声明</summary>
+                    <p>如果您继续访问或使用本网站及其所载资料，即表明您声明及保证您或您所代表的机构为“合格投资者”，并将遵守对您适用的司法区域的有关法律及法规，同意并接受以下条款及相关约束。如果您不符合“合格投资者”标准或不同意下列条款及相关约束，请勿继续访问或使用本网站及其所载信息及资料。</p>
                 </details>
                 <details class="compliance-section warning-section" open>
-                    <summary data-i18n="modal_detail_risk">风险提示</summary>
-                    <p class="warning-text" data-i18n="modal_warning">投资涉及风险，投资者应详细审阅产品的发售文件以获取进一步资料，了解有关投资所涉及的风险因素，并寻求适当的专业投资和咨询意见。产品净值及其收益存在涨跌可能，过往的产品业绩数据并不预示产品未来的业绩表现。本网站所提供的资料并非投资建议或咨询意见，投资者不应依赖本网站所提供的信息及资料作出投资决策。</p>
+                    <summary>风险提示</summary>
+                    <p class="warning-text">投资涉及风险，投资者应详细审阅产品的发售文件以获取进一步资料，了解有关投资所涉及的风险因素，并寻求适当的专业投资和咨询意见。产品净值及其收益存在涨跌可能，过往的产品业绩数据并不预示产品未来的业绩表现。本网站所提供的资料并非投资建议或咨询意见，投资者不应依赖本网站所提供的信息及资料作出投资决策。</p>
                 </details>
                 <details class="compliance-section">
-                    <summary data-i18n="modal_detail_ip">知识产权声明</summary>
-                    <p class="copyright-info" data-i18n="modal_copy">与本网站所载信息及资料有关的所有版权、专利权、知识产权及其他产权均为本公司所有。本公司概不向浏览该资料人士发出、转让或以任何方式转移任何种类的权利。</p>
+                    <summary>知识产权声明</summary>
+                    <p class="copyright-info">与本网站所载信息及资料有关的所有版权、专利权、知识产权及其他产权均为本公司所有。本公司概不向浏览该资料人士发出、转让或以任何方式转移任何种类的权利。</p>
                 </details>
             </div>
             <div class="compliance-footer">
-                <button id="confirm-investor" class="btn-main" data-i18n="modal_confirm">确认，我是合格投资者</button>
-                <button id="leave-site" class="btn-outline" data-i18n="modal_leave">不符合条件，离开</button>
+                <button id="confirm-investor" class="btn-main">确认，我是合格投资者</button>
+                <button id="leave-site" class="btn-outline">不符合条件，离开</button>
             </div>
         </div>
     </div>
@@ -222,10 +162,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="loader-content">
             <div id="decode-text" class="decode-text"></div>
             <div class="loader-logo-wrapper">
-                <img id="loader-logo" src="./images/logo.png" alt="Parigain Logo" data-i18n="alt_logo" class="loader-logo">
+                <img id="loader-logo" src="./images/logo.png" alt="均成基金 LOGO" class="loader-logo">
             </div>
         </div>
-        <div class="skip-hint" data-i18n="loader_skip">Scroll to skip</div>
+        <div class="skip-hint">Scroll to skip</div>
     </div>`;
 
     const setupMobileMenu = () => {
@@ -264,14 +204,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const header = document.getElementById('site-header');
         if (header) {
-            window.addEventListener('scroll', () => {
+            const updateHeaderState = () => {
                 header.classList.toggle('scrolled', window.scrollY > 50);
-            });
+            };
+            updateHeaderState();
+            window.addEventListener('scroll', updateHeaderState);
         }
-        updateLanguageElements();
     };
 
     injectComponents();
+
+    const renderAwardsTimeline = () => {
+        const timeline = document.querySelector('[data-awards-list]');
+        if (!timeline) return;
+
+        const fragment = document.createDocumentFragment();
+        AWARDS_BY_YEAR.forEach(({ year, awards }) => {
+            const item = document.createElement('div');
+            item.className = 'timeline-item reveal-item';
+
+            const yearEl = document.createElement('div');
+            yearEl.className = 'year';
+            yearEl.textContent = year;
+
+            const content = document.createElement('div');
+            content.className = 'content';
+
+            awards.forEach(awardText => {
+                const award = document.createElement('div');
+                award.className = 'award';
+
+                const title = document.createElement('h4');
+                title.textContent = awardText;
+
+                award.appendChild(title);
+                content.appendChild(award);
+            });
+
+            item.append(yearEl, content);
+            fragment.appendChild(item);
+        });
+
+        timeline.replaceChildren(fragment);
+    };
+
+    renderAwardsTimeline();
 
     // Hero Slider
     const slides = document.querySelectorAll('.slide');
@@ -310,22 +287,103 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSlider(0);
     startInterval();
 
-    const initHomeBackgroundTransition = () => {
-        const hero = document.querySelector('.home-brand-hero');
-        const fixedBg = document.querySelector('.home-scroll-bg');
+    const initScrollBackgroundTransition = ({ heroSelector, bgSelector, progressVar }) => {
+        const hero = document.querySelector(heroSelector);
+        const fixedBg = document.querySelector(bgSelector);
         if (!hero || !fixedBg) return;
 
-        const updateHomeBgProgress = () => {
+        const updateBgProgress = () => {
             const scrollTop = window.scrollY || window.pageYOffset || 0;
             const transitionDistance = Math.max(hero.offsetHeight * 0.85, 1);
             const progress = Math.min(Math.max(scrollTop / transitionDistance, 0), 1);
-            document.documentElement.style.setProperty('--home-bg-progress', progress.toFixed(4));
+            document.documentElement.style.setProperty(progressVar, progress.toFixed(4));
         };
 
-        updateHomeBgProgress();
-        window.addEventListener('scroll', updateHomeBgProgress, { passive: true });
-        window.addEventListener('resize', updateHomeBgProgress);
+        updateBgProgress();
+        window.addEventListener('scroll', updateBgProgress, { passive: true });
+        window.addEventListener('resize', updateBgProgress);
     };
+
+    initScrollBackgroundTransition({
+        heroSelector: '.home-brand-hero',
+        bgSelector: '.home-scroll-bg',
+        progressVar: '--home-bg-progress'
+    });
+
+    initScrollBackgroundTransition({
+        heroSelector: '.contact-hero',
+        bgSelector: '.contact-scroll-bg',
+        progressVar: '--contact-bg-progress'
+    });
+
+    const initAboutHeroBackgroundScroll = () => {
+        const hero = document.querySelector('.about-hero');
+        if (!hero) return;
+
+        const updateAboutHeroBg = () => {
+            const scrollTop = window.scrollY || window.pageYOffset || 0;
+            const travel = Math.min(scrollTop * 0.42, 420);
+            document.documentElement.style.setProperty('--about-hero-bg-y', `${-travel.toFixed(1)}px`);
+        };
+
+        updateAboutHeroBg();
+        window.addEventListener('scroll', updateAboutHeroBg, { passive: true });
+        window.addEventListener('resize', updateAboutHeroBg);
+    };
+
+    initAboutHeroBackgroundScroll();
+
+    const initOfficeCarousel = () => {
+        document.querySelectorAll('[data-office-carousel]').forEach((carousel) => {
+            const track = carousel.querySelector('.office-carousel-track');
+            const slides = Array.from(carousel.querySelectorAll('.office-carousel-slide'));
+            const dots = Array.from(carousel.querySelectorAll('[data-office-carousel-dot]'));
+            const prev = carousel.querySelector('[data-office-carousel-prev]');
+            const next = carousel.querySelector('[data-office-carousel-next]');
+            if (!track || slides.length <= 1) return;
+
+            let index = 0;
+            let timerId;
+
+            const goTo = (nextIndex) => {
+                index = (nextIndex + slides.length) % slides.length;
+                track.style.transform = `translateX(-${index * 100}%)`;
+                slides.forEach((slide, slideIndex) => {
+                    slide.classList.toggle('is-active', slideIndex === index);
+                });
+                dots.forEach((dot, dotIndex) => {
+                    dot.classList.toggle('is-active', dotIndex === index);
+                });
+            };
+
+            const start = () => {
+                window.clearInterval(timerId);
+                timerId = window.setInterval(() => goTo(index + 1), 5200);
+            };
+
+            prev?.addEventListener('click', () => {
+                goTo(index - 1);
+                start();
+            });
+            next?.addEventListener('click', () => {
+                goTo(index + 1);
+                start();
+            });
+            dots.forEach((dot, dotIndex) => {
+                dot.addEventListener('click', () => {
+                    goTo(dotIndex);
+                    start();
+                });
+            });
+            carousel.addEventListener('mouseenter', () => window.clearInterval(timerId));
+            carousel.addEventListener('mouseleave', start);
+
+            goTo(0);
+            start();
+        });
+    };
+
+    initOfficeCarousel();
 
     // Reveal on Scroll
     const observer = new IntersectionObserver((entries) => {
@@ -337,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-    const revealElements = document.querySelectorAll('.reveal-item, .stats-flex, .domain-card, .section-header, .partner-category-card, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow, .info-card, .strategy-detail-box, .detail-item, .chart-container, .honor-card, .job-card, .careers-hero, .image-copy-panel, .home-honors-media, .home-honors-list, .advantage-card, .milestone, .team-photo, .team-copy, .career-value-card, .office-life-strip, .recruit-system-panel, .contact-info-card');
+    const revealElements = document.querySelectorAll('.reveal-item, .stats-flex, .domain-card, .section-header, .partner-category-card, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow, .info-card, .honor-card, .job-card, .careers-hero, .image-copy-panel, .home-honors-media, .home-honors-list, .advantage-card, .milestone, .team-photo, .team-copy, .career-value-card, .office-carousel, .recruit-system-panel, .contact-info-card');
     revealElements.forEach(el => {
         el.classList.add('reveal-item');
         observer.observe(el);
@@ -358,9 +416,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', () => backToTopBtn.classList.toggle('show', window.scrollY > 300));
         backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
-
-    const skipHint = document.querySelector('.skip-hint');
-    if (skipHint) skipHint.setAttribute('data-i18n', 'loader_skip');
 
     const finishEntryLoader = (loader, navLogo) => {
         if (!loader) return;
@@ -484,15 +539,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const initSectorGrowth = () => {
-        const visual = document.querySelector('.chart-visual');
-        if (!visual) return;
-        const obs = new IntersectionObserver((es) => {
-            if (es[0].isIntersecting) { visual.classList.add('animate'); obs.unobserve(visual); }
-        }, { threshold: 0.5 });
-        obs.observe(visual);
-    };
-
     const initOfficeMaps = () => {
         if (typeof AMap === 'undefined') return;
 
@@ -550,7 +596,5 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     initCompliance();
-    initHomeBackgroundTransition();
-    initSectorGrowth();
     initOfficeMaps();
 });

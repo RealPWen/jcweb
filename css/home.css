@@ -98,6 +98,7 @@
 /* --- Requirement-driven Home Sections --- */
 :root {
   --home-bg-progress: 0;
+  --home-bg-base-blur: 0px;
 }
 
 .home-scroll-bg {
@@ -107,7 +108,7 @@
   overflow: hidden;
   pointer-events: none;
   opacity: 1;
-  filter: blur(calc(var(--home-bg-progress) * 14px));
+  filter: blur(calc(var(--home-bg-base-blur) + (var(--home-bg-progress) * 14px)));
   transform: translateZ(0);
   transition: filter 0.18s linear;
 }
@@ -119,6 +120,13 @@
   object-position: center center;
   transform: scale(calc(1.12 - (var(--home-bg-progress) * 0.1)));
   transition: transform 0.18s linear;
+}
+
+.home-scroll-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
 }
 
 body.home-page {

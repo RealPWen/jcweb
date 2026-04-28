@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-i18n="seo_title_contact">联系我们 | 均成基金</title>
+    <title>联系我们 | 均成基金</title>
     <!-- SEO & Social Sharing -->
-    <meta name="description" data-i18n="seo_desc_contact" content="联系均成基金。查看深圳研发与投研中心、横琴合规与业务中心办公地址、联系电话和投资者咨询邮箱。">
+    <meta name="description" content="联系均成基金。查看深圳研发与投研中心、横琴合规与业务中心办公地址、联系电话和投资者咨询邮箱。">
     <link rel="canonical" href="https://realpwen.github.io/jcweb/contact.html">
-    <meta property="og:title" data-i18n="seo_og_title_contact" content="联系我们 | 均成基金">
-    <meta property="og:description" data-i18n="seo_og_desc_contact" content="查看均成基金深圳与横琴办公地址、联系电话和投资者咨询邮箱。">
+    <meta property="og:title" content="联系我们 | 均成基金">
+    <meta property="og:description" content="查看均成基金深圳与横琴办公地址、联系电话和投资者咨询邮箱。">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://realpwen.github.io/jcweb/images/logo.png">
     <meta property="og:url" content="https://realpwen.github.io/jcweb/contact.html">
@@ -60,6 +60,9 @@
 </head>
 <body class="contact-page compliance-pending">
     <div class="custom-cursor"></div>
+    <div class="contact-scroll-bg" aria-hidden="true">
+        <img src="./images/contact-hero-bg.png" alt="">
+    </div>
 
     <!-- Back to Top Button -->
     <div class="back-to-top" id="back-to-top">↑</div>
@@ -67,25 +70,42 @@
     <main>
         <section class="page-hero contact-hero">
             <div class="container">
-                <span class="accent-line">Contact Parigain</span>
-                <h1 class="page-title">联系我们 <br><span class="accent">均有所成</span></h1>
-                <p class="page-subtitle">我们期待与您同行，同舟共济，均有所成。</p>
+                <div class="contact-hero-copy">
+                    <span class="accent-line">Contact Parigain</span>
+                    <h1 class="page-title">联系我们 <br><span class="accent">均有所成</span></h1>
+                    <p class="page-subtitle">我们期待与您同行，同舟共济，均有所成。</p>
+                </div>
+            </div>
+            <div class="scroll-down" aria-hidden="true">
+                <span class="mouse"></span>
             </div>
         </section>
 
         <section class="contact-info-section section-dark">
             <div class="container">
-                <div class="contact-card-grid">
-                    <article class="contact-info-card reveal-item">
-                        <span>SHENZHEN / 深圳</span>
+                <div class="contact-section-heading reveal-item">
+                    <span class="accent-line">Map</span>
+                    <h2>办公地址</h2>
+                </div>
+                <div class="office-grid">
+                    <div class="office-card reveal-item">
+                        <div class="city">SHENZHEN / 深圳</div>
                         <h3>研发与投研中心</h3>
-                        <p>深圳市南山区高新南九道 39 号湾区创新大厦 B 座 3003 房</p>
-                    </article>
-                    <article class="contact-info-card reveal-item">
-                        <span>HENGQIN / 横琴</span>
+                        <p class="address">深圳市南山区高新南九道39号湾区创新大厦B座3003房</p>
+                        <div id="map-sz" class="map-container"></div>
+                    </div>
+                    <div class="office-card reveal-item" data-delay="100">
+                        <div class="city">HENGQIN / 横琴</div>
                         <h3>合规与业务中心</h3>
-                        <p>珠海市横琴粤澳深度合作区琴朗道 91 号 1911 办公区</p>
-                    </article>
+                        <p class="address">横琴粤澳深度合作区琴朗道91号1911办公区</p>
+                        <div id="map-hq" class="map-container"></div>
+                    </div>
+                </div>
+                <div class="contact-section-heading contact-method-heading reveal-item">
+                    <span class="accent-line">Contact</span>
+                    <h2>联系方式</h2>
+                </div>
+                <div class="contact-card-grid">
                     <article class="contact-info-card reveal-item">
                         <span>PHONE</span>
                         <h3>联系电话</h3>
@@ -105,33 +125,12 @@
             </div>
         </section>
 
-        <section class="office-section container">
-            <div class="section-header center reveal-item">
-                <span class="accent-line">Map</span>
-                <h2>办公地址</h2>
-            </div>
-            <div class="office-grid">
-                <div class="office-card reveal-item">
-                    <div class="city">SHENZHEN / 深圳</div>
-                    <h3>研发与投研中心</h3>
-                    <p class="address">深圳市南山区高新南九道39号湾区创新大厦B座3003房</p>
-                    <div id="map-sz" class="map-container"></div>
-                </div>
-                <div class="office-card reveal-item" data-delay="100">
-                    <div class="city">HENGQIN / 横琴</div>
-                    <h3>合规与业务中心</h3>
-                    <p class="address">横琴粤澳深度合作区琴朗道91号1911办公区</p>
-                    <div id="map-hq" class="map-container"></div>
-                </div>
-            </div>
-        </section>
-
         <section class="recruitment-section section-alt">
             <div class="container recruitment-flex">
                 <div class="recruit-text reveal-item">
-                    <span class="accent-line">Careers</span>
+                    <span class="accent-line">Career</span>
                     <h2>想加入均成？</h2>
-                    <p>人才招聘页面已单独整理，候选人可了解团队福利、办公环境与简历投递方式。</p>
+                    <p>点击查看更多团队福利、办公环境介绍、简历投递方式。</p>
                 </div>
                 <a href="./careers.html" class="btn-main reveal-item">查看招聘详情</a>
             </div>
