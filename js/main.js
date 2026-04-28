@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <ul class="nav-links">
                 <li><a href="./index.html" data-page="index">官网首页</a></li>
-                <li><a href="./strategy.html" data-page="strategy">投资策略</a></li>
+                <li><a href="./strategy.html" data-page="strategy">产品服务</a></li>
                 <li><a href="./about.html" data-page="about">关于均成</a></li>
                 <li><a href="./careers.html" data-page="careers">加入我们</a></li>
-                <li><a href="./contact.html" data-page="contact" class="btn-primary">联系我们</a></li>
+                <li><a href="./contact.html" data-page="contact">联系我们</a></li>
             </ul>
             <div class="menu-toggle" id="mobile-menu">
                 <span></span>
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>快速链接</h4>
                 <ul>
                     <li><a href="./index.html">官网首页</a></li>
-                    <li><a href="./strategy.html">投资策略</a></li>
+                    <li><a href="./strategy.html">产品服务</a></li>
                     <li><a href="./about.html">关于均成</a></li>
                     <li><a href="./careers.html">人才招聘</a></li>
                     <li><a href="./contact.html">联系我们</a></li>
@@ -320,6 +320,12 @@ document.addEventListener('DOMContentLoaded', () => {
         progressVar: '--contact-bg-progress'
     });
 
+    initScrollBackgroundTransition({
+        heroSelector: '.strategy-page .page-hero',
+        bgSelector: '.strategy-scroll-bg',
+        progressVar: '--strategy-bg-progress'
+    });
+
     const initAboutHeroBackgroundScroll = () => {
         const hero = document.querySelector('.about-hero');
         if (!hero) return;
@@ -393,6 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-milestone-carousel]').forEach((carousel) => {
             const slides = Array.from(carousel.querySelectorAll('.milestone-slide'));
             const dots = Array.from(carousel.querySelectorAll('[data-milestone-dot]'));
+            const navButtons = Array.from(carousel.querySelectorAll('[data-milestone-nav]'));
             const stage = carousel.querySelector('.milestone-stage');
             const track = carousel.querySelector('.milestone-track');
             if (!slides.length) return;
@@ -431,6 +438,18 @@ document.addEventListener('DOMContentLoaded', () => {
             dots.forEach((dot, dotIndex) => {
                 dot.addEventListener('click', () => {
                     goTo(dotIndex);
+                    start();
+                });
+            });
+
+            navButtons.forEach((button) => {
+                button.addEventListener('pointerdown', (event) => {
+                    event.stopPropagation();
+                });
+                button.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    const direction = button.dataset.milestoneNav === 'prev' ? -1 : 1;
+                    goTo(index + direction);
                     start();
                 });
             });

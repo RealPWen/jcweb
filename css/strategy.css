@@ -7,6 +7,124 @@
   padding: 80px 0;
 }
 
+:root {
+  --strategy-bg-progress: 0;
+}
+
+body.strategy-page {
+  background-color: transparent;
+}
+
+body.strategy-page main {
+  position: relative;
+  z-index: 2;
+}
+
+body.strategy-page .section-dark,
+body.strategy-page .section-alt {
+  background: rgba(248, 250, 252, 0.8);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.strategy-scroll-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 1;
+  filter: blur(calc(var(--strategy-bg-progress) * 14px));
+  transform: translateZ(0);
+  transition: filter 0.18s linear;
+}
+
+.strategy-scroll-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(calc(1.12 - (var(--strategy-bg-progress) * 0.1)));
+  transition: transform 0.18s linear;
+}
+
+.strategy-scroll-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(248, 250, 252, 0.68) 0%, rgba(248, 250, 252, 0.34) 48%, rgba(15, 23, 42, 0.24) 100%),
+    rgba(15, 23, 42, 0.04);
+}
+
+body.strategy-page .page-hero {
+  position: relative;
+  z-index: 2;
+  min-height: 78vh;
+  display: flex;
+  align-items: center;
+  background: transparent;
+}
+
+.strategy-page .strategy-cards-section {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.strategy-page .strategy-cards-section .section-header h2 {
+  color: var(--text-primary);
+}
+
+.strategy-page .strategy-card-grid {
+  gap: 26px;
+}
+
+.strategy-page .strategy-card-grid .domain-card {
+  min-height: 300px;
+  padding: 46px 36px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.12));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(255, 255, 255, 0.64);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.36),
+    0 26px 58px rgba(15, 23, 42, 0.12);
+}
+
+.strategy-page .strategy-card-grid .domain-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.strategy-page .strategy-card-grid .domain-card:hover {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.16));
+  border-color: rgba(243, 123, 45, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    0 30px 70px rgba(15, 23, 42, 0.16);
+}
+
+.strategy-page .strategy-card-grid .domain-card h3,
+.strategy-page .strategy-card-grid .domain-card p {
+  position: relative;
+  z-index: 1;
+}
+
+.strategy-page .strategy-card-grid .domain-card h3 {
+  color: var(--text-primary);
+}
+
+.strategy-page .strategy-card-grid .domain-card p {
+  color: #475569;
+}
+
 .strategy-philosophy-section {
   padding: 96px 0;
   overflow: hidden;

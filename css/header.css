@@ -25,7 +25,8 @@ header.scrolled {
 }
 
 body.home-page header:not(.scrolled),
-body.contact-page header:not(.scrolled) {
+body.contact-page header:not(.scrolled),
+body.strategy-page header:not(.scrolled) {
   background-color: transparent;
   border-bottom-color: transparent;
   box-shadow: none;
@@ -34,12 +35,14 @@ body.contact-page header:not(.scrolled) {
 }
 
 body.home-page header:not(.scrolled) .nav-logo,
-body.contact-page header:not(.scrolled) .nav-logo {
+body.contact-page header:not(.scrolled) .nav-logo,
+body.strategy-page header:not(.scrolled) .nav-logo {
   filter: drop-shadow(0 8px 18px rgba(35, 18, 12, 0.36));
 }
 
 body.home-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary),
-body.contact-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary) {
+body.contact-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary),
+body.strategy-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary) {
   color: rgba(255, 255, 255, 0.92);
   font-weight: 700;
   text-shadow: 0 2px 12px rgba(35, 18, 12, 0.48);
@@ -48,19 +51,16 @@ body.contact-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-prima
 body.home-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary):hover,
 body.home-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary).active,
 body.contact-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary):hover,
-body.contact-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary).active {
+body.contact-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary).active,
+body.strategy-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary):hover,
+body.strategy-page header:not(.scrolled) .nav-links:not(.active) a:not(.btn-primary).active {
   background: rgba(255, 255, 255, 0.16);
   color: #fff;
 }
 
-body.contact-page header:not(.scrolled) .nav-links:not(.active) .btn-primary {
-  background: rgba(243, 123, 45, 0.92);
-  color: #111827 !important;
-  box-shadow: 0 14px 32px rgba(20, 12, 8, 0.22);
-}
-
 body.home-page header:not(.scrolled) .menu-toggle:not(.active) span,
-body.contact-page header:not(.scrolled) .menu-toggle:not(.active) span {
+body.contact-page header:not(.scrolled) .menu-toggle:not(.active) span,
+body.strategy-page header:not(.scrolled) .menu-toggle:not(.active) span {
   background: #fff;
 }
 
@@ -106,17 +106,6 @@ header.scrolled .nav-logo {
 .nav-links a.active {
   background: rgba(243, 123, 45, 0.08);
   color: var(--text-primary);
-}
-
-.nav-links .btn-primary {
-  padding: 12px 28px;
-  box-shadow: 0 10px 24px rgba(243, 123, 45, 0.24);
-}
-
-.nav-links .btn-primary:hover {
-  background-color: #ff8738;
-  color: #111827 !important;
-  box-shadow: 0 14px 30px rgba(243, 123, 45, 0.32);
 }
 
 /* --- Mobile Menu --- */

@@ -173,6 +173,14 @@
     padding: 42px;
   }
 
+  .image-copy-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .image-copy-media {
+    min-height: 360px;
+  }
+
   .office-carousel-slide img {
     height: 320px;
   }
@@ -297,7 +305,16 @@
   }
 
   .image-copy-panel {
-    min-height: 560px;
+    min-height: auto;
+  }
+
+  .image-copy-media {
+    min-height: 300px;
+  }
+
+  .home-honors-section .home-honors-grid {
+    max-width: none;
+    padding: 0 20px;
   }
 
   .image-copy-content {
@@ -347,6 +364,26 @@
     padding-bottom: 34px;
     mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+
+  .milestone-nav {
+    top: calc(50% - 12px);
+    width: 38px;
+    height: 38px;
+  }
+
+  .milestone-nav::before {
+    width: 9px;
+    height: 9px;
+    border-width: 2px;
+  }
+
+  .milestone-nav-prev {
+    left: 8px;
+  }
+
+  .milestone-nav-next {
+    right: 8px;
   }
 
   .milestone-slide {

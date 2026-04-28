@@ -255,37 +255,40 @@ body.home-page .section-alt {
   -webkit-backdrop-filter: blur(4px);
 }
 
+.company-profile-section .container {
+  max-width: 1480px;
+}
+
 .image-copy-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(360px, 1fr);
   min-height: 620px;
-  position: relative;
+  width: min(100%, 1440px);
+  margin: 0 auto;
   overflow: hidden;
   border-radius: 8px;
   border: 1px solid var(--border-color);
-  display: flex;
-  align-items: flex-end;
-  background: #000;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 34px 86px rgba(15, 23, 42, 0.1);
 }
 
-.image-copy-panel img {
-  position: absolute;
-  inset: 0;
+.image-copy-media {
+  min-height: 620px;
+  overflow: hidden;
+}
+
+.image-copy-media img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.78;
-}
-
-.image-copy-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.12));
 }
 
 .image-copy-content {
-  position: relative;
-  z-index: 1;
-  width: min(720px, 100%);
-  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(42px, 4.4vw, 68px);
 }
 
 .image-copy-content h2,
@@ -295,13 +298,14 @@ body.home-page .section-alt {
 }
 
 .image-copy-content p {
-  color: rgba(248, 250, 252, 0.82);
+  color: var(--text-secondary);
   font-size: 17px;
   line-height: 1.9;
   margin-bottom: 18px;
 }
 
 .image-copy-content .btn-main {
+  align-self: flex-start;
   margin-top: 24px;
 }
 
@@ -354,6 +358,11 @@ body.home-page .section-alt {
   grid-template-columns: 1fr;
   gap: 64px;
   align-items: stretch;
+}
+
+.home-honors-section .home-honors-grid {
+  max-width: min(1680px, calc(100% - 96px));
+  padding: 0;
 }
 
 .home-honors-media {
