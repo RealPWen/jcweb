@@ -33,6 +33,11 @@
     linear-gradient(90deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.28));
 }
 
+.honors-section .container {
+  position: relative;
+  z-index: 1;
+}
+
 .honors-section .section-header h2 {
   color: #fff;
 }
@@ -757,14 +762,38 @@ body.about-page .about-profile-section {
   }
 
   .honors-section {
-    background-attachment: scroll;
+    overflow: visible;
     background-color: #8f7a78;
+    background-image: none;
+    background-attachment: scroll;
+  }
+
+  .honors-section::before {
+    content: '';
+    position: sticky;
+    top: 0;
+    z-index: -2;
+    display: block;
+    height: 100vh;
+    height: 100svh;
+    min-height: 620px;
+    margin-bottom: -100vh;
+    margin-bottom: -100svh;
+    background-image:
+      linear-gradient(180deg, rgba(15, 23, 42, 0.18), rgba(15, 23, 42, 0.42)),
+      url('../images/about-honors-bg.webp');
     background-size:
       100% 100%,
-      auto clamp(620px, 150vw, 920px);
+      auto clamp(760px, 185vw, 960px);
     background-position:
       center top,
       center top;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+
+  .honors-section::after {
+    z-index: -1;
   }
 }
 
@@ -796,9 +825,13 @@ body.about-page .about-profile-section {
 
   .honors-section {
     padding: 92px 0 84px;
+  }
+
+  .honors-section::before {
+    min-height: 560px;
     background-size:
       100% 100%,
-      auto 680px;
+      auto 720px;
     background-position:
       center top,
       center -16px;
