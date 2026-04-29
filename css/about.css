@@ -18,6 +18,7 @@
     url('../images/about-honors-bg.webp');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   color: #fff;
 }
@@ -318,8 +319,14 @@
       url('../images/about-hero-building-1536.avif') type('image/avif'),
       url('../images/about-hero-building-1536.webp') type('image/webp')
     );
-  background-size: max(1440px, 100vw) auto;
-  background-position: center var(--about-hero-bg-y, 0px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    max(1440px, 100vw) auto;
+  background-position:
+    center center,
+    center center,
+    center var(--about-hero-bg-y, 0px);
   background-repeat: no-repeat;
 }
 
@@ -345,7 +352,12 @@
       url('../images/about-hero-building-1536.avif') type('image/avif'),
       url('../images/about-hero-building-1536.webp') type('image/webp')
     );
-  background-position: center calc(var(--about-hero-bg-y, 0px) - 260px);
+  background-size:
+    100% 100%,
+    max(1440px, 100vw) auto;
+  background-position:
+    center center,
+    center calc(var(--about-hero-bg-y, 0px) - 260px);
 }
 
 .about-hero .container {
@@ -714,8 +726,14 @@ body.about-page .about-profile-section {
 
   .about-hero::before,
   .about-hero::after {
-    background-size: auto 760px;
-    background-position: 58% var(--about-hero-bg-y, 0px);
+    background-size:
+      100% 100%,
+      100% 100%,
+      auto 760px;
+    background-position:
+      center center,
+      center center,
+      58% var(--about-hero-bg-y, 0px);
   }
 
   .about-hero::before {
@@ -730,12 +748,23 @@ body.about-page .about-profile-section {
 
   .about-hero::after {
     height: 340px;
-    background-position: 58% calc(var(--about-hero-bg-y, 0px) - 180px);
+    background-size:
+      100% 100%,
+      auto 760px;
+    background-position:
+      center center,
+      58% calc(var(--about-hero-bg-y, 0px) - 180px);
   }
 
   .honors-section {
     background-attachment: scroll;
-    background-position: center top;
+    background-color: #8f7a78;
+    background-size:
+      100% 100%,
+      auto clamp(620px, 150vw, 920px);
+    background-position:
+      center top,
+      center top;
   }
 }
 
@@ -746,7 +775,32 @@ body.about-page .about-profile-section {
 
   .about-hero::before,
   .about-hero::after {
-    background-size: auto 680px;
-    background-position-x: 62%;
+    background-size:
+      100% 100%,
+      100% 100%,
+      auto 680px;
+    background-position:
+      center center,
+      center center,
+      62% var(--about-hero-bg-y, 0px);
+  }
+
+  .about-hero::after {
+    background-size:
+      100% 100%,
+      auto 680px;
+    background-position:
+      center center,
+      62% calc(var(--about-hero-bg-y, 0px) - 180px);
+  }
+
+  .honors-section {
+    padding: 92px 0 84px;
+    background-size:
+      100% 100%,
+      auto 680px;
+    background-position:
+      center top,
+      center -16px;
   }
 }
