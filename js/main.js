@@ -405,6 +405,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!slides.length) return;
 
             let index = 0;
+            let timerId;
             let dragStartX = 0;
             let dragStartIndex = 0;
             let isDragging = false;
@@ -431,9 +432,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
 
+            const start = () => {
+                window.clearInterval(timerId);
+                timerId = window.setInterval(() => goTo(index + 1), 3600);
+            };
+
+            const restart = () => {
+                start();
+            };
+
             dots.forEach((dot, dotIndex) => {
                 dot.addEventListener('click', () => {
                     goTo(dotIndex, { centerAxis: true });
+                    restart();
                 });
             });
 
@@ -445,14 +456,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     event.stopPropagation();
                     const direction = button.dataset.milestoneNav === 'prev' ? -1 : 1;
                     goTo(index + direction);
+                    restart();
                 });
             });
+
+            carousel.addEventListener('mouseenter', () => window.clearInterval(timerId));
+            carousel.addEventListener('mouseleave', start);
 
             stage?.addEventListener('pointerdown', (event) => {
                 if (event.button !== undefined && event.button !== 0) return;
                 isDragging = true;
                 dragStartX = event.clientX;
                 dragStartIndex = index;
+                window.clearInterval(timerId);
                 carousel.classList.add('is-dragging');
                 stage.setPointerCapture?.(event.pointerId);
             });
@@ -473,6 +489,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 carousel.classList.remove('is-dragging');
                 stage?.releasePointerCapture?.(event.pointerId);
                 goTo(nextIndex, { centerAxis: true });
+                start();
             };
 
             stage?.addEventListener('pointerup', finishDrag);
@@ -482,9 +499,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 isDragging = false;
                 carousel.classList.remove('is-dragging');
                 carousel.style.setProperty('--milestone-drag-x', '0px');
+                start();
             });
 
             goTo(0);
+            start();
         });
     };
 
