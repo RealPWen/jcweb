@@ -405,7 +405,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!slides.length) return;
 
             let index = 0;
-            let timerId;
             let dragStartX = 0;
             let dragStartIndex = 0;
             let isDragging = false;
@@ -416,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return slideWidth + gap;
             };
 
-            const goTo = (nextIndex) => {
+            const goTo = (nextIndex, { centerAxis = false } = {}) => {
                 index = (nextIndex + slides.length) % slides.length;
                 carousel.style.setProperty('--milestone-index', index);
                 carousel.style.setProperty('--milestone-drag-x', '0px');
@@ -427,18 +426,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     dot.classList.toggle('is-active', dotIndex === index);
                     dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
                 });
-                dots[index]?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
-            };
-
-            const start = () => {
-                window.clearInterval(timerId);
-                timerId = window.setInterval(() => goTo(index + 1), 2200);
+                if (centerAxis) {
+                    dots[index]?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+                }
             };
 
             dots.forEach((dot, dotIndex) => {
                 dot.addEventListener('click', () => {
-                    goTo(dotIndex);
-                    start();
+                    goTo(dotIndex, { centerAxis: true });
                 });
             });
 
@@ -450,19 +445,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     event.stopPropagation();
                     const direction = button.dataset.milestoneNav === 'prev' ? -1 : 1;
                     goTo(index + direction);
-                    start();
                 });
             });
-
-            carousel.addEventListener('mouseenter', () => window.clearInterval(timerId));
-            carousel.addEventListener('mouseleave', start);
 
             stage?.addEventListener('pointerdown', (event) => {
                 if (event.button !== undefined && event.button !== 0) return;
                 isDragging = true;
                 dragStartX = event.clientX;
                 dragStartIndex = index;
-                window.clearInterval(timerId);
                 carousel.classList.add('is-dragging');
                 stage.setPointerCapture?.(event.pointerId);
             });
@@ -482,8 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 isDragging = false;
                 carousel.classList.remove('is-dragging');
                 stage?.releasePointerCapture?.(event.pointerId);
-                goTo(nextIndex);
-                start();
+                goTo(nextIndex, { centerAxis: true });
             };
 
             stage?.addEventListener('pointerup', finishDrag);
@@ -493,11 +482,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 isDragging = false;
                 carousel.classList.remove('is-dragging');
                 carousel.style.setProperty('--milestone-drag-x', '0px');
-                start();
             });
 
             goTo(0);
-            start();
         });
     };
 
