@@ -252,6 +252,53 @@ h4 {
   margin-left: -300px;
 }
 
+@media (pointer: coarse), (max-width: 1023px) {
+  .custom-cursor {
+    display: none;
+  }
+
+  .scroll-down,
+  .mouse,
+  .mouse::before,
+  .skip-hint {
+    animation: none !important;
+  }
+
+  .section-dark,
+  .section-alt,
+  .intro-section,
+  .domains-section,
+  .company-profile-section,
+  .strategy-cards-section,
+  .home-honors-section,
+  .audience-entry-section,
+  .philosophy-section,
+  .scope-section,
+  .office-section,
+  .team-section,
+  .honors-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 720px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-item,
+  [data-aos="fade-up"] {
+    opacity: 1;
+    transform: none !important;
+  }
+}
+
 
 /* --- Z-Index Hierarchy --- */
 header { z-index: 1000; }

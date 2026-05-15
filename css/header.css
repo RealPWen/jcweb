@@ -83,8 +83,51 @@ nav {
   transition: var(--transition);
 }
 
+.nav-logo-dark-bg {
+  height: 56px;
+  max-width: min(42vw, 148px);
+  object-fit: contain;
+}
+
+.nav-logo-full {
+  height: 56px;
+  max-width: min(42vw, 148px);
+  object-fit: contain;
+}
+
 header.scrolled .nav-logo {
   height: 38px;
+}
+
+header.scrolled .nav-logo-dark-bg {
+  height: 44px;
+}
+
+header.scrolled .nav-logo-full {
+  height: 44px;
+}
+
+@media (pointer: coarse), (max-width: 1023px) {
+  header {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  header.scrolled {
+    box-shadow: none;
+  }
+
+  .nav-links {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  body.home-page header:not(.scrolled) .nav-logo,
+  body.contact-page header:not(.scrolled) .nav-logo,
+  body.strategy-page header:not(.scrolled) .nav-logo {
+    filter: none;
+  }
 }
 
 .nav-links {

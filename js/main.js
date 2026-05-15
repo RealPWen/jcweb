@@ -5,10 +5,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const COMPLIANCE_STORAGE_KEY = 'complianceConfirmedVersion';
 
     document.body.classList.add('loaded');
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    const canUseSmoothScroll = !prefersReducedMotion && !isCoarsePointer && window.innerWidth >= 1024;
+    const loadExternalScript = (src) => new Promise((resolve, reject) => {
+        const existing = document.querySelector(`script[src="${src}"]`);
+        if (existing) {
+            existing.addEventListener('load', resolve, { once: true });
+            existing.addEventListener('error', reject, { once: true });
+            if (window.Lenis) resolve();
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = src;
+        script.defer = true;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+    const onRafScroll = (callback) => {
+        let ticking = false;
+        const run = () => {
+            ticking = false;
+            callback();
+        };
+
+        window.addEventListener('scroll', () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(run);
+        }, { passive: true });
+    };
+
     // 0. Global Smooth Scroll (Lenis)
-    if (window.Lenis) {
+    const initSmoothScroll = () => {
+        if (!window.Lenis || window.lenisInstance) return;
         window.lenisInstance = new window.Lenis({
-            duration: 1.0,
+            duration: 0.72,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
             direction: 'vertical',
             gestureDirection: 'vertical',
@@ -19,37 +54,52 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
+    };
 
-        let isDispatchingLenisScroll = false;
-        window.lenisInstance.on('scroll', () => {
-            if (isDispatchingLenisScroll) return;
-            isDispatchingLenisScroll = true;
-            window.dispatchEvent(new Event('scroll'));
-            isDispatchingLenisScroll = false;
-        });
+    if (canUseSmoothScroll) {
+        loadExternalScript('https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js')
+            .then(initSmoothScroll)
+            .catch(() => {});
     }
 
     // 0.1 Custom Cursor Glow
     const cursor = document.querySelector('.custom-cursor');
-    if (cursor) {
+    if (cursor && !isCoarsePointer && window.innerWidth >= 1024) {
         window.addEventListener('mousemove', (e) => {
             cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
             cursor.style.opacity = '1';
-        });
+        }, { passive: true });
         document.body.addEventListener('mouseleave', () => {
             cursor.style.opacity = '0';
         });
+    } else if (cursor) {
+        cursor.remove();
     }
 
     const isComplianceConfirmed = () => localStorage.getItem(COMPLIANCE_STORAGE_KEY) === COMPLIANCE_VERSION;
 
     // 0.2 Global Components
+    const usesDarkBgWordmark = document.body.classList.contains('home-page') || document.body.classList.contains('contact-page');
+    const usesFullWordmark = document.body.classList.contains('strategy-page') || document.body.classList.contains('about-page') || document.body.classList.contains('careers-page');
+    const darkBgLogoSrc = './images/logo-parigain-dark-bg.png';
+    const fullLogoSrc = './images/logo-parigain-full.png';
+    const navLogoSrc = usesDarkBgWordmark
+        ? darkBgLogoSrc
+        : usesFullWordmark
+            ? fullLogoSrc
+            : './images/logo.png';
+    const navLogoClass = usesDarkBgWordmark
+        ? 'nav-logo nav-logo-dark-bg'
+        : usesFullWordmark
+            ? 'nav-logo nav-logo-full'
+            : 'nav-logo';
+
     const HEADER_HTML = `
     <header id="site-header">
         <nav class="container">
             <div class="logo">
                 <a href="./index.html">
-                    <img src="./images/logo.png" alt="均成基金 LOGO" class="nav-logo">
+                    <img src="${navLogoSrc}" alt="均成基金 LOGO" class="${navLogoClass}"${usesDarkBgWordmark ? ` data-default-logo="${darkBgLogoSrc}" data-scrolled-logo="${fullLogoSrc}"` : ''}>
                 </a>
             </div>
             <ul class="nav-links">
@@ -71,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="container footer-top">
             <div class="footer-col brand">
                 <div class="logo">
-                    <img src="./images/logo.png" alt="均成基金 LOGO" class="footer-logo">
+                    <img src="./images/logo-parigain-full.png" alt="均成基金 LOGO" class="footer-logo">
                 </div>
                 <p>坚持投资者优先的国内量化 CTA 策略先行者</p>
                 <div class="footer-qr">
@@ -208,11 +258,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const header = document.getElementById('site-header');
         if (header) {
+            const navLogo = header.querySelector('.nav-logo');
             const updateHeaderState = () => {
-                header.classList.toggle('scrolled', window.scrollY > 50);
+                const isScrolled = window.scrollY > 50;
+                header.classList.toggle('scrolled', isScrolled);
+                if (navLogo?.dataset.defaultLogo && navLogo.dataset.scrolledLogo) {
+                    navLogo.src = isScrolled ? navLogo.dataset.scrolledLogo : navLogo.dataset.defaultLogo;
+                    navLogo.classList.toggle('nav-logo-dark-bg', !isScrolled);
+                    navLogo.classList.toggle('nav-logo-full', isScrolled);
+                }
             };
             updateHeaderState();
-            window.addEventListener('scroll', updateHeaderState);
+            onRafScroll(updateHeaderState);
         }
     };
 
@@ -304,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         updateBgProgress();
-        window.addEventListener('scroll', updateBgProgress, { passive: true });
+        onRafScroll(updateBgProgress);
         window.addEventListener('resize', updateBgProgress);
     };
 
@@ -337,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         updateAboutHeroBg();
-        window.addEventListener('scroll', updateAboutHeroBg, { passive: true });
+        onRafScroll(updateAboutHeroBg);
         window.addEventListener('resize', updateAboutHeroBg);
     };
 
@@ -526,18 +583,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Card Glow
-    document.querySelectorAll('.domain-card').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-            card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    if (!isCoarsePointer) {
+        document.querySelectorAll('.domain-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+            }, { passive: true });
         });
-    });
+    }
 
     // Back to Top
     const backToTopBtn = document.getElementById('back-to-top');
     if (backToTopBtn) {
-        window.addEventListener('scroll', () => backToTopBtn.classList.toggle('show', window.scrollY > 300));
+        onRafScroll(() => backToTopBtn.classList.toggle('show', window.scrollY > 300));
         backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
 
