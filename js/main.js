@@ -205,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <p>坚持投资者优先的国内量化 CTA 策略先行者</p>
                 <div class="footer-qr">
-                    <img src="./images/connect-code.png" alt="均成基金二维码" loading="lazy" decoding="async">
+                    <img src="./images/footer-qr.jpg" alt="均成基金二维码" loading="lazy" decoding="async">
                     <span>关注均成基金</span>
                 </div>
             </div>
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>联系我们</h4>
                 <p>邮箱: contact@parigain.com<br>招聘: zhaopin@parigain.com<br>电话: 0755-86525376</p>
                 <div class="locations">
-                    <span>横琴粤澳深度合作区琴朗道91号1911办公区<br>深圳市南山区高新南九道39号湾区创新大厦B座3003房</span>
+                    <span>办公地址：<br>- 横琴粤澳深度合作区琴朗道91号1911办公区<br>- 深圳市南山区高新南九道39号湾区创新大厦B座3003房</span>
                 </div>
             </div>
         </div>
