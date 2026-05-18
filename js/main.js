@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>联系我们</h4>
                 <p>邮箱: contact@parigain.com<br>招聘: zhaopin@parigain.com<br>电话: 0755-86525376</p>
                 <div class="locations">
-                    <span>深圳 · 横琴</span>
+                    <span>横琴粤澳深度合作区琴朗道91号1911办公区<br>深圳市南山区高新南九道39号湾区创新大厦B座3003房</span>
                 </div>
             </div>
         </div>

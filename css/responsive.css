@@ -612,6 +612,10 @@ html:is(.is-windows, .perf-conserve) :is(body.contact-page, body.strategy-page) 
   background: rgba(248, 250, 252, 0.94);
 }
 
+html:is(.is-windows, .perf-conserve) body.strategy-page .strategy-cards-section {
+  background: transparent;
+}
+
 html:is(.is-windows, .perf-conserve) body.about-page .about-profile-section {
   background: rgba(248, 250, 252, 0.94);
 }
