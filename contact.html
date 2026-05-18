@@ -43,6 +43,7 @@
         }
     </script>
 
+    <link rel="preload" as="image" href="./images/contact-hero-wall-1600.avif" type="image/avif" imagesrcset="./images/contact-hero-wall-800.avif 800w, ./images/contact-hero-wall-1200.avif 1200w, ./images/contact-hero-wall-1600.avif 1600w" imagesizes="100vw" fetchpriority="high">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,7 +64,7 @@
         <picture>
             <source type="image/avif" srcset="./images/contact-hero-wall-800.avif 800w, ./images/contact-hero-wall-1200.avif 1200w, ./images/contact-hero-wall-1600.avif 1600w" sizes="100vw">
             <source type="image/webp" srcset="./images/contact-hero-wall-800.webp 800w, ./images/contact-hero-wall-1200.webp 1200w, ./images/contact-hero-wall-1600.webp 1600w" sizes="100vw">
-            <img src="./images/contact-hero-wall-1600.webp" alt="" decoding="async">
+            <img src="./images/contact-hero-wall-1600.webp" alt="" decoding="async" fetchpriority="high">
         </picture>
     </div>
 
@@ -146,7 +147,6 @@
             securityJsCode: 'c4ea0093bdf132a149058d9cbf611081',
         };
     </script>
-    <script src="https://webapi.amap.com/maps?v=2.0&key=c3de1f6e226f87ae2375ab66c0259885"></script>
     <script type="module" src="./js/main.js"></script>
 </body>
 </html>

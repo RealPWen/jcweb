@@ -15,6 +15,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://parigain.com/images/logo.png">
 
+    <link rel="preload" as="image" href="./images/strategy-space-bg-2000.avif" type="image/avif" imagesrcset="./images/strategy-space-bg-1200.avif 1200w, ./images/strategy-space-bg-2000.avif 2000w" imagesizes="100vw" fetchpriority="high">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +33,11 @@
 <body class="strategy-page compliance-pending">
     <div class="custom-cursor"></div>
     <div class="strategy-scroll-bg" aria-hidden="true">
-        <img src="./images/strategy-space-bg.jpg" alt="" decoding="async">
+        <picture>
+            <source type="image/avif" srcset="./images/strategy-space-bg-1200.avif 1200w, ./images/strategy-space-bg-2000.avif 2000w" sizes="100vw">
+            <source type="image/webp" srcset="./images/strategy-space-bg-1200.webp 1200w, ./images/strategy-space-bg-2000.webp 2000w" sizes="100vw">
+            <img src="./images/strategy-space-bg-2000.webp" alt="" decoding="async" fetchpriority="high">
+        </picture>
     </div>
 
 

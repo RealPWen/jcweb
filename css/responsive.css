@@ -491,7 +491,8 @@
     letter-spacing: 0.5rem;
   }
   .loader-logo {
-    height: 80px;
+    width: min(360px, 78vw);
+    height: auto;
   }
 }
 
@@ -569,4 +570,71 @@
   .info-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ---- Runtime Performance Guardrails ---- */
+html:is(.is-windows, .perf-conserve) .custom-cursor {
+  width: 360px;
+  height: 360px;
+  margin-top: -180px;
+  margin-left: -180px;
+  mix-blend-mode: normal;
+  background: radial-gradient(circle, rgba(243, 123, 45, 0.1) 0%, transparent 64%);
+}
+
+html:is(.is-windows, .perf-conserve) :is(
+  header,
+  .nav-links,
+  .domain-card,
+  .info-card,
+  .advantage-card,
+  .contact-info-card,
+  .hero-proof-item,
+  .stats-flex,
+  .risk-disclosure,
+  body.home-page .section-dark,
+  body.home-page .section-alt,
+  body.about-page .about-profile-section,
+  body.contact-page .section-dark,
+  body.contact-page .section-alt,
+  body.strategy-page .section-dark,
+  body.strategy-page .section-alt
+) {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html:is(.is-windows, .perf-conserve) body.home-page :is(.section-dark, .section-alt) {
+  background: rgba(248, 250, 252, 0.92);
+}
+
+html:is(.is-windows, .perf-conserve) :is(body.contact-page, body.strategy-page) :is(.section-dark, .section-alt) {
+  background: rgba(248, 250, 252, 0.94);
+}
+
+html:is(.is-windows, .perf-conserve) body.about-page .about-profile-section {
+  background: rgba(248, 250, 252, 0.94);
+}
+
+html:is(.is-windows, .perf-conserve) .honors-section {
+  background-attachment: scroll;
+}
+
+html:is(.is-windows, .perf-conserve) :is(
+  .section-dark,
+  .section-alt,
+  .intro-section,
+  .domains-section,
+  .company-profile-section,
+  .strategy-cards-section,
+  .home-honors-section,
+  .audience-entry-section,
+  .philosophy-section,
+  .scope-section,
+  .office-section,
+  .team-section,
+  .honors-section
+) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
 }

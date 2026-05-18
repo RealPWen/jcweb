@@ -33,7 +33,7 @@ body.contact-page .section-alt {
   overflow: hidden;
   pointer-events: none;
   transform: translateZ(0);
-  will-change: transform;
+  contain: layout paint size;
 }
 
 .contact-scroll-bg picture,

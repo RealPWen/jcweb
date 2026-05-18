@@ -327,7 +327,9 @@ body.loaded:not(.compliance-pending) main {
   letter-spacing: 1.2rem;
   text-transform: uppercase;
   text-align: center;
-  transition: all 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
   z-index: 2;
   text-shadow: 0 0 20px rgba(245, 166, 35, 0.3);
 }
@@ -339,12 +341,14 @@ body.loaded:not(.compliance-pending) main {
   transform: translate(-50%, -50%) scale(0.6);
   opacity: 0;
   z-index: 1;
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .loader-logo {
-  height: 120px;
-  width: auto;
+  width: min(520px, 72vw);
+  height: auto;
   filter: drop-shadow(0 0 30px rgba(245, 166, 35, 0.4));
 }
 

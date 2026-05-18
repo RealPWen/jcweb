@@ -3,6 +3,10 @@ import { AWARDS_BY_YEAR } from './awards.js';
 document.addEventListener('DOMContentLoaded', () => {
     const COMPLIANCE_VERSION = '2026-04-21-v2';
     const COMPLIANCE_STORAGE_KEY = 'complianceConfirmedVersion';
+    const root = document.documentElement;
+    const platformLabel = `${navigator.userAgentData?.platform || ''} ${navigator.platform || ''} ${navigator.userAgent || ''}`;
+    const isWindowsPlatform = /\bWin/i.test(platformLabel);
+    if (isWindowsPlatform) root.classList.add('is-windows');
 
     document.body.classList.add('loaded');
 
@@ -25,32 +29,90 @@ document.addEventListener('DOMContentLoaded', () => {
         script.onerror = reject;
         document.head.appendChild(script);
     });
+    const scrollCallbacks = new Set();
+    let isScrollTicking = false;
+    const runScrollCallbacks = () => {
+        isScrollTicking = false;
+        scrollCallbacks.forEach(callback => callback());
+    };
+    window.addEventListener('scroll', () => {
+        if (isScrollTicking) return;
+        isScrollTicking = true;
+        requestAnimationFrame(runScrollCallbacks);
+    }, { passive: true });
     const onRafScroll = (callback) => {
-        let ticking = false;
-        const run = () => {
-            ticking = false;
-            callback();
-        };
+        scrollCallbacks.add(callback);
+        return () => scrollCallbacks.delete(callback);
+    };
+
+    const resizeCallbacks = new Set();
+    let isResizeTicking = false;
+    const runResizeCallbacks = () => {
+        isResizeTicking = false;
+        resizeCallbacks.forEach(callback => callback());
+    };
+    window.addEventListener('resize', () => {
+        if (isResizeTicking) return;
+        isResizeTicking = true;
+        requestAnimationFrame(runResizeCallbacks);
+    }, { passive: true });
+    const onRafResize = (callback) => {
+        resizeCallbacks.add(callback);
+        return () => resizeCallbacks.delete(callback);
+    };
+
+    const monitorScrollFrameBudget = () => {
+        if (prefersReducedMotion || root.classList.contains('perf-conserve')) return;
+        let isMeasuring = false;
+        let measurementCount = 0;
 
         window.addEventListener('scroll', () => {
-            if (ticking) return;
-            ticking = true;
-            requestAnimationFrame(run);
+            if (isMeasuring || measurementCount >= 2 || root.classList.contains('perf-conserve')) return;
+            isMeasuring = true;
+            measurementCount += 1;
+
+            const frameDeltas = [];
+            let lastFrameTime = 0;
+            let frameCount = 0;
+            const measureFrame = (time) => {
+                if (lastFrameTime) frameDeltas.push(time - lastFrameTime);
+                lastFrameTime = time;
+                frameCount += 1;
+
+                if (frameCount < 72) {
+                    requestAnimationFrame(measureFrame);
+                    return;
+                }
+
+                const sorted = frameDeltas.slice().sort((a, b) => a - b);
+                const averageFrame = frameDeltas.reduce((sum, value) => sum + value, 0) / Math.max(frameDeltas.length, 1);
+                const p95Frame = sorted[Math.floor(sorted.length * 0.95)] || 0;
+                if (averageFrame > 19 || p95Frame > 28) root.classList.add('perf-conserve');
+                isMeasuring = false;
+            };
+
+            requestAnimationFrame(measureFrame);
         }, { passive: true });
     };
+    monitorScrollFrameBudget();
 
     // 0. Global Smooth Scroll (Lenis)
     const initSmoothScroll = () => {
         if (!window.Lenis || window.lenisInstance) return;
         window.lenisInstance = new window.Lenis({
-            duration: 0.72,
+            duration: isWindowsPlatform ? 0.56 : 0.72,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
             direction: 'vertical',
             gestureDirection: 'vertical',
             smooth: true
         });
+        if (document.body.classList.contains('compliance-pending') && !isComplianceConfirmed()) {
+            window.lenisInstance.stop();
+        }
         function raf(time) {
-            window.lenisInstance.raf(time);
+            if (document.visibilityState !== 'hidden') {
+                window.lenisInstance.raf(time);
+            }
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
@@ -65,12 +127,30 @@ document.addEventListener('DOMContentLoaded', () => {
     // 0.1 Custom Cursor Glow
     const cursor = document.querySelector('.custom-cursor');
     if (cursor && !isCoarsePointer && window.innerWidth >= 1024) {
+        let cursorX = 0;
+        let cursorY = 0;
+        let cursorFrame = 0;
+        let isCursorVisible = false;
+        const renderCursor = () => {
+            cursorFrame = 0;
+            cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+            if (!isCursorVisible) {
+                cursor.style.opacity = '1';
+                isCursorVisible = true;
+            }
+        };
         window.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-            cursor.style.opacity = '1';
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+            if (!cursorFrame) cursorFrame = requestAnimationFrame(renderCursor);
         }, { passive: true });
         document.body.addEventListener('mouseleave', () => {
+            if (cursorFrame) {
+                cancelAnimationFrame(cursorFrame);
+                cursorFrame = 0;
+            }
             cursor.style.opacity = '0';
+            isCursorVisible = false;
         });
     } else if (cursor) {
         cursor.remove();
@@ -216,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="loader-content">
             <div id="decode-text" class="decode-text"></div>
             <div class="loader-logo-wrapper">
-                <img id="loader-logo" src="./images/logo.png" alt="均成基金 LOGO" class="loader-logo">
+                <img id="loader-logo" src="./images/logo-parigain-full.png" alt="均成基金 LOGO" class="loader-logo">
             </div>
         </div>
         <div class="skip-hint">Scroll to skip</div>
@@ -259,11 +339,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const header = document.getElementById('site-header');
         if (header) {
             const navLogo = header.querySelector('.nav-logo');
+            let wasScrolled;
             const updateHeaderState = () => {
                 const isScrolled = window.scrollY > 50;
+                if (isScrolled === wasScrolled) return;
+                wasScrolled = isScrolled;
                 header.classList.toggle('scrolled', isScrolled);
                 if (navLogo?.dataset.defaultLogo && navLogo.dataset.scrolledLogo) {
-                    navLogo.src = isScrolled ? navLogo.dataset.scrolledLogo : navLogo.dataset.defaultLogo;
+                    const nextLogoSrc = isScrolled ? navLogo.dataset.scrolledLogo : navLogo.dataset.defaultLogo;
+                    if (navLogo.getAttribute('src') !== nextLogoSrc) navLogo.src = nextLogoSrc;
                     navLogo.classList.toggle('nav-logo-dark-bg', !isScrolled);
                     navLogo.classList.toggle('nav-logo-full', isScrolled);
                 }
@@ -353,16 +437,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const fixedBg = document.querySelector(bgSelector);
         if (!hero || !fixedBg) return;
 
+        let transitionDistance = 1;
+        let lastProgress = '';
+        const measureTransitionDistance = () => {
+            transitionDistance = Math.max(hero.offsetHeight * 0.85, 1);
+        };
         const updateBgProgress = () => {
             const scrollTop = window.scrollY || window.pageYOffset || 0;
-            const transitionDistance = Math.max(hero.offsetHeight * 0.85, 1);
             const progress = Math.min(Math.max(scrollTop / transitionDistance, 0), 1);
-            document.documentElement.style.setProperty(progressVar, progress.toFixed(4));
+            const nextProgress = progress.toFixed(4);
+            if (nextProgress === lastProgress) return;
+            lastProgress = nextProgress;
+            document.documentElement.style.setProperty(progressVar, nextProgress);
         };
 
+        measureTransitionDistance();
         updateBgProgress();
         onRafScroll(updateBgProgress);
-        window.addEventListener('resize', updateBgProgress);
+        onRafResize(() => {
+            measureTransitionDistance();
+            updateBgProgress();
+        });
     };
 
     initScrollBackgroundTransition({
@@ -387,15 +482,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const hero = document.querySelector('.about-hero');
         if (!hero) return;
 
+        let lastTravel = '';
         const updateAboutHeroBg = () => {
             const scrollTop = window.scrollY || window.pageYOffset || 0;
             const travel = Math.min(scrollTop * 0.42, 420);
-            document.documentElement.style.setProperty('--about-hero-bg-y', `${-travel.toFixed(1)}px`);
+            const nextTravel = `${-travel.toFixed(1)}px`;
+            if (nextTravel === lastTravel) return;
+            lastTravel = nextTravel;
+            document.documentElement.style.setProperty('--about-hero-bg-y', nextTravel);
         };
 
         updateAboutHeroBg();
         onRafScroll(updateAboutHeroBg);
-        window.addEventListener('resize', updateAboutHeroBg);
+        onRafResize(updateAboutHeroBg);
     };
 
     initAboutHeroBackgroundScroll();
@@ -584,12 +683,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Card Glow
     if (!isCoarsePointer) {
-        document.querySelectorAll('.domain-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-                card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        const glowCards = Array.from(document.querySelectorAll('.domain-card'));
+        glowCards.forEach(card => {
+            let rect;
+            let mouseX = 0;
+            let mouseY = 0;
+            let glowFrame = 0;
+            const renderGlow = () => {
+                glowFrame = 0;
+                card.style.setProperty('--mouse-x', `${mouseX}px`);
+                card.style.setProperty('--mouse-y', `${mouseY}px`);
+            };
+            card.addEventListener('pointerenter', () => {
+                rect = card.getBoundingClientRect();
             }, { passive: true });
+            card.addEventListener('pointermove', (e) => {
+                if (!rect) rect = card.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+                if (!glowFrame) glowFrame = requestAnimationFrame(renderGlow);
+            }, { passive: true });
+            card.addEventListener('pointerleave', () => {
+                rect = undefined;
+            }, { passive: true });
+        });
+        onRafResize(() => {
+            glowCards.forEach(card => {
+                card.style.removeProperty('--mouse-x');
+                card.style.removeProperty('--mouse-y');
+            });
         });
     }
 
@@ -665,8 +787,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const decodeEl = document.getElementById('decode-text');
         if (!decodeEl) return;
         let iteration = 0;
+        const targetChars = targetText.split('');
+        const scrambleChars = '01$#@!%&*?';
         const interval = setInterval(() => {
-            decodeEl.innerText = targetText.split("").map((l, i) => i < iteration ? targetText[i] : '01$#@!%&*?'[Math.floor(Math.random() * 10)]).join("");
+            decodeEl.textContent = targetChars.map((l, i) => (
+                i < iteration ? l : scrambleChars[Math.floor(Math.random() * scrambleChars.length)]
+            )).join('');
             if (iteration >= targetText.length) {
                 clearInterval(interval);
                 setTimeout(() => {
@@ -722,9 +848,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    let isAMapLoading = false;
     const initOfficeMaps = () => {
-        if (typeof AMap === 'undefined') return;
-
         const offices = [
             {
                 id: 'map-sz',
@@ -739,10 +864,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 addr: '横琴粤澳深度合作区琴朗道91号1911办公区'
             }
         ];
+        const mapContainers = offices
+            .map(office => document.getElementById(office.id))
+            .filter(Boolean);
+        if (!mapContainers.length) return;
+
+        if (typeof AMap === 'undefined') {
+            if (isAMapLoading) return;
+            const loadMaps = () => {
+                if (isAMapLoading || typeof AMap !== 'undefined') return;
+                isAMapLoading = true;
+                loadExternalScript('https://webapi.amap.com/maps?v=2.0&key=c3de1f6e226f87ae2375ab66c0259885')
+                    .then(() => initOfficeMaps())
+                    .catch(() => {})
+                    .finally(() => {
+                        isAMapLoading = false;
+                    });
+            };
+
+            if ('IntersectionObserver' in window) {
+                const mapObserver = new IntersectionObserver((entries, observerInstance) => {
+                    if (!entries.some(entry => entry.isIntersecting)) return;
+                    observerInstance.disconnect();
+                    loadMaps();
+                }, { rootMargin: '360px 0px' });
+                mapContainers.forEach(container => mapObserver.observe(container));
+            } else {
+                loadMaps();
+            }
+            return;
+        }
 
         offices.forEach(office => {
             const container = document.getElementById(office.id);
-            if (!container) return;
+            if (!container || container.dataset.mapReady === 'true') return;
+            container.dataset.mapReady = 'true';
 
             const map = new AMap.Map(office.id, {
                 zoom: 15,
