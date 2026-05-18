@@ -213,6 +213,18 @@ body.home-page .home-brand-hero .hero-bg-media {
   color: rgba(255, 255, 255, 0.9);
 }
 
+.home-page .brand-slogan,
+.home-page .brand-slogan-en {
+  color: rgba(255, 219, 188, 0.94);
+}
+
+body.company1-page .brand-slogan,
+body.company1-page .brand-slogan-en,
+body.company2-page .brand-slogan,
+body.company2-page .brand-slogan-en {
+  color: #fff;
+}
+
 body.home-page .home-brand-hero .scroll-down {
   bottom: 34px;
   color: rgba(255, 255, 255, 0.86);
@@ -305,19 +317,16 @@ body.home-page .section-alt {
 
 .image-copy-panel {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(360px, 1fr);
-  min-height: 620px;
+  grid-template-columns: minmax(0, 1.45fr) minmax(360px, 0.85fr);
+  gap: clamp(48px, 5vw, 92px);
+  align-items: center;
+  min-height: 600px;
   width: min(100%, 1440px);
   margin: 0 auto;
-  overflow: hidden;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 34px 86px rgba(15, 23, 42, 0.1);
 }
 
 .image-copy-media {
-  min-height: 620px;
+  min-height: 560px;
   overflow: hidden;
 }
 
@@ -336,7 +345,10 @@ body.home-page .section-alt {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(42px, 4.4vw, 68px);
+  align-items: center;
+  max-width: 520px;
+  padding: 0;
+  text-align: center;
 }
 
 .image-copy-content h2,
@@ -353,7 +365,7 @@ body.home-page .section-alt {
 }
 
 .image-copy-content .btn-main {
-  align-self: flex-start;
+  align-self: center;
   margin-top: 24px;
 }
 
@@ -544,10 +556,7 @@ body.home-page .section-alt {
 .audience-entry-card.join-card {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.72)),
-    image-set(
-      url('../images/global_connections-1200.avif') type('image/avif'),
-      url('../images/global_connections-1200.webp') type('image/webp')
-    ) center/cover;
+    url('../images/home-join-team-wide.png') center center / cover;
 }
 
 .audience-entry-card.contact-card {

@@ -16,6 +16,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: './index.html',
+        company2: './company2.html',
+        company1: './company1.html',
         about: './about.html',
         strategy: './strategy.html',
         contact: './contact.html',

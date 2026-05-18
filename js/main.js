@@ -103,6 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </a>
             </div>
             <ul class="nav-links">
+                <li><a href="./company2.html" data-page="company2">公司官网2</a></li>
+                <li><a href="./company1.html" data-page="company1">公司官网1</a></li>
                 <li><a href="./index.html" data-page="index">官网首页</a></li>
                 <li><a href="./strategy.html" data-page="strategy">产品服务</a></li>
                 <li><a href="./about.html" data-page="about">关于均成</a></li>

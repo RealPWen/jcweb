@@ -76,6 +76,35 @@
     grid-template-columns: 1fr;
   }
 
+  .strategy-page .strategy-card-grid {
+    display: grid;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    gap: 18px;
+    overflow: visible;
+  }
+
+  .strategy-page .strategy-card-grid .domain-card,
+  .strategy-page .strategy-card-grid .domain-card:first-child,
+  .strategy-page .strategy-card-grid .domain-card:last-child {
+    clip-path: polygon(0 0, 100% 0, 94% 100%, 0 100%);
+    padding: 42px 30px 40px;
+  }
+
+  .strategy-page .strategy-card-grid .domain-card + .domain-card {
+    margin-left: 0;
+  }
+
+  body.strategy-page .page-hero {
+    min-height: 62vh;
+  }
+
+  .strategy-page .strategy-cards-section {
+    margin-top: 0;
+    padding-top: 80px;
+  }
+
   .home-honors-grid,
   .team-profile {
     grid-template-columns: 1fr;
@@ -515,8 +544,7 @@
 
   .career-value-card,
   .advantage-card,
-  .contact-info-card,
-  .recruit-system-panel {
+  .contact-info-card {
     padding: 26px;
   }
 
