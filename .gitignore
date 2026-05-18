@@ -1,5 +1,7 @@
 node_modules/
 tmp/
+tmp_fund_logos/
+tmp_fund_logo_sheet.jpg
 .DS_Store
 dist/
 build/

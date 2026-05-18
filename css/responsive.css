@@ -52,12 +52,6 @@
     transform: rotate(-45deg) translate(5px, -6px);
   }
 
-  /* Layout */
-  .stats-flex {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
   .domain-cards {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -133,18 +127,10 @@
     gap: 40px;
   }
 
-  /* About */
-  .honors-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 /* ---- Small Tablet / Large Phone (max-width: 991px) ---- */
 @media (max-width: 991px) {
-  .job-grid {
-    grid-template-columns: 1fr;
-  }
-
   .split-layout, .split-layout.reverse {
     flex-direction: column;
     gap: 40px;
@@ -178,24 +164,8 @@
     flex: 1 1 auto;
   }
 
-  .gridless-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
   .immersive-section {
     padding: 80px 0;
-  }
-
-  .home-stats-bar .stats-flex {
-    flex-direction: column;
-    gap: 30px;
-  }
-
-  .hero-proof-grid,
-  .partner-categories {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .image-copy-content {
@@ -256,44 +226,15 @@
     padding: 0 20px;
   }
 
-  .main-title {
-    font-size: 36px;
-    line-height: 1.2;
-  }
-
   .hero-slider {
     height: 100vh;
     height: 100dvh;
     min-height: 100vh;
   }
 
-  .sub-title {
-    font-size: 12px;
-    letter-spacing: 4px;
-  }
-
-  .hero-desc {
-    font-size: 16px;
-    margin-bottom: 30px;
-  }
-
   .hero-btns {
     flex-direction: column;
     gap: 12px;
-  }
-
-  .institutional-hero {
-    padding-top: 110px;
-    padding-bottom: 120px;
-  }
-
-  .hero-proof-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .slogan-hero {
-    padding-top: 110px;
-    padding-bottom: 120px;
   }
 
   .home-brand-hero {
@@ -468,10 +409,6 @@
     text-align: center;
   }
 
-  .slider-arrows {
-    display: none;
-  }
-
   /* Page Hero */
   .page-title {
     font-size: 40px;
@@ -496,45 +433,10 @@
   }
 }
 
-/* ---- Small Phone (max-width: 640px) ---- */
-@media (max-width: 640px) {
-  .honors-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* ---- Smallest Phone (max-width: 480px) ---- */
 @media (max-width: 480px) {
-  .main-title {
-    font-size: 32px;
-  }
-
-  .stats-flex {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    text-align: center;
-    padding: 24px 20px;
-  }
-
-  .stat-item {
-    padding: 15px;
-    background: var(--card-bg);
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-  }
-
-  .stat-item .val {
-    font-size: 36px;
-  }
-
   .domain-card {
     padding: 40px 24px;
-  }
-
-  .hero-proof-grid,
-  .partner-categories {
-    grid-template-columns: 1fr;
   }
 
   .image-copy-content h2,
@@ -566,10 +468,6 @@
     font-size: 60px;
   }
 
-  /* Info */
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ---- Runtime Performance Guardrails ---- */
@@ -586,11 +484,8 @@ html:is(.is-windows, .perf-conserve) :is(
   header,
   .nav-links,
   .domain-card,
-  .info-card,
   .advantage-card,
   .contact-info-card,
-  .hero-proof-item,
-  .stats-flex,
   .risk-disclosure,
   body.home-page .section-dark,
   body.home-page .section-alt,

@@ -287,21 +287,12 @@ body.home-page .home-brand-hero .mouse::before {
   }
 }
 
-.slogan-hero {
-  max-width: 980px;
-}
-
-.slogan-hero .main-title {
-  max-width: 880px;
-}
-
 .company-profile-section,
 .strategy-cards-section,
 .home-honors-section {
   padding: 120px 0;
 }
 
-body.home-page .home-stats-bar,
 body.home-page .section-dark,
 body.home-page .section-alt {
   background: rgba(248, 250, 252, 0.78);
@@ -482,61 +473,6 @@ body.home-page .section-alt {
 .partners-section {
   padding: 100px 0;
   background-color: var(--bg-secondary);
-}
-
-.partner-title {
-  text-align: center;
-  font-size: 20px;
-  color: var(--text-muted);
-  margin-bottom: 48px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-}
-
-.partner-categories {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.partner-category-card {
-  min-height: 230px;
-  padding: 28px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.72);
-}
-
-.partner-type {
-  display: block;
-  min-height: 38px;
-  color: var(--accent);
-  font-size: 13px;
-  line-height: 1.4;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-}
-
-.partner-category-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 14px;
-}
-
-.partner-category-card li {
-  color: var(--text-primary);
-  font-size: 16px;
-  line-height: 1.5;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.partner-category-card li:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
 }
 
 /* --- Audience Entry --- */

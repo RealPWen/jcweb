@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <li>金融资产不低于300万元或者最近三年个人年均收入不低于50万元的个人。<br><small>(前款所称金融资产包括银行存款、股票、债券、基金份额、资产管理计划、银行理财产品、信托计划、保险产品、期货权益等。)</small></li>
                     </ol>
                 </details>
-                <details class="compliance-section">
+                <details class="compliance-section" open>
                     <summary>视为合格投资者的情形</summary>
                     <strong>二、下列投资者视为合格投资者：</strong>
                     <ol>
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <li>中国证监会规定的其他投资者。</li>
                     </ol>
                 </details>
-                <details class="compliance-section">
+                <details class="compliance-section" open>
                     <summary>访问声明</summary>
                     <p>如果您继续访问或使用本网站及其所载资料，即表明您声明及保证您或您所代表的机构为“合格投资者”，并将遵守对您适用的司法区域的有关法律及法规，同意并接受以下条款及相关约束。如果您不符合“合格投资者”标准或不同意下列条款及相关约束，请勿继续访问或使用本网站及其所载信息及资料。</p>
                 </details>
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <summary>风险提示</summary>
                     <p class="warning-text">投资涉及风险，投资者应详细审阅产品的发售文件以获取进一步资料，了解有关投资所涉及的风险因素，并寻求适当的专业投资和咨询意见。产品净值及其收益存在涨跌可能，过往的产品业绩数据并不预示产品未来的业绩表现。本网站所提供的资料并非投资建议或咨询意见，投资者不应依赖本网站所提供的信息及资料作出投资决策。</p>
                 </details>
-                <details class="compliance-section">
+                <details class="compliance-section" open>
                     <summary>知识产权声明</summary>
                     <p class="copyright-info">与本网站所载信息及资料有关的所有版权、专利权、知识产权及其他产权均为本公司所有。本公司概不向浏览该资料人士发出、转让或以任何方式转移任何种类的权利。</p>
                 </details>
@@ -394,43 +394,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     renderAwardsTimeline();
-
-    // Hero Slider
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.control-dot');
-    const prevBtn = document.querySelector('.arrow-btn.prev');
-    const nextBtn = document.querySelector('.arrow-btn.next');
-    let currentSlide = 0;
-    let sliderInterval;
-
-    const updateSlider = (index) => {
-        if (!slides.length) return;
-        slides.forEach(slide => {
-            if (!slide.style.backgroundImage && slide.hasAttribute('data-bg')) {
-                const bg = slide.getAttribute('data-bg');
-                if (bg) slide.style.backgroundImage = `url(${bg})`;
-            }
-            slide.classList.remove('active');
-        });
-        dots.forEach(dot => dot.classList.remove('active'));
-        slides[index].classList.add('active');
-        if (dots[index]) dots[index].classList.add('active');
-        currentSlide = index;
-    };
-
-    const nextSlide = () => slides.length && updateSlider((currentSlide + 1) % slides.length);
-    const prevSlide = () => slides.length && updateSlider((currentSlide - 1 + slides.length) % slides.length);
-
-    if (nextBtn && prevBtn) {
-        nextBtn.addEventListener('click', () => { nextSlide(); resetInterval(); });
-        prevBtn.addEventListener('click', () => { prevSlide(); resetInterval(); });
-    }
-    dots.forEach((dot, idx) => dot.addEventListener('click', () => { updateSlider(idx); resetInterval(); }));
-
-    const startInterval = () => slides.length && (sliderInterval = setInterval(nextSlide, 6000));
-    const resetInterval = () => { clearInterval(sliderInterval); startInterval(); };
-    updateSlider(0);
-    startInterval();
 
     const initScrollBackgroundTransition = ({ heroSelector, bgSelector, progressVar }) => {
         const hero = document.querySelector(heroSelector);
@@ -675,7 +638,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-    const revealElements = document.querySelectorAll('.reveal-item, .stats-flex, .domain-card, .section-header, .partner-category-card, .founder-card, .timeline-item, .office-card, .recruitment-flex, .form-container, .process-flow, .info-card, .honor-card, .job-card, .careers-hero, .image-copy-panel, .home-honors-media, .home-honors-list, .advantage-card, .milestone-slide, .team-photo, .team-copy, .career-value-card, .office-carousel, .recruit-system-panel, .contact-info-card');
+    const revealElements = document.querySelectorAll('.reveal-item, .domain-card, .section-header, .timeline-item, .office-card, .recruitment-flex, .careers-hero, .image-copy-panel, .home-honors-media, .home-honors-list, .advantage-card, .milestone-slide, .team-photo, .team-copy, .career-value-card, .office-carousel, .recruit-system-panel, .contact-info-card');
     revealElements.forEach(el => {
         el.classList.add('reveal-item');
         observer.observe(el);
@@ -821,6 +784,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (modal) {
+            modal.querySelectorAll('.compliance-section').forEach(section => {
+                section.open = true;
+            });
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
             if (window.lenisInstance) window.lenisInstance.stop();
