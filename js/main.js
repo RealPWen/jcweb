@@ -98,12 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
     <header id="site-header">
         <nav class="container">
             <div class="logo">
-                <a href="./company2.html">
+                <a href="./company.html">
                     <img src="${navLogoSrc}" alt="均成基金 LOGO" class="${navLogoClass}"${usesDarkBgWordmark ? ` data-default-logo="${darkBgLogoSrc}" data-scrolled-logo="${fullLogoSrc}"` : ''}>
                 </a>
             </div>
             <ul class="nav-links">
-                <li><a href="./company2.html" data-page="company2">公司官网</a></li>
+                <li><a href="./company.html" data-page="company">公司官网</a></li>
                 <li><a href="./strategy.html" data-page="strategy">产品服务</a></li>
                 <li><a href="./about.html" data-page="about">关于均成</a></li>
                 <li><a href="./careers.html" data-page="careers">加入我们</a></li>
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="footer-col links">
                 <h4>快速链接</h4>
                 <ul>
-                    <li><a href="./company2.html">官网首页</a></li>
+                    <li><a href="./company.html">官网首页</a></li>
                     <li><a href="./strategy.html">产品服务</a></li>
                     <li><a href="./about.html">关于均成</a></li>
                     <li><a href="./careers.html">人才招聘</a></li>
