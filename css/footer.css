@@ -10,7 +10,7 @@ footer {
   background-color: #f8fafc;
   background-image:
     linear-gradient(180deg, rgba(248, 250, 252, 0.86), rgba(248, 250, 252, 0.68) 48%, rgba(243, 123, 45, 0.12)),
-    url('../images/footer-texture.jpeg');
+    url('/images/footer-texture.jpeg');
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -24,7 +24,7 @@ footer::before {
   right: -32px;
   top: 160px;
   color: var(--accent);
-  font-family: Outfit, system-ui, sans-serif;
+  font-family: var(--font-sans);
   font-size: clamp(96px, 18vw, 260px);
   font-weight: 800;
   line-height: 1;
@@ -82,6 +82,20 @@ footer::before {
   color: var(--text-secondary);
   max-width: none;
   white-space: nowrap;
+}
+
+.brand .footer-company-name {
+  margin-top: 2px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  white-space: normal;
+}
+
+.brand .footer-tagline {
+  margin-top: 16px;
 }
 
 .footer-qr {

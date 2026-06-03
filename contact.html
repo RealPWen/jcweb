@@ -21,6 +21,10 @@
             "mainEntity": {
                 "@type": "Organization",
                 "name": "广东横琴均成私募基金管理有限公司",
+                "alternateName": [
+                    "Parigain",
+                    "Parigain Asset Management Co.,Ltd"
+                ],
                 "url": "https://parigain.com/",
                 "email": "contact@parigain.com",
                 "telephone": "+86-755-86525376",
@@ -45,9 +49,6 @@
 
     <link rel="preload" as="image" href="./images/contact-hero-wall-1600.avif" type="image/avif" imagesrcset="./images/contact-hero-wall-800.avif 800w, ./images/contact-hero-wall-1200.avif 1200w, ./images/contact-hero-wall-1600.avif 1600w" imagesizes="100vw" fetchpriority="high">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="./images/favicon.png">
     <script>
         (function() {
@@ -93,12 +94,18 @@
                 </div>
                 <div class="office-grid">
                     <div class="office-card reveal-item">
-                        <div class="city">HENGQIN / 横琴</div>
+                        <div class="copy-card-header">
+                            <div class="city">HENGQIN / 横琴</div>
+                            <button class="copy-btn" type="button" data-copy-value="横琴粤澳深度合作区琴朗道91号1911办公区" aria-label="复制横琴办公地址">复制</button>
+                        </div>
                         <p class="address">横琴粤澳深度合作区琴朗道91号1911办公区</p>
                         <div id="map-hq" class="map-container"></div>
                     </div>
                     <div class="office-card reveal-item" data-delay="100">
-                        <div class="city">SHENZHEN / 深圳</div>
+                        <div class="copy-card-header">
+                            <div class="city">SHENZHEN / 深圳</div>
+                            <button class="copy-btn" type="button" data-copy-value="深圳市南山区高新南九道39号湾区创新大厦B座3003房" aria-label="复制深圳办公地址">复制</button>
+                        </div>
                         <p class="address">深圳市南山区高新南九道39号湾区创新大厦B座3003房</p>
                         <div id="map-sz" class="map-container"></div>
                     </div>
@@ -109,17 +116,26 @@
                 </div>
                 <div class="contact-card-grid">
                     <article class="contact-info-card reveal-item">
-                        <span>PHONE</span>
+                        <div class="copy-card-header">
+                            <span>PHONE</span>
+                            <button class="copy-btn" type="button" data-copy-value="0755-86525376" aria-label="复制联系电话">复制</button>
+                        </div>
                         <h3>联系电话</h3>
                         <p><a href="tel:075586525376">0755-86525376</a></p>
                     </article>
                     <article class="contact-info-card reveal-item">
-                        <span>EMAIL</span>
+                        <div class="copy-card-header">
+                            <span>EMAIL</span>
+                            <button class="copy-btn" type="button" data-copy-value="contact@parigain.com" aria-label="复制联系邮箱">复制</button>
+                        </div>
                         <h3>联系邮箱</h3>
                         <p><a href="mailto:contact@parigain.com">contact@parigain.com</a></p>
                     </article>
                     <article class="contact-info-card reveal-item">
-                        <span>RECRUIT</span>
+                        <div class="copy-card-header">
+                            <span>RECRUIT</span>
+                            <button class="copy-btn" type="button" data-copy-value="zhaopin@parigain.com" aria-label="复制招募邮箱">复制</button>
+                        </div>
                         <h3>招募邮箱</h3>
                         <p><a href="mailto:zhaopin@parigain.com">zhaopin@parigain.com</a></p>
                     </article>

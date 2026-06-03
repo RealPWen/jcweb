@@ -72,22 +72,31 @@
 
   .strategy-page .strategy-card-grid {
     display: grid;
-    width: 100%;
-    margin-right: 0;
-    margin-left: 0;
-    gap: 18px;
+    width: min(100%, 760px);
+    margin-right: auto;
+    margin-left: auto;
+    gap: 0;
     overflow: visible;
   }
 
   .strategy-page .strategy-card-grid .domain-card,
   .strategy-page .strategy-card-grid .domain-card:first-child,
   .strategy-page .strategy-card-grid .domain-card:last-child {
-    clip-path: polygon(0 0, 100% 0, 94% 100%, 0 100%);
-    padding: 42px 30px 40px;
+    min-height: 0;
+    padding: 38px clamp(34px, 6vw, 64px) 40px;
+    clip-path: polygon(0 0, 100% 0, calc(100% - clamp(28px, 6vw, 54px)) 100%, 0 100%);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.42));
   }
 
   .strategy-page .strategy-card-grid .domain-card + .domain-card {
     margin-left: 0;
+    margin-top: -1px;
+  }
+
+  .strategy-page .strategy-card-grid .domain-card:nth-child(even) {
+    padding-right: clamp(34px, 6vw, 64px);
+    padding-left: clamp(44px, 8vw, 78px);
+    clip-path: polygon(clamp(28px, 6vw, 54px) 0, 100% 0, 100% 100%, 0 100%);
   }
 
   body.strategy-page .page-hero {
@@ -445,6 +454,12 @@
     font-size: 30px;
   }
 
+  .company-name-en,
+  .brand .footer-company-name {
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+
   .career-value-card,
   .advantage-card,
   .contact-info-card {
@@ -468,6 +483,83 @@
     font-size: 60px;
   }
 
+}
+
+/* ---- Strategy Page Compact Cards (max-width: 768px) ---- */
+@media (max-width: 768px) {
+  body.strategy-page .strategy-cards-section {
+    margin-top: 0;
+    padding-top: 56px;
+    contain-intrinsic-size: auto 430px;
+  }
+
+  .strategy-page .strategy-cards-section .section-header {
+    margin-bottom: 24px;
+  }
+
+  .strategy-page .strategy-card-grid {
+    width: 100vw;
+    margin-right: calc(50% - 50vw);
+    margin-left: calc(50% - 50vw);
+    gap: 0;
+  }
+
+  .strategy-page .strategy-card-grid .domain-card,
+  .strategy-page .strategy-card-grid .domain-card:first-child,
+  .strategy-page .strategy-card-grid .domain-card:last-child {
+    min-height: auto;
+    padding: 30px 48px 32px 28px;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 34px) 100%, 0 100%);
+    border: 0;
+    border-radius: 0;
+    background:
+      linear-gradient(102deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.9) 76%, rgba(139, 94, 43, 0.34) 100%),
+      url('/images/strategy-space-bg-1200.webp') center center / cover no-repeat;
+    box-shadow: none;
+    filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.1));
+  }
+
+  .strategy-page .strategy-card-grid .domain-card.reveal-item {
+    opacity: 1;
+    transform: none;
+  }
+
+  .strategy-page .strategy-card-grid .domain-card + .domain-card {
+    margin-top: -8px;
+  }
+
+  .strategy-page .strategy-card-grid .domain-card:nth-child(even) {
+    padding-right: 28px;
+    padding-left: 48px;
+    clip-path: polygon(34px 0, 100% 0, 100% 100%, 0 100%);
+    background:
+      linear-gradient(102deg, rgba(243, 123, 45, 0.18) 0%, rgba(255, 248, 242, 0.95) 18%, rgba(255, 255, 255, 0.92) 100%),
+      url('/images/strategy-space-bg-1200.webp') center center / cover no-repeat;
+  }
+
+  .strategy-page .strategy-card-grid .domain-card:hover,
+  .strategy-page .strategy-card-grid .domain-card.visible:hover {
+    transform: none !important;
+  }
+
+  .strategy-page .strategy-card-grid .domain-card::after {
+    content: none;
+  }
+
+  .strategy-page .strategy-card-grid .strategy-index {
+    margin-bottom: 12px;
+  }
+
+  .strategy-page .strategy-card-grid .domain-card h3 {
+    margin-bottom: 12px;
+    font-size: 24px;
+    line-height: 1.22;
+  }
+
+  .strategy-page .strategy-card-grid .domain-card p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
 }
 
 /* ---- Runtime Performance Guardrails ---- */

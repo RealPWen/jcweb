@@ -382,27 +382,41 @@ body.home-page .section-alt {
 }
 
 .strategy-card-cta {
-  --strategy-card-bg: image-set(
-    url('../images/strategy-card-cta.avif') type('image/avif'),
-    url('../images/strategy-card-cta.webp') type('image/webp'),
-    url('../images/strategy-card-cta.png') type('image/png')
-  );
+  --strategy-card-bg: url('/images/strategy-card-cta.webp');
 }
 
 .strategy-card-stock {
-  --strategy-card-bg: image-set(
-    url('../images/strategy-card-neutral.avif') type('image/avif'),
-    url('../images/strategy-card-neutral.webp') type('image/webp'),
-    url('../images/strategy-card-neutral.png') type('image/png')
-  );
+  --strategy-card-bg: url('/images/strategy-card-neutral.webp');
 }
 
 .strategy-card-neutral {
-  --strategy-card-bg: image-set(
-    url('../images/strategy-card-stock.avif') type('image/avif'),
-    url('../images/strategy-card-stock.webp') type('image/webp'),
-    url('../images/strategy-card-stock.png') type('image/png')
-  );
+  --strategy-card-bg: url('/images/strategy-card-stock.webp');
+}
+
+@supports (background-image: image-set(url('/images/strategy-card-cta.avif') type('image/avif'))) {
+  .strategy-card-cta {
+    --strategy-card-bg: image-set(
+      url('/images/strategy-card-cta.avif') type('image/avif'),
+      url('/images/strategy-card-cta.webp') type('image/webp'),
+      url('/images/strategy-card-cta.png') type('image/png')
+    );
+  }
+
+  .strategy-card-stock {
+    --strategy-card-bg: image-set(
+      url('/images/strategy-card-neutral.avif') type('image/avif'),
+      url('/images/strategy-card-neutral.webp') type('image/webp'),
+      url('/images/strategy-card-neutral.png') type('image/png')
+    );
+  }
+
+  .strategy-card-neutral {
+    --strategy-card-bg: image-set(
+      url('/images/strategy-card-stock.avif') type('image/avif'),
+      url('/images/strategy-card-stock.webp') type('image/webp'),
+      url('/images/strategy-card-stock.png') type('image/png')
+    );
+  }
 }
 
 .strategy-index {
@@ -502,19 +516,25 @@ body.home-page .section-alt {
 .audience-entry-card.join-card {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.72)),
+    url('/images/home-join-team-wide.webp') center center / cover;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.72)),
     image-set(
-      url('../images/home-join-team-wide.avif') type('image/avif'),
-      url('../images/home-join-team-wide.webp') type('image/webp'),
-      url('../images/home-join-team-wide.png') type('image/png')
+      url('/images/home-join-team-wide.avif') type('image/avif'),
+      url('/images/home-join-team-wide.webp') type('image/webp'),
+      url('/images/home-join-team-wide.png') type('image/png')
     ) center center / cover;
 }
 
 .audience-entry-card.contact-card {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.72)),
+    url('/images/office_hq-1200.webp') center/cover;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.72)),
     image-set(
-      url('../images/office_hq-1200.avif') type('image/avif'),
-      url('../images/office_hq-1200.webp') type('image/webp')
+      url('/images/office_hq-1200.avif') type('image/avif'),
+      url('/images/office_hq-1200.webp') type('image/webp')
     ) center/cover;
 }
 

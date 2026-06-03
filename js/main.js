@@ -12,13 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches;
-    const canUseSmoothScroll = !prefersReducedMotion && !isCoarsePointer && window.innerWidth >= 1024;
     const loadExternalScript = (src) => new Promise((resolve, reject) => {
         const existing = document.querySelector(`script[src="${src}"]`);
         if (existing) {
             existing.addEventListener('load', resolve, { once: true });
             existing.addEventListener('error', reject, { once: true });
-            if (window.Lenis) resolve();
             return;
         }
 
@@ -96,34 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     monitorScrollFrameBudget();
 
-    // 0. Global Smooth Scroll (Lenis)
-    const initSmoothScroll = () => {
-        if (!window.Lenis || window.lenisInstance) return;
-        window.lenisInstance = new window.Lenis({
-            duration: isWindowsPlatform ? 0.56 : 0.72,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true
-        });
-        if (document.body.classList.contains('compliance-pending') && !isComplianceConfirmed()) {
-            window.lenisInstance.stop();
-        }
-        function raf(time) {
-            if (document.visibilityState !== 'hidden') {
-                window.lenisInstance.raf(time);
-            }
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-    };
-
-    if (canUseSmoothScroll) {
-        loadExternalScript('https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js')
-            .then(initSmoothScroll)
-            .catch(() => {});
-    }
-
     // 0.1 Custom Cursor Glow
     const cursor = document.querySelector('.custom-cursor');
     if (cursor && !isCoarsePointer && window.innerWidth >= 1024) {
@@ -178,12 +148,12 @@ document.addEventListener('DOMContentLoaded', () => {
     <header id="site-header">
         <nav class="container">
             <div class="logo">
-                <a href="./company.html">
+                <a href="./index.html">
                     <img src="${navLogoSrc}" alt="均成基金 LOGO" class="${navLogoClass}"${usesDarkBgWordmark ? ` data-default-logo="${darkBgLogoSrc}" data-scrolled-logo="${fullLogoSrc}"` : ''}>
                 </a>
             </div>
             <ul class="nav-links">
-                <li><a href="./company.html" data-page="company">公司官网</a></li>
+                <li><a href="./index.html" data-page="index">公司官网</a></li>
                 <li><a href="./strategy.html" data-page="strategy">产品服务</a></li>
                 <li><a href="./about.html" data-page="about">关于均成</a></li>
                 <li><a href="./careers.html" data-page="careers">加入我们</a></li>
@@ -203,7 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="logo">
                     <img src="./images/logo-parigain-full.png" alt="均成基金 LOGO" class="footer-logo">
                 </div>
-                <p>坚持投资者优先的国内量化 CTA 策略先行者</p>
+                <p class="footer-company-name">Parigain Asset Management Co.,Ltd</p>
+                <p class="footer-tagline">坚持投资者优先的国内量化 CTA 策略先行者</p>
                 <div class="footer-qr">
                     <img src="./images/footer-qr.jpg" alt="均成基金二维码" loading="lazy" decoding="async">
                     <span>关注均成基金</span>
@@ -212,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="footer-col links">
                 <h4>快速链接</h4>
                 <ul>
-                    <li><a href="./company.html">官网首页</a></li>
+                    <li><a href="./index.html">官网首页</a></li>
                     <li><a href="./strategy.html">产品服务</a></li>
                     <li><a href="./about.html">关于均成</a></li>
                     <li><a href="./careers.html">人才招聘</a></li>
@@ -685,17 +656,84 @@ document.addEventListener('DOMContentLoaded', () => {
         backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
 
+    let decodeIntervalId = 0;
+    let removeEntryLoaderSkipHandlers = null;
+    const entryLoaderTimeouts = new Set();
+    const scheduleEntryLoaderTimeout = (callback, delay) => {
+        const timeoutId = window.setTimeout(() => {
+            entryLoaderTimeouts.delete(timeoutId);
+            callback();
+        }, delay);
+        entryLoaderTimeouts.add(timeoutId);
+        return timeoutId;
+    };
+    const clearEntryLoaderTimeline = () => {
+        if (decodeIntervalId) {
+            clearInterval(decodeIntervalId);
+            decodeIntervalId = 0;
+        }
+        entryLoaderTimeouts.forEach(timeoutId => clearTimeout(timeoutId));
+        entryLoaderTimeouts.clear();
+    };
+
     const finishEntryLoader = (loader, navLogo) => {
         if (!loader) return;
 
+        clearEntryLoaderTimeline();
+        removeEntryLoaderSkipHandlers?.();
+        removeEntryLoaderSkipHandlers = null;
         navLogo?.classList.remove('is-logo-target-hidden');
         loader.style.opacity = '0';
         setTimeout(() => {
             loader.classList.remove('active', 'show-logo', 'logo-flight');
             loader.style.opacity = '';
             document.body.style.overflow = 'auto';
-            if (window.lenisInstance) window.lenisInstance.start();
         }, 420);
+    };
+
+    const enableEntryLoaderSkip = (loader) => {
+        if (!loader) return;
+        removeEntryLoaderSkipHandlers?.();
+
+        let touchStartY = 0;
+        const skipLoader = () => {
+            if (!loader.classList.contains('active')) return;
+            finishEntryLoader(loader, document.querySelector('.nav-logo'));
+        };
+        const handleWheel = (event) => {
+            if (Math.abs(event.deltaY) < 4) return;
+            event.preventDefault();
+            skipLoader();
+        };
+        const handleTouchStart = (event) => {
+            touchStartY = event.touches?.[0]?.clientY || 0;
+        };
+        const handleTouchMove = (event) => {
+            const touchY = event.touches?.[0]?.clientY || touchStartY;
+            if (Math.abs(touchY - touchStartY) < 12) return;
+            event.preventDefault();
+            skipLoader();
+        };
+        const handleKeyDown = (event) => {
+            if (!['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' ', 'Escape'].includes(event.key)) return;
+            event.preventDefault();
+            skipLoader();
+        };
+        const skipHint = loader.querySelector('.skip-hint');
+
+        window.addEventListener('wheel', handleWheel, { passive: false, capture: true });
+        window.addEventListener('touchstart', handleTouchStart, { passive: true, capture: true });
+        window.addEventListener('touchmove', handleTouchMove, { passive: false, capture: true });
+        window.addEventListener('keydown', handleKeyDown, { capture: true });
+        skipHint?.addEventListener('click', skipLoader);
+
+        removeEntryLoaderSkipHandlers = () => {
+            window.removeEventListener('wheel', handleWheel, { capture: true });
+            window.removeEventListener('touchstart', handleTouchStart, { capture: true });
+            window.removeEventListener('touchmove', handleTouchMove, { capture: true });
+            window.removeEventListener('keydown', handleKeyDown, { capture: true });
+            skipHint?.removeEventListener('click', skipLoader);
+        };
     };
 
     const animateLoaderLogoToNav = (loader) => {
@@ -752,15 +790,17 @@ document.addEventListener('DOMContentLoaded', () => {
         let iteration = 0;
         const targetChars = targetText.split('');
         const scrambleChars = '01$#@!%&*?';
-        const interval = setInterval(() => {
+        clearEntryLoaderTimeline();
+        decodeIntervalId = setInterval(() => {
             decodeEl.textContent = targetChars.map((l, i) => (
                 i < iteration ? l : scrambleChars[Math.floor(Math.random() * scrambleChars.length)]
             )).join('');
             if (iteration >= targetText.length) {
-                clearInterval(interval);
-                setTimeout(() => {
+                clearInterval(decodeIntervalId);
+                decodeIntervalId = 0;
+                scheduleEntryLoaderTimeout(() => {
                     document.getElementById('entry-loader')?.classList.add('show-logo');
-                    setTimeout(() => {
+                    scheduleEntryLoaderTimeout(() => {
                         const loader = document.getElementById('entry-loader');
                         if (loader) {
                             animateLoaderLogoToNav(loader);
@@ -789,7 +829,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            if (window.lenisInstance) window.lenisInstance.stop();
 
             document.getElementById('confirm-investor')?.addEventListener('click', () => {
                 localStorage.setItem(COMPLIANCE_STORAGE_KEY, COMPLIANCE_VERSION);
@@ -797,10 +836,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.classList.remove('compliance-pending');
                 if (loader) {
                     loader.classList.add('active');
+                    enableEntryLoaderSkip(loader);
                     runDecode("PARIGAIN");
                 } else {
                     document.body.style.overflow = 'auto';
-                    if (window.lenisInstance) window.lenisInstance.start();
                 }
             });
             document.getElementById('leave-site')?.addEventListener('click', () => {
@@ -900,6 +939,116 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    const initCopyButtons = () => {
+        const copyButtons = document.querySelectorAll('[data-copy-value]');
+        if (!copyButtons.length) return;
+
+        const fallbackCopy = (value) => {
+            const copyFromEvent = () => {
+                let success = false;
+                const handleCopy = (event) => {
+                    event.clipboardData?.setData('text/plain', value);
+                    event.preventDefault();
+                    success = true;
+                };
+
+                document.addEventListener('copy', handleCopy, { once: true });
+                const commandSuccess = document.execCommand('copy');
+                document.removeEventListener('copy', handleCopy);
+                return commandSuccess && success;
+            };
+
+            if (copyFromEvent()) return true;
+
+            const textarea = document.createElement('textarea');
+            textarea.value = value;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '0';
+            textarea.style.top = '0';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            textarea.setSelectionRange(0, textarea.value.length);
+            const success = document.execCommand('copy');
+            textarea.remove();
+            return success;
+        };
+
+        const copyText = async (value) => {
+            if (fallbackCopy(value)) return true;
+
+            if (navigator.clipboard?.writeText && window.isSecureContext) {
+                try {
+                    await navigator.clipboard.writeText(value);
+                    return true;
+                } catch (error) {
+                    return false;
+                }
+            }
+            return false;
+        };
+
+        const showManualCopyField = (button, value) => {
+            const card = button.closest('.office-card, .contact-info-card') || button.parentElement;
+            card.querySelector('.copy-fallback-field')?.remove();
+
+            const fallback = document.createElement('div');
+            fallback.className = 'copy-fallback-field';
+
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = value;
+            input.readOnly = true;
+            input.setAttribute('aria-label', '待复制内容');
+
+            const hint = document.createElement('span');
+            hint.textContent = '已选中，按 Cmd/Ctrl + C 复制';
+
+            fallback.append(input, hint);
+            button.closest('.copy-card-header')?.insertAdjacentElement('afterend', fallback);
+            input.focus();
+            input.select();
+            input.setSelectionRange(0, input.value.length);
+
+            window.setTimeout(() => fallback.remove(), 6000);
+        };
+
+        copyButtons.forEach(button => {
+            button.addEventListener('click', async () => {
+                const value = button.dataset.copyValue;
+                if (!value) return;
+                const defaultText = button.dataset.defaultText || button.textContent;
+                button.dataset.defaultText = defaultText;
+                let resetDelay = 1600;
+
+                try {
+                    const success = await copyText(value);
+                    if (success) {
+                        button.textContent = '已复制';
+                        button.classList.add('is-copied');
+                    } else {
+                        showManualCopyField(button, value);
+                        button.textContent = '已选中';
+                        button.classList.add('is-copied');
+                        resetDelay = 6000;
+                    }
+                } catch (error) {
+                    showManualCopyField(button, value);
+                    button.textContent = '已选中';
+                    button.classList.add('is-copied');
+                    resetDelay = 6000;
+                }
+
+                window.setTimeout(() => {
+                    button.textContent = defaultText;
+                    button.classList.remove('is-copied');
+                }, resetDelay);
+            });
+        });
+    };
+
     initCompliance();
+    initCopyButtons();
     initOfficeMaps();
 });

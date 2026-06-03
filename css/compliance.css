@@ -320,7 +320,7 @@ body.loaded:not(.compliance-pending) main {
 }
 
 .decode-text {
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-sans);
   font-size: clamp(40px, 8vw, 88px);
   font-weight: 800;
   color: var(--accent);
@@ -402,6 +402,8 @@ body.loaded:not(.compliance-pending) main {
   letter-spacing: 4px;
   opacity: 0;
   animation: fadeInOut 2.5s infinite;
+  cursor: pointer;
+  user-select: none;
 }
 
 @keyframes fadeInOut {

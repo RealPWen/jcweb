@@ -5,6 +5,9 @@
    Edit individual files for targeted changes.
    ============================================= */
 
+/* Local web fonts: bundled by Vite so production does not depend on Google Fonts. */
+@import './fonts.css';
+
 /* 1. Base: Variables, Reset, Typography, Utilities, Common Components */
 @import './base.css';
 
